@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Театри</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+
+</head>
+<body ng-app = "demo">
+
+<div class="container" style="margin-top: 30px" ng-controller = "TheatreCtrl as theatreCtrl">
+    <div class="datagrid">
+        <table>
+            <thead>
+                <tr>
+                    <th>&#128273ІД</th>
+                    <th>Назва</th>
+                    <th>Адреса</th>
+                    <th>Місткість</th>
+                    <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            <tr ng-repeat = "item in theatres">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.capacity}}</td>
+                <td>
+                    <button id="update" ng-click="theatreCtrl.startUpdateTheatre(item.id, item.name, item.address, item.capacity)" class="btn-warning" data-toggle="modal" data-target="#editModal">Edit</button>
+                    <button id="delete" ng-click="theatreCtrl.deleteTheatre(item.id)" class="btn-danger">Del</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Додавання артиста -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Назва:</label>
+                    <input type="text" id="TheatreName" name="TheatreName" /> <br>
+                    <label>Адреса:</label>
+                    <input type="text" id="TheatreAddress" name="TheatreAddress" /> <br>
+                    <label>Місткість:</label>
+                    <input type="text" id="TheatreCapacity" name="TheatreCapacity" /> <br>
+                    <button id="createTheatreButton" ng-click="theatreCtrl.createTheatre()">Створити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Редагування артиста -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Назва:</label>
+                    <input type="text" id="updateTheatreName" name="updateTheatreName" /> <br>
+                    <label>Адреса:</label>
+                    <input type="text" id="updateTheatreAddress" name="updateTheatreAddress" /> <br>
+                    <label>Місткість:</label>
+                    <input type="text" id="updateTheatreCapacity" name="updateTheatreCapacity" /> <br>
+                    <button id="editTheatreButton" ng-click="theatreCtrl.updateTheatre()">Змінити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/theatre.js"></script>
+
+</body>
+</html>

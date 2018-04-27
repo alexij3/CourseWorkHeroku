@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Виступи</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+
+</head>
+<body ng-app = "demo">
+
+<div class="container" style="margin-top: 30px" ng-controller = "TheatrePerformanceCtrl as theatrePerformanceCtrl">
+    <div class="datagrid">
+        <div class="panel-heading">Виступи</div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>&#128273ІД</th>
+                <th>Назва</th>
+                <th>Театр</th>
+                <th>Організатор</th>
+                <th>Дата</th>
+                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                                         ng-click="theatrePerformanceCtrl.startCreateTheatrePerformance()">Створити</button></th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr ng-repeat = "item in theatrePerformances">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.theatre.name}}</td>
+                <td>{{item.organizer.name}}</td>
+                <td>{{item.date}}</td>
+                <td>
+                    <button id="update" ng-click="theatrePerformanceCtrl.startUpdateTheatrePerformance(item.id, item.name, item.theatre.id, item.organizer.id, item.date)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="theatrePerformanceCtrl.deleteTheatrePerformance(item.id)" class="btn-danger">Видалити</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Додавання артиста -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Назва: </label>
+                    <input type="text" id="TheatrePerformanceName" name="TheatrePerformanceName" /> <br>
+                    <label>Культурний палац: </label> <br>
+                    <select id="TheatrePerformanceTheatre" name="updateTheatrePerformanceTheatre" >
+
+                    </select> <br>
+                    <label>Організатор: </label> <br>
+                    <select id="TheatrePerformanceOrganizer" name="updateTheatrePerformanceOrganizer" ></select> <br>
+                    <label>Дата: </label>
+                    <input type="date" name ="updateDate" id="datePicker"/> <br>
+                    <button id="createTheatrePerformanceButton" ng-click="theatrePerformanceCtrl.createTheatrePerformance()">Створити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Редагування артиста -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Назва: </label>
+                    <input type="text" id="updateTheatrePerformanceName" name="updateTheatrePerformanceName" /> <br>
+                    <label>Концертна площадка: </label> <br>
+                    <select id="updateTheatrePerformanceTheatre" name="updateTheatrePerformanceTheatre" >
+
+                    </select> <br>
+                    <label>Організатор: </label> <br>
+                    <select id="updateTheatrePerformanceOrganizer" name="updateTheatrePerformanceOrganizer" ></select> <br>
+                    <label>Дата: </label>
+                    <input type="date" name ="updateDate" id="updateDatePicker"/> <br>
+                    <button id="updateTheatrePerformanceButton" ng-click="theatrePerformanceCtrl.updateTheatrePerformance()">Змінити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/theatre_performance.js"></script>
+
+</body>
+</html>

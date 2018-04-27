@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фільми</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+
+</head>
+<body ng-app = "demo">
+
+<div class="container" style="margin-top: 30px" ng-controller = "CinemaMovieCtrl as cinemaMovieCtrl">
+    <div class="datagrid">
+        <table>
+            <thead>
+                <tr>
+                    <th>&#128273ІД</th>
+                    <th>Назва</th>
+                    <th>Жанр</th>
+                    <th>Кінотеатр</th>
+                    <th>Дата</th>
+                    <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                    ng-click="cinemaMovieCtrl.startCreateCinemaMovie()">Створити</button></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            <tr ng-repeat = "item in cinemaMovies">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.genre}}</td>
+                <td>{{item.cinema.name}}</td>
+                <td>{{item.date}}</td>
+                <td>
+                    <button id="update" ng-click="cinemaMovieCtrl.startUpdateCinemaMovie(item.id, item.name, item.genre, item.cinemaId, item.date)" class="btn-warning" data-toggle="modal" data-target="#editModal">Edit</button>
+                    <button id="delete" ng-click="cinemaMovieCtrl.deleteCinemaMovie(item.id)" class="btn-danger">Del</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Додавання артиста -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>ІД: </label>
+                    <input type="text" id="CinemaMovieId" name="CinemaMovieId" /> <br>
+                    <label>Назва: </label>
+                    <input type="text" id="CinemaMovieName" name="CinemaMovieName" /> <br>
+                    <label>Жанр: </label>
+                    <select id="CinemaMovieGenre" name="CinemaMovieGenre" >
+                        <option>Комедія</option>
+                        <option>Драма</option>
+                        <option>Мелодрама</option>
+                        <option>Мюзикл</option>
+                        <option>Фантастика</option>
+                        <option>Боєвик</option>
+                        <option>Фентезі</option>
+                        <option>Тріллер</option>
+                        <option>Детектив</option>
+                    </select> <br>
+                    <label>Кінотеатр: </label>
+                    <select id="CinemaMovieCinema" name="CinemaMovieCinema" ></select> <br>
+                    <label>Дата: </label>
+                    <input type="date" name ="date" id="datePicker"/> <br>
+                    <button id="createCinemaMovieButton" ng-click="cinemaMovieCtrl.createCinemaMovie()">Створити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Редагування артиста -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Назва: </label>
+                    <input type="text" id="updateCinemaMovieName" name="updateCinemaMovieName" /> <br>
+                    <label>Жанр: </label>
+                    <select id="updateCinemaMovieGenre" name="updateCinemaMovieGenre" >
+                        <option>Комедія</option>
+                        <option>Драма</option>
+                        <option>Мелодрама</option>
+                        <option>Мюзикл</option>
+                        <option>Фантастика</option>
+                        <option>Боєвик</option>
+                        <option>Фентезі</option>
+                        <option>Тріллер</option>
+                        <option>Детектив</option>
+                    </select> <br>
+                    <label>Кінотеатр: </label>
+                    <select id="updateCinemaMovieCinema" name="updateCinemaMovieCinema" ></select> <br>
+                    <label>Дата: </label>
+                    <input type="date" name ="updateDate" id="updateDatePicker"/> <br>
+                    <button id="updateCinemaMovieButton" ng-click="cinemaMovieCtrl.updateCinemaMovie()">Змінити</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/cinema_movie.js"></script>
+
+</body>
+</html>
