@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.concertinhall;
 
 import com.buzilov.lab6crud.dao.concertinhall.ConcertInHallDAO;
@@ -38,3 +39,4 @@ public class ConcertInHallServiceImpl implements ConcertInHallService {
         return concertInHallDAO.getAll();
     }
 }
+*/

@@ -1,7 +1,6 @@
 package com.buzilov.lab6crud.service.artist;
 
 import com.buzilov.lab6crud.dao.artist.ArtistDAO;
-import com.buzilov.lab6crud.dao.artist.ArtistDAOImpl;
 import com.buzilov.lab6crud.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

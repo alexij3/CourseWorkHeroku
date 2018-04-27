@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.contestresults;
 
 import com.buzilov.lab6crud.dao.contestresults.ContestResultsDAOImpl;
@@ -38,3 +39,4 @@ public class ContestResultsServiceImpl implements ContestResultsService {
         return contestResultsDAO.getAll();
     }
 }
+*/

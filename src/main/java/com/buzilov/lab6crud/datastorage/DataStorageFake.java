@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.datastorage;
 
 import com.buzilov.lab6crud.model.*;
@@ -7,7 +8,8 @@ import java.util.*;
 
 @Configuration
 public class DataStorageFake {
-    /*public List<Artist> artists = new ArrayList<>(
+    */
+/*public List<Artist> artists = new ArrayList<>(
             Arrays.asList(
                     new Artist(1, "Бойчук Олег Станіславович"),
                     new Artist(2, "Стецько Анастасія Петрівна"),
@@ -29,11 +31,13 @@ public class DataStorageFake {
                     new Artist(18, "Баст Леонід Вікторович"),
                     new Artist(19, "Слон Максим Євгенійович")
             )
-    );*/
+    );*//*
+
 
     public Genre genres;
 
-    /*public List<Artist> artists = new ArrayList<>(
+    */
+/*public List<Artist> artists = new ArrayList<>(
             Arrays.asList(
                     new Artist(1, "Бойчук Олег Станіславович",
                             Set.of(Genre.Комедія, Genre.Боєвик, Genre.Фантастика)),
@@ -74,11 +78,13 @@ public class DataStorageFake {
                     new Artist(19, "Слон Максим Євгенійович",
                             Set.of(Genre.Натюрморт, Genre.Портрет, Genre.Пейзаж, Genre.Скульптура, Genre.Різьблення))
             )
-    );*/
+    );*//*
+
 
 
     public List<Impresario> impresarios = new ArrayList<>(
-            /*Arrays.asList(
+            */
+/*Arrays.asList(
                     new Impresario(1, "Бабенко Петро Михайлович",
                             Set.of(Genre.Комедія, Genre.Драма,Genre.Фантастика)),
                     new Impresario(2, "Димитрук Світлана Вікторівна",
@@ -92,10 +98,12 @@ public class DataStorageFake {
                     new Impresario(6, "Мур Дмитро Павлович",
                             Set.of(Genre.Мелодрама, Genre.Пародія, Genre.Мюзикл, Genre.Симфонія))
 
-            )*/
+            )*//*
+
     );
 
-    /*public List<ArtistAndImpresario> artistAndImpresarios = new ArrayList<>(
+    */
+/*public List<ArtistAndImpresario> artistAndImpresarios = new ArrayList<>(
             Arrays.asList(
                     new ArtistAndImpresario(artists.get(0), impresarios.get(0)),
                     new ArtistAndImpresario(artists.get(0), impresarios.get(1)),
@@ -106,7 +114,8 @@ public class DataStorageFake {
                     new ArtistAndImpresario(artists.get(2), impresarios.get(3)),
                     new ArtistAndImpresario(artists.get(5), impresarios.get(5))
             )
-    );*/
+    );*//*
+
 
     public List<Cinema> cinemas = new ArrayList<>(
             Arrays.asList(
@@ -124,7 +133,8 @@ public class DataStorageFake {
     );
 
     public List<CinemaMovie> cinemaMovies = new ArrayList<>(
-            /*Arrays.asList(
+            */
+/*Arrays.asList(
                     new CinemaMovie(1, "Перший фільм", "Комедія", cinemas.get(0), new Date(2018-14-01)),
                     new CinemaMovie(2, "Другий фільм", "Комедія", cinemas.get(1), new Date(2017-12-27)),
                     new CinemaMovie(3, "Третій фільм", "Боєвик", cinemas.get(2), new Date(2018-03-04)),
@@ -135,7 +145,8 @@ public class DataStorageFake {
                     new CinemaMovie(8, "Восьмий фільм", "Фантастика", cinemas.get(7), new Date(2018-02-27)),
                     new CinemaMovie(9, "Дев'ятий фільм", "Комедія", cinemas.get(8), new Date(2018-02-10)),
                     new CinemaMovie(10, "Десятий фільм", "Драма", cinemas.get(9), new Date(2018-02-15))
-            )*/
+            )*//*
+
     );
 
     public List<ConcertHall> concertHalls = new ArrayList<>(
@@ -174,7 +185,8 @@ public class DataStorageFake {
     );
 
     public List<ConcertInHall> concertsInHall = new ArrayList<>(
-           /* Arrays.asList(
+           */
+/* Arrays.asList(
                     new ConcertInHall(1, concertHalls.get(0), "Концерт №1", organizers.get(0), new Date(2018-02-01)),
                     new ConcertInHall(2, concertHalls.get(0), "Концерт №2", organizers.get(1), new Date(2018-02-03)),
                     new ConcertInHall(3, concertHalls.get(0), "Концерт №3", organizers.get(2), new Date(2018-02-04)),
@@ -191,7 +203,8 @@ public class DataStorageFake {
                     new ConcertInHall(14, concertHalls.get(7), "Концерт №14", organizers.get(13), new Date(2018-02-25)),
                     new ConcertInHall(15, concertHalls.get(8), "Концерт №15", organizers.get(14), new Date(2018-02-27)),
                     new ConcertInHall(16, concertHalls.get(9), "Концерт №16", organizers.get(0), new Date(2018-02-27))
-            )*/
+            )*//*
+
     );
 
     public List<CulturePalace> culturePalaces = new ArrayList<>(
@@ -210,7 +223,8 @@ public class DataStorageFake {
     );
 
     public List<ContestInPalace> contestsInPalaces = new ArrayList<>(
-           /* Arrays.asList(
+           */
+/* Arrays.asList(
                     new ContestInPalace(1, culturePalaces.get(0), "Конкурс-виставка \"Натюрморт\"", organizers.get(0), new Date(2018-01-20)),
                     new ContestInPalace(2, culturePalaces.get(0), "Конкурс-виставка \"Різьблення\"", organizers.get(1), new Date(2018-01-25)),
                     new ContestInPalace(3, culturePalaces.get(0), "Конкурс \"Портрет\"", organizers.get(2), new Date(2018-02-01)),
@@ -218,10 +232,12 @@ public class DataStorageFake {
                     new ContestInPalace(5, culturePalaces.get(4), "Конкурс \"Диво-історія\"", organizers.get(4), new Date(2018-02-10)),
                     new ContestInPalace(6, culturePalaces.get(5), "Конкурс \"Інший\"", organizers.get(5), new Date(2018-01-14)),
                     new ContestInPalace(7, culturePalaces.get(6), "Конкурс \"Багатий\"", organizers.get(6), new Date(2018-03-02))
-            )*/
+            )*//*
+
     );
 
-    /*public List<ContestResults> contestResults = new ArrayList<>(
+    */
+/*public List<ContestResults> contestResults = new ArrayList<>(
             Arrays.asList(
                     new ContestResults(contestsInPalaces.get(0), artists.get(11), 1, 'Y'),
                     new ContestResults(contestsInPalaces.get(0), artists.get(15), 2, 'Y'),
@@ -229,7 +245,8 @@ public class DataStorageFake {
                     new ContestResults(contestsInPalaces.get(0), artists.get(17), 4, 'N'),
                     new ContestResults(contestsInPalaces.get(0), artists.get(18), 5, 'N')
             )
-    );*/
+    );*//*
+
 
 
     public List<Theatre> theatres = new ArrayList<>(
@@ -248,7 +265,8 @@ public class DataStorageFake {
     );
 
     public List<TheatrePerformance> theatrePerformances = new ArrayList<>(
-           /* Arrays.asList(
+           */
+/* Arrays.asList(
                 new TheatrePerformance(1, "Перший виступ", theatres.get(0), organizers.get(0), new Date(2018-02-14)),
                 new TheatrePerformance(2, "Другий виступ", theatres.get(1), organizers.get(0), new Date(2018-01-27)),
                 new TheatrePerformance(3, "Третій виступ", theatres.get(2), organizers.get(1), new Date(2018-02-04)),
@@ -257,7 +275,8 @@ public class DataStorageFake {
                 new TheatrePerformance(6, "Шостий виступ", theatres.get(5), organizers.get(4), new Date(2018-03-02)),
                 new TheatrePerformance(7, "Сьомий виступ", theatres.get(6), organizers.get(5), new Date(2018-03-03)),
                 new TheatrePerformance(8, "Восьмий виступ", theatres.get(7), organizers.get(6), new Date(2018-03-04))
-            )*/
+            )*//*
+
     );
 
     public List<TheatrePerformance> getTheatrePerformances() {
@@ -313,3 +332,4 @@ public class DataStorageFake {
         return cinemas;
     }
 }
+*/

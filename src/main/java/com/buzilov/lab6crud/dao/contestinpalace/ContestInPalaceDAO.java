@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.dao.contestinpalace;
 
 import com.buzilov.lab6crud.model.ContestInPalace;
@@ -8,3 +9,4 @@ import java.util.List;
 public interface ContestInPalaceDAO {
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.artistgenre;
 
 import com.buzilov.lab6crud.dao.artistgenre.ArtistGenreDAOImpl;
@@ -39,3 +40,4 @@ public class ArtistGenreServiceImpl implements ArtistGenreService {
         return artistGenreDAO.getAll();
     }
 }
+*/

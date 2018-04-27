@@ -1,18 +1,20 @@
 package com.buzilov.lab6crud.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Organizer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
     private String name;
 
     public Organizer() {
     }
 
     public Organizer(String name) {
-        this.name = name;
-    }
-
-    public Organizer(int id, String name) {
-        this.id = id;
         this.name = name;
     }
 

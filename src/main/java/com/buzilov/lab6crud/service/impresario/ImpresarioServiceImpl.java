@@ -1,6 +1,6 @@
 package com.buzilov.lab6crud.service.impresario;
 
-import com.buzilov.lab6crud.dao.impresario.ImpresarioDAOImpl;
+import com.buzilov.lab6crud.dao.impresario.ImpresarioDAO;
 import com.buzilov.lab6crud.model.Impresario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,30 +11,30 @@ import java.util.List;
 @Service
 public class ImpresarioServiceImpl implements ImpresarioService {
     @Autowired
-    ImpresarioDAOImpl impresarioDAO;
+    ImpresarioDAO impresarioDAO;
 
     @Override
     public Impresario insert(Impresario impresario) throws SQLException {
-        return impresarioDAO.insert(impresario);
+        return impresarioDAO.save(impresario);
     }
 
     @Override
     public Impresario get(int id) throws SQLException  {
-        return impresarioDAO.get(id);
+        return impresarioDAO.findById(id).get();
     }
 
     @Override
     public Impresario update(Impresario impresario) throws SQLException  {
-        return impresarioDAO.update(impresario);
+        return impresarioDAO.save(impresario);
     }
 
     @Override
     public void delete(int id) throws SQLException  {
-        impresarioDAO.delete(id);
+        impresarioDAO.deleteById(id);
     }
 
     @Override
     public List<Impresario> getAll() throws SQLException  {
-        return impresarioDAO.getAll();
+        return (List<Impresario>) impresarioDAO.findAll();
     }
 }

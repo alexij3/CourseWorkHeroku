@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ArtistAndImpresario;
@@ -44,3 +45,4 @@ public class ArtistAndImpresarioController {
         artistAndImpresarioService.delete(artistAndImpresario.getArtistId(), artistAndImpresario.getImpresarioId());
     }
 }
+*/

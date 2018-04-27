@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.theatreperformance;
 
 import com.buzilov.lab6crud.dao.theatreperformance.TheatrePerformanceDAOImpl;
@@ -38,3 +39,4 @@ public class TheatrePerformanceServiceImpl implements TheatrePerformanceService 
         return theatrePerformanceDAO.getAll();
     }
 }
+*/

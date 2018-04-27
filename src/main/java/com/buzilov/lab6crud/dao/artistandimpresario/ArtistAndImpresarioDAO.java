@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.dao.artistandimpresario;
 
 import com.buzilov.lab6crud.model.ArtistAndImpresario;
@@ -11,3 +12,4 @@ import java.util.List;
 public interface ArtistAndImpresarioDAO extends CrudRepository<ArtistAndImpresario, Integer> {
 
 }
+*/

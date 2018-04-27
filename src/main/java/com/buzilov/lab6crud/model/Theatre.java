@@ -1,22 +1,26 @@
 package com.buzilov.lab6crud.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Theatre {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column
     private String name;
+
+    @Column
     private String address;
+
+    @Column
     private int capacity;
 
     public Theatre() {
     }
 
     public Theatre(String name, String address, int capacity) {
-        this.name = name;
-        this.address = address;
-        this.capacity = capacity;
-    }
-
-    public Theatre(Integer id, String name, String address, int capacity) {
-        this.id = id;
         this.name = name;
         this.address = address;
         this.capacity = capacity;

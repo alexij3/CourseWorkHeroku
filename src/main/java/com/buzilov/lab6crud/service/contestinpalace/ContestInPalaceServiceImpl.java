@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.contestinpalace;
 
 import com.buzilov.lab6crud.dao.contestinpalace.ContestInPalaceDAO;
@@ -38,3 +39,4 @@ public class ContestInPalaceServiceImpl implements ContestInPalaceService {
         return contestInPalaceDAO.getAll();
     }
 }
+*/

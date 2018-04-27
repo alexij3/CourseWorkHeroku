@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.impresariogenre;
 
 import com.buzilov.lab6crud.dao.impresariogenre.ImpresarioGenreDAOImpl;
@@ -39,3 +40,4 @@ public class ImpresarioGenreServiceImpl implements ImpresarioGenreService{
         return impresarioGenreDAO.getAll();
     }
 }
+*/

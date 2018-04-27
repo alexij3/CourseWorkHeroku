@@ -1,19 +1,20 @@
 package com.buzilov.lab6crud.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Impresario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column
     private String name;
 
     public Impresario() {
     }
 
-
     public Impresario(String name) {
-        this.name = name;
-    }
-
-    public Impresario(Integer id, String name) {
-        this.id = id;
         this.name = name;
     }
 

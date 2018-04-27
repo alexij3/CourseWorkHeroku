@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.dao.concertinhall;
 
 import com.buzilov.lab6crud.model.ConcertInHall;
@@ -8,3 +9,4 @@ import java.util.List;
 public interface ConcertInHallDAO {
 
 }
+*/

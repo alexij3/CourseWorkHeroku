@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.artistandimpresario;
 
 import com.buzilov.lab6crud.dao.artistandimpresario.ArtistAndImpresarioDAOImpl;
@@ -38,3 +39,4 @@ public class ArtistAndImpresarioServiceImpl implements ArtistAndImpresarioServic
         return artistAndImpresarioDAO.getAll();
     }
 }
+*/

@@ -22,7 +22,7 @@ app.controller("CinemaCtrl", function($scope, $http){
         var screenSize = document.getElementById('CinemaScreenSize').value;
 
         var createRequest ={
-            method: 'POST',
+            method: 'PUT',
             url: '/api/cinema/create',
             data: {
                 name : name,
@@ -31,10 +31,9 @@ app.controller("CinemaCtrl", function($scope, $http){
             }
         };
 
-        $http(createRequest).success(
-            console.log('created Cinema with name ' + name)
-        ).then(function(){
-            window.parent.location.reload();
+        $http(createRequest).then(function(response){
+            console.log(response);
+            window.location.reload();
         });
     };
 

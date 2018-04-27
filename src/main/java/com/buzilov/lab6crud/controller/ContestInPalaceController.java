@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ContestInPalace;
@@ -45,3 +46,4 @@ public class ContestInPalaceController {
         return contestInPalaceService.update(contestInPalace);
     }
 }
+*/

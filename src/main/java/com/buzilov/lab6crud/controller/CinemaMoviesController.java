@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.CinemaMovie;
@@ -57,3 +58,4 @@ public class CinemaMoviesController {
     }
 
 }
+*/

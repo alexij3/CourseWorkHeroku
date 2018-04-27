@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ArtistGenre;
@@ -39,3 +40,4 @@ public class ArtistGenreController {
         return artistGenreService.update(oldGenre, artistGenre);
     }
 }
+*/

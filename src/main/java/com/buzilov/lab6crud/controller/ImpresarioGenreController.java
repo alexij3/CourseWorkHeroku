@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ImpresarioGenre;
@@ -43,3 +44,4 @@ public class ImpresarioGenreController {
         return impresarioGenreService.update(oldGenre, impresarioGenre);
     }
 }
+*/

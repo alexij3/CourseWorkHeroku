@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.service.cinemamovie;
 
 import com.buzilov.lab6crud.dao.cinemamovie.CinemaMovieDAOImpl;
@@ -38,3 +39,4 @@ public class CinemaMovieServiceImpl implements CinemaMovieService{
         return cinemaMovieDAO.getAll();
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ContestResults;
@@ -40,3 +41,4 @@ public class ContestResultsController {
     }
 
 }
+*/
