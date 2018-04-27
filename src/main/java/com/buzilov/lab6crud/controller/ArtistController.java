@@ -38,10 +38,10 @@ public class ArtistController {
         return artistService.insertArtist(artist);
     }
 
-
     @RequestMapping("/get")
     public Artist get(@RequestParam("id") int id) throws SQLException{
         return artistService.getArtist(id);
     }
+
 }
 

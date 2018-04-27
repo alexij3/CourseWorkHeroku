@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Artist {
@@ -11,10 +12,29 @@ public class Artist {
     @Column
     private String name;
 
+    @ElementCollection(targetClass = Genre.class)
+    @CollectionTable(name = "artist_and_genre", joinColumns = @JoinColumn (name = "id_artist", nullable = false))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "genre", nullable = false)
+    private Set<Genre> genreSet;
+
     public Artist(){}
+
+    public Artist(String name, Set<Genre> genreSet) {
+        this.name = name;
+        this.genreSet = genreSet;
+    }
 
     public Artist(String name) {
         this.name = name;
+    }
+
+    public Set<Genre> getGenreSet() {
+        return genreSet;
+    }
+
+    public void setGenreSet(Set<Genre> genreSet) {
+        this.genreSet = genreSet;
     }
 
     @Override

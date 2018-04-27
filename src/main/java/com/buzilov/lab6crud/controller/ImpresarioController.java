@@ -19,6 +19,7 @@ public class ImpresarioController {
 
     @RequestMapping("/showall")
     public List<Impresario> getAll() throws SQLException  {
+        System.out.println(service.getAll());
         return service.getAll();
     }
 

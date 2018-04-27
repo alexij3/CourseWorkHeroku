@@ -25,7 +25,10 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Artist updateArtist(Artist artist) throws SQLException {
-        return artistDAO.save(artist);
+        Artist updatedArtist = getArtist(artist.getId());
+        updatedArtist.getGenreSet().addAll(artist.getGenreSet());
+        System.out.println(updatedArtist);
+        return artistDAO.save(updatedArtist);
     }
 
     @Override

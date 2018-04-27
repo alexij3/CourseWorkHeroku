@@ -22,7 +22,7 @@
                     <th>Артист</th>
                     <th>Жанр</th>
                     <th width="200px">
-                        <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal">Додати</button>
+
                     </th>
                 </tr>
             </thead>
@@ -30,11 +30,11 @@
             <tbody>
 
             <tr ng-repeat = "item in artists">
-                <td>{{item.artist.id}}</td>
-                <td>{{item.artist.name}}</td>
-                <td>{{item.genre.toString()}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.genreSet.toString()}}</td>
                 <td>
-                    <button id="update" ng-click="artistGenreCtrl.startUpdateGenres(item.artist.id, item.artist.name, item.genre.toString())" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal">Додати</button>
                     <button id="delete" ng-click="artistGenreCtrl.deleteGenre(item.artist.id, item.genre.toString())" class="btn-danger">Видалити</button>
                 </td>
             </tr>

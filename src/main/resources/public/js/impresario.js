@@ -1,11 +1,10 @@
 var app = angular.module("demo", []);
 
 app.controller("ImpresarioCtrl", function($scope, $http){
-
     var idToUpdate;
 
     $scope.impresarios = [];
-     $http.get('/api/impresario/showAll').then(function (response){
+     $http.get('/api/impresario/showall').then(function (response){
         $scope.impresarios=response.data;
         console.log(response);
     });
@@ -42,7 +41,7 @@ app.controller("ImpresarioCtrl", function($scope, $http){
         $http(request).then(function (response){
             window.location.reload();
             console.log(response);
-        })
+        });
     }
 });
 

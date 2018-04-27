@@ -6,38 +6,36 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
     var genres = [];
 
     $scope.artists = [];
-    $http.get('/api/artistgenre/showgenres').then(function (response) {
+    $http.get('/api/artist/showall').then(function (response) {
         $scope.artists = response.data;
-    });
+            var select = document.getElementById('selectedArtist');
+            for (var i = 0; i < $scope.artists.length; i++){
+                var option = document.createElement("option");
+                option.text = $scope.artists[i].name;
+                option.value = $scope.artists[i].id;
 
-    $http.get('/api/artist/showall').then(function(response){
-        var artists = response.data;
-        var select = document.getElementById('selectedArtist');
-        for (var i = 0; i < artists.length; i++){
-            var option = document.createElement("option");
-            option.text = artists[i].name;
-            option.value = artists[i].id;
+                select.add(option);
+            }
+        });
 
-            select.add(option);
-        }
-    });
 
     this.addGenre = function addGenre(){
         artistId = document.getElementById('selectedArtist').value;
+        var optionIndex = document.getElementById('selectedArtist').selectedIndex;
+        var artistName = (document.getElementById('selectedArtist').options[optionIndex].text);
         genres = $scope.selectedGenres;
-        for (var i = 0; i < genres.length; i++){
             var request = {
                 method: 'PUT',
-                url: '/api/artistgenre/insertgenre?id=' + artistId,
+                url: '/api/artist/update?id=' + artistId,
                 data: {
-                    genre : genres[i]
+                    name : artistName,
+                    genreSet : genres
                 }
             };
 
             $http(request).then(function(){
                 window.location.reload();
             });
-        }
     };
 
     this.startUpdateGenres = function startUpdateGenres(id, name, genre){
