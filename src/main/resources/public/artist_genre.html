@@ -34,8 +34,8 @@
                 <td>{{item.name}}</td>
                 <td>{{item.genreSet.toString()}}</td>
                 <td>
-                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal">Додати</button>
-                    <button id="delete" ng-click="artistGenreCtrl.deleteGenre(item.artist.id, item.genre.toString())" class="btn-danger">Видалити</button>
+                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistGenreCtrl.startAddGenre(item.id, item.name, item.genreSet)">Додати</button>
+                    <button id="delete" ng-click="artistGenreCtrl.startDeleteGenre(item.id, item.name, item.genreSet)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">Видалити</button>
                 </td>
             </tr>
             </tbody>
@@ -51,9 +51,8 @@
                 </div>
                 <div class="modal-body">
                     <label>Артист: </label>
-                    <select id="selectedArtist">
-                    </select><br>
-                    <label>Жанри:</label>
+                    <span id="artistName"></span><br>
+                    <label>Жанри для додавання:</label><br>
                     <select multiple ng-model="selectedGenres" id="selectGenres" name="selectGenres" title="Жанри">
                         <option>Комедія</option>
                         <option>Драма</option>
@@ -70,39 +69,29 @@
                     <button id="addGenreButton" ng-click="artistGenreCtrl.addGenre()">Додати</button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="artistGenreCtrl.onClose()">Закрити</button>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Редагування артиста -->
-    <div id="editModal" class="modal fade" role="dialog">
+    <div id="deleteModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Редагування</h4>
+                    <h4 class="modal-title">Видалення</h4>
                 </div>
                 <div class="modal-body">
                     <label>Артист: </label>
-                    <span id="updLabelArtist"></span> <br>
-                    <select ng-model="selectedGenre" id="selectGenre" name="selectGenre" title="Жанри">
-                        <option>Комедія</option>
-                        <option>Драма</option>
-                        <option>Мелодрама</option>
-                        <option>Мюзикл</option>
-                        <option>Пародія</option>
-                        <option>Фантастика</option>
-                        <option>Боєвик</option>
-                        <option>Фентезі</option>
-                        <option>Тріллер</option>
-                        <option>Детектив</option>
+                    <span id="delArtistName"></span> <br>
+                    <select multiple="multiple" ng-model="delSelectedGenre" id="delSelectGenre" name="selectGenre" title="Жанри">
                     </select>
-                    <button id="editGenresButton" ng-click="artistGenreCtrl.updateGenre()">Змінити</button>
+
                 </div>
                 <div class="modal-footer">
+                    <button id="deleteGenresButton" type="button" class="btn btn-default" ng-click="artistGenreCtrl.deleteGenre()">Видалити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

@@ -27,6 +27,13 @@ public class ArtistController {
         artistService.deleteArtist(id);
     }
 
+    @RequestMapping("/deletegenre")
+    public void deleteGenre(@RequestParam("artistId") int id, @RequestBody Artist artist) throws SQLException {
+        artist.setId(id);
+        System.out.println(artist.getGenreSet());
+        artistService.deleteGenre(artist);
+    }
+
     @RequestMapping("/update")
     public Artist updateArtist(@RequestParam("id") Integer id, @RequestBody Artist artist) throws SQLException {
         artist.setId(id);

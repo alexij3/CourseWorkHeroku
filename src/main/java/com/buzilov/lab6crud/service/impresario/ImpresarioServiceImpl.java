@@ -25,7 +25,9 @@ public class ImpresarioServiceImpl implements ImpresarioService {
 
     @Override
     public Impresario update(Impresario impresario) throws SQLException  {
-        return impresarioDAO.save(impresario);
+        Impresario updatedImpresario = get(impresario.getId());
+        updatedImpresario.getGenreSet().addAll(impresario.getGenreSet());
+        return impresarioDAO.save(updatedImpresario);
     }
 
     @Override
@@ -36,5 +38,12 @@ public class ImpresarioServiceImpl implements ImpresarioService {
     @Override
     public List<Impresario> getAll() throws SQLException  {
         return (List<Impresario>) impresarioDAO.findAll();
+    }
+
+    @Override
+    public Impresario deleteGenre(Impresario impresario) throws SQLException {
+        Impresario updatedImpresario = impresarioDAO.findById(impresario.getId()).get();
+        updatedImpresario.getGenreSet().removeAll(impresario.getGenreSet());
+        return impresarioDAO.save(updatedImpresario);
     }
 }

@@ -29,6 +29,13 @@ public class ImpresarioController {
         service.delete(id);
     }
 
+    @RequestMapping("/deletegenre")
+    public void deleteGenre(@RequestParam("impresarioId") int id, @RequestBody Impresario impresario) throws SQLException {
+        impresario.setId(id);
+        System.out.println(impresario.getGenreSet());
+        service.deleteGenre(impresario);
+    }
+
     @RequestMapping("/create")
     public Impresario create(String name) throws SQLException {
         Impresario Impresario = new Impresario(name);

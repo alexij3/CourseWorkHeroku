@@ -27,7 +27,6 @@ public class ArtistServiceImpl implements ArtistService {
     public Artist updateArtist(Artist artist) throws SQLException {
         Artist updatedArtist = getArtist(artist.getId());
         updatedArtist.getGenreSet().addAll(artist.getGenreSet());
-        System.out.println(updatedArtist);
         return artistDAO.save(updatedArtist);
     }
 
@@ -39,5 +38,12 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public List<Artist> getAll() throws SQLException {
         return (List<Artist>)artistDAO.findAll();
+    }
+
+    @Override
+    public Artist deleteGenre(Artist artist) throws SQLException {
+        Artist updatedArtist = artistDAO.findById(artist.getId()).get();
+        updatedArtist.getGenreSet().removeAll(artist.getGenreSet());
+        return artistDAO.save(updatedArtist);
     }
 }

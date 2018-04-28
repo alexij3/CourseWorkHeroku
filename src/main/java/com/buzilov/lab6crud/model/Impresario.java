@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Impresario {
@@ -11,11 +12,23 @@ public class Impresario {
     @Column
     private String name;
 
+    @ElementCollection(targetClass = Genre.class)
+    @CollectionTable(name = "impresario_and_genre", joinColumns = @JoinColumn (name = "id_impresario", nullable = false))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "genre", nullable = false)
+    private Set<Genre> genreSet;
+
     public Impresario() {
     }
 
     public Impresario(String name) {
         this.name = name;
+    }
+
+
+    public Impresario(String name, Set<Genre> genreSet) {
+        this.name = name;
+        this.genreSet = genreSet;
     }
 
     public Integer getId() {
@@ -34,8 +47,13 @@ public class Impresario {
         this.name = name;
     }
 
+    public Set<Genre> getGenreSet() {
+        return genreSet;
+    }
 
-
+    public void setGenreSet(Set<Genre> genreSet) {
+        this.genreSet = genreSet;
+    }
 
     @Override
     public boolean equals(Object o) {
