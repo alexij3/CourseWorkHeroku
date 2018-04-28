@@ -53,25 +53,31 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
     };
 
     this.deleteGenre = function deleteGenre(){
-        var genreToDelete = [];
-        genreToDelete[0] = document.getElementById('delSelectGenre').value;
+        genres = $('#delSelectGenre').val();
         var request = {
             method: 'POST',
             url: '/api/impresario/deletegenre?impresarioId=' + impresarioId,
             data: {
                 name : impresarioName,
-                genreSet : genreToDelete
+                genreSet : genres
             }
         };
 
         $http(request).then(function(response){
+            document.getElementById('delSelectGenre').options.length = 0;
             window.location.reload();
         });
     };
 
-    this.onClose = function onClose(){
+    function removeItems(selectBox){
+        for (var i = selectBox.length-1; i >= 0; i--){
+            selectBox.remove(i);
+        }
+    }
 
-    };
+    this.onClose = function onClose(){
+        removeItems(document.getElementById('delSelectGenre'));
+    }
 });
 
 

@@ -12,10 +12,7 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
     });
 
     this.addGenre = function addGenre(){
-        $('#delSelectGenre option:selected').each(function(i, selected){
-            genres[i] = $(selected).attr('value');
-        });
-
+        genres = $scope.selectedGenres;
         var request = {
             method: 'PUT',
             url: '/api/artist/update?id=' + artistId,
@@ -56,25 +53,31 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
     };
 
     this.deleteGenre = function deleteGenre(){
-        var genreToDelete = [];
-        genreToDelete[0] = document.getElementById('delSelectGenre').value;
+        genres = $('#delSelectGenre').val();
         var request = {
             method: 'POST',
             url: '/api/artist/deletegenre?artistId=' + artistId,
             data: {
                 name : artistName,
-                genreSet : genreToDelete
+                genreSet : genres
             }
         };
 
         $http(request).then(function(response){
+            document.getElementById('delSelectGenre').options.length = 0;
             window.location.reload();
         });
     };
 
-    this.onClose = function onClose(){
+    function removeItems(selectBox){
+        for (var i = selectBox.length-1; i >= 0; i--){
+            selectBox.remove(i);
+        }
+    }
 
-    };
+    this.onClose = function onClose(){
+        removeItems(document.getElementById('delSelectGenre'));
+    }
 });
 
 
