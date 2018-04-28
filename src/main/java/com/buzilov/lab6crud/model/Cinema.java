@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Cinema {
@@ -16,6 +17,9 @@ public class Cinema {
 
     @Column
     private int screenSize;
+
+    @OneToMany(mappedBy = "cinema")
+    private List<CinemaMovie> cinemaMovies;
 
     public Cinema() {
     }
@@ -58,6 +62,13 @@ public class Cinema {
         this.screenSize = screenSize;
     }
 
+    public List<CinemaMovie> getCinemaMovies() {
+        return cinemaMovies;
+    }
+
+    public void setCinemaMovies(List<CinemaMovie> cinemaMovies) {
+        this.cinemaMovies = cinemaMovies;
+    }
 
     @Override
     public String toString() {

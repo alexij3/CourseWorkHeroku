@@ -1,14 +1,28 @@
 package com.buzilov.lab6crud.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class CinemaMovie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private Genre genre;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_cinema", nullable = false, insertable = false, updatable = false)
     private Cinema cinema;
+
+    @Column(name = "id_cinema", nullable = false)
     private int cinemaId;
 
+    @Column
     private LocalDate date;
 
     public CinemaMovie() {

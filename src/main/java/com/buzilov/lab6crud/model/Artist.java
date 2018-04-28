@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,23 @@ public class Artist {
     @Column(name = "genre", nullable = false)
     private Set<Genre> genreSet;
 
+    @ManyToMany
+    @JoinTable(name="artist_and_impresario", joinColumns = @JoinColumn(name="id_artist", referencedColumnName = "id", nullable = false),
+                                             inverseJoinColumns = @JoinColumn(name="id_impresario", referencedColumnName = "id", nullable = false))
+    private List<Impresario> impresarios;
+
     public Artist(){}
+
+    public Artist(String name, List<Impresario> impresarios) {
+        this.name = name;
+        this.impresarios = impresarios;
+    }
+
+    public Artist(String name, Set<Genre> genreSet, List<Impresario> impresarios) {
+        this.name = name;
+        this.genreSet = genreSet;
+        this.impresarios = impresarios;
+    }
 
     public Artist(String name, Set<Genre> genreSet) {
         this.name = name;
