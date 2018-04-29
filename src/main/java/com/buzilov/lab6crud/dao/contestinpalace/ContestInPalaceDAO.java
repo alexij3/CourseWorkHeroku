@@ -1,12 +1,11 @@
-/*
 package com.buzilov.lab6crud.dao.contestinpalace;
 
 import com.buzilov.lab6crud.model.ContestInPalace;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
-import java.util.List;
-
-public interface ContestInPalaceDAO {
+@Repository
+public interface ContestInPalaceDAO extends CrudRepository<ContestInPalace, Integer>{
 
 }
-*/
+

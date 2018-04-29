@@ -1,4 +1,3 @@
-/*
 package com.buzilov.lab6crud.service.contestinpalace;
 
 import com.buzilov.lab6crud.dao.contestinpalace.ContestInPalaceDAO;
@@ -16,27 +15,26 @@ public class ContestInPalaceServiceImpl implements ContestInPalaceService {
 
     @Override
     public ContestInPalace insert(ContestInPalace contest) throws SQLException {
-        return contestInPalaceDAO.insert(contest);
+        return contestInPalaceDAO.save(contest);
     }
 
     @Override
     public ContestInPalace get(int id) throws SQLException {
-        return contestInPalaceDAO.get(id);
+        return contestInPalaceDAO.findById(id).get();
     }
 
     @Override
     public ContestInPalace update(ContestInPalace contest) throws SQLException {
-        return contestInPalaceDAO.update(contest);
+        return contestInPalaceDAO.save(contest);
     }
 
     @Override
     public void delete(int id) throws SQLException {
-        contestInPalaceDAO.delete(id);
+        contestInPalaceDAO.deleteById(id);
     }
 
     @Override
     public List<ContestInPalace> getAll() throws SQLException {
-        return contestInPalaceDAO.getAll();
+        return (List<ContestInPalace>) contestInPalaceDAO.findAll();
     }
 }
-*/
