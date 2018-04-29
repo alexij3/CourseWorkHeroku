@@ -2,88 +2,39 @@ var app = angular.module("demo", []);
 
 app.controller("ArtistImpresarioCtrl", function($scope, $http) {
     var artistId;
-    var oldImpresarioId;
-    var impresariosToAdd = [];
+    var artistName;
+    var delImpresarios = [];
+    var impresarios = [];
 
     $scope.artists = [];
-    $http.get('/api/artist/showall').then(function(response){
-       $scope.artists = response.data;
+    $http.get('/api/artist/showall').then(function (response) {
+        $scope.artists = response.data;
 
-        $http.get('/api/artist/showall').then(function(response){
-            var artists = response.data;
-            var select = document.getElementById('selectArtist');
-            for (var i = 0; i < artists.length; i++){
+        $http.get('/api/impresario/showall').then(function(response){
+            var impresarios = response.data;
+            var select = document.getElementById('selectImpresarios');
+
+            for (var i = 0; i < impresarios.length; i++) {
                 var option = document.createElement("option");
-                option.text = artists[i].name;
-                option.value = artists[i].id;
+                option.text = impresarios[i].id;
+                option.value = impresarios[i].id;
 
                 select.add(option);
+
+                console.log(select);
             }
-
-            $http.get('/api/impresario/showall').then(function(response) {
-                var impresarios = response.data;
-                var select = document.getElementById('selectImpresarios');
-                var select2 = document.getElementById('updSelectImpresarios');
-
-                for (var i = 0; i < impresarios.length; i++) {
-                    var option = document.createElement("option");
-                    option.text = impresarios[i].name;
-                    option.value = impresarios[i].id;
-
-                    select.add(option);
-
-                    console.log(select);
-                }
-
-
-                for (var j = 0; j < impresarios.length; j++) {
-                    var option2 = document.createElement("option");
-                    option2.text = impresarios[j].name;
-                    option2.value = impresarios[j].id;
-
-                    select2.add(option2);
-
-                    console.log(select2);
-                }
-
-            });
         });
     });
 
     this.addImpresario = function addImpresario(){
-        impresariosToAdd = $scope.selectedImpresarios;
-        artistId = document.getElementById('selectArtist').value;
-        for (var i = 0; i < impresariosToAdd.length; i++){
-            var request = {
-                method: 'PUT',
-                url: '/api/artistimpresario/insert',
-                data: {
-                    artistId: artistId,
-                    impresarioId : impresariosToAdd[i]
-                }
-            };
-
-            $http(request).then(function(){
-                window.location.reload();
-            });
-        }
-    };
-
-    this.startUpdateArtistImpresarios = function startUpdateArtistImpresarios(id, name, impresarioOldId){
-        artistId = id;
-        oldImpresarioId = impresarioOldId;
-        document.getElementById('labelArtist').innerHTML = name;
-        document.getElementById('updSelectImpresarios').value = impresarioOldId;
-    };
-
-    this.updateArtistImpresario = function updateArtistImpresario(){
-        var impresarioId = document.getElementById('updSelectImpresarios').value;
+        impresarios = $('#selectImpresarios').val();
+        window.alert(impresarios);
         var request = {
-            method: 'POST',
-            url: '/api/artistimpresario/update?oldImpresarioId=' + oldImpresarioId,
+            method: 'PUT',
+            url: '/api/artist/updateimpresarios?id=' + artistId,
             data: {
-                artistId : artistId,
-                impresarioId : impresarioId
+                name : artistName,
+                impresarios : impresarios
             }
         };
 
@@ -92,18 +43,58 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
         });
     };
 
-    this.deleteArtistImpresario = function deleteArtistImpresario(artistId, impresarioId){
+    this.startAddImpresario = function startAddImpresario(id, name){
+        artistId = id;
+        artistName = name;
+        document.getElementById('artistName').innerHTML = name;
+    };
+
+    this.startDeleteImpresario = function startDeleteImpresario(idArtist, name, impresariosToDelete){
+        artistId = idArtist;
+        artistName = name;
+        document.getElementById('delArtistName').innerHTML = name;
+
+        impresarios = impresariosToDelete;
+        var select = document.getElementById('delSelectImpresario');
+
+        for (var i = 0; i < impresarios.length; i++) {
+            var option = document.createElement("option");
+            option.text = impresarios[i].name;
+            option.value = impresarios[i].id;
+
+            select.add(option);
+
+            console.log(select);
+        }
+    };
+
+    this.deleteImpresario = function deleteImpresario(){
+        impresarios = $('#delSelectImpresario').val();
         var request = {
             method: 'POST',
-            url: '/api/artistimpresario/delete',
+            url: '/api/artist/deleteimpresario?artistId=' + artistId,
             data: {
-                artistId : artistId,
-                impresarioId : impresarioId
+                name : artistName,
+                impresarios : impresarios
             }
         };
 
         $http(request).then(function(response){
+            document.getElementById('delSelectImpresario').options.length = 0;
             window.location.reload();
         });
+    };
+
+    function removeItems(selectBox){
+        for (var i = selectBox.length-1; i >= 0; i--){
+            selectBox.remove(i);
+        }
+    }
+
+    this.onClose = function onClose(){
+        removeItems(document.getElementById('delSelectImpresario'));
     }
 });
+
+
+

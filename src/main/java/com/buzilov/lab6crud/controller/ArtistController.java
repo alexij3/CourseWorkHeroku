@@ -34,10 +34,23 @@ public class ArtistController {
         artistService.deleteGenre(artist);
     }
 
+    @RequestMapping("/deleteimpresarios")
+    public void deleteImpresario(@RequestParam("artistId") int id, @RequestBody Artist artist) throws SQLException {
+        artist.setId(id);
+        System.out.println(artist.getGenreSet());
+        artistService.deleteImpresario(artist);
+    }
+
     @RequestMapping("/update")
     public Artist updateArtist(@RequestParam("id") Integer id, @RequestBody Artist artist) throws SQLException {
         artist.setId(id);
         return artistService.updateArtist(artist);
+    }
+
+    @RequestMapping("/updateimpresarios")
+    public Artist updateArtistImpresarios(@RequestParam("id") Integer id, @RequestBody Artist artist) throws SQLException {
+        artist.setId(id);
+        return artistService.updateArtistImpresarios(artist);
     }
 
     @RequestMapping("/updategenres")

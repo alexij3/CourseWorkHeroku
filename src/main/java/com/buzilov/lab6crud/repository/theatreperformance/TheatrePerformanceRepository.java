@@ -1,12 +1,10 @@
-/*
-package com.buzilov.lab6crud.dao.theatreperformance;
+package com.buzilov.lab6crud.repository.theatreperformance;
 
 import com.buzilov.lab6crud.model.TheatrePerformance;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
-import java.util.List;
-
-public interface TheatrePerformanceDAO {
+@Repository
+public interface TheatrePerformanceRepository extends CrudRepository<TheatrePerformance, Integer> {
 
 }
-*/

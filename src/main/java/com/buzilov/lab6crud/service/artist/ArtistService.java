@@ -10,7 +10,9 @@ public interface ArtistService {
     Artist getArtist(int id) throws SQLException;
     Artist updateArtist(Artist artist) throws SQLException;
     Artist updateArtistGenres(Artist artist) throws SQLException;
+    Artist updateArtistImpresarios(Artist artist) throws SQLException;
     void deleteArtist(int id) throws SQLException;
     Artist deleteGenre(Artist artist) throws SQLException;
+    Artist deleteImpresario(Artist artist) throws SQLException;
     List<Artist> getAll() throws SQLException;
 }

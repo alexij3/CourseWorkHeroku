@@ -1,14 +1,32 @@
 package com.buzilov.lab6crud.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class TheatrePerformance {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_theatre", insertable = false, updatable = false)
     private Theatre theatre;
+
+    @Column(name = "id_theatre", nullable = false)
     private int theatreId;
+
+    @Column
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_organizer", insertable = false, updatable = false)
     private Organizer organizer;
+
+    @Column(name="id_organizer", nullable = false)
     private int organizerId;
+
+    @Column
     private LocalDate date;
 
     public TheatrePerformance() {

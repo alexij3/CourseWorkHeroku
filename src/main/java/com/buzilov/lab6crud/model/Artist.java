@@ -19,22 +19,31 @@ public class Artist {
     @Column(name = "genre", nullable = false)
     private Set<Genre> genreSet;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="artist_and_impresario", joinColumns = @JoinColumn(name="id_artist", referencedColumnName = "id", nullable = false),
                                              inverseJoinColumns = @JoinColumn(name="id_impresario", referencedColumnName = "id", nullable = false))
-    private List<Impresario> impresarios;
+    private Set<Impresario> impresarios;
+    private int impresarioId;
 
     public Artist(){}
 
-    public Artist(String name, List<Impresario> impresarios) {
+    public Artist(String name, Set<Genre> genreSet, int impresarioId) {
         this.name = name;
-        this.impresarios = impresarios;
+        this.genreSet = genreSet;
+        this.impresarioId = impresarioId;
     }
 
-    public Artist(String name, Set<Genre> genreSet, List<Impresario> impresarios) {
+    public Artist(String name, Set<Genre> genreSet, Set<Impresario> impresarios) {
         this.name = name;
         this.genreSet = genreSet;
         this.impresarios = impresarios;
+    }
+
+    public Artist(String name, Set<Genre> genreSet, Set<Impresario> impresarios, int impresarioId) {
+        this.name = name;
+        this.genreSet = genreSet;
+        this.impresarios = impresarios;
+        this.impresarioId = impresarioId;
     }
 
     public Artist(String name, Set<Genre> genreSet) {
@@ -52,6 +61,14 @@ public class Artist {
 
     public void setGenreSet(Set<Genre> genreSet) {
         this.genreSet = genreSet;
+    }
+
+    public int getImpresarioId() {
+        return impresarioId;
+    }
+
+    public void setImpresarioId(int impresarioId) {
+        this.impresarioId = impresarioId;
     }
 
     @Override
@@ -89,11 +106,11 @@ public class Artist {
         this.name = name;
     }
 
-    public List<Impresario> getImpresarios() {
+    public Set<Impresario> getImpresarios() {
         return impresarios;
     }
 
-    public void setImpresarios(List<Impresario> impresarios) {
+    public void setImpresarios(Set<Impresario> impresarios) {
         this.impresarios = impresarios;
     }
 

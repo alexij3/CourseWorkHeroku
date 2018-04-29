@@ -14,6 +14,20 @@ public class ArtistServiceImpl implements ArtistService {
     ArtistRepository artistRepository;
 
     @Override
+    public Artist updateArtistImpresarios(Artist artist) throws SQLException {
+        Artist updatedArtist = getArtist(artist.getId());
+        updatedArtist.getImpresarios().addAll(artist.getImpresarios());
+        return artistRepository.save(updatedArtist);
+    }
+
+    @Override
+    public Artist deleteImpresario(Artist artist) throws SQLException {
+        Artist updatedArtist = artistRepository.findById(artist.getId()).get();
+        updatedArtist.getImpresarios().removeAll(artist.getImpresarios());
+        return artistRepository.save(updatedArtist);
+    }
+
+    @Override
     public Artist insertArtist(Artist artist) throws SQLException {
         return artistRepository.save(artist);
     }
