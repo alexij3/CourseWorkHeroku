@@ -1,4 +1,3 @@
-/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ConcertInHall;
@@ -43,4 +42,4 @@ public class ConcertInHallController {
         return concertInHallService.update(concertInHall);
     }
 }
-*/
+

@@ -1,4 +1,3 @@
-/*
 package com.buzilov.lab6crud.service.concertinhall;
 
 import com.buzilov.lab6crud.dao.concertinhall.ConcertInHallDAO;
@@ -16,27 +15,27 @@ public class ConcertInHallServiceImpl implements ConcertInHallService {
 
     @Override
     public ConcertInHall insert(ConcertInHall concertInHall) throws SQLException {
-        return concertInHallDAO.insert(concertInHall);
+        return concertInHallDAO.save(concertInHall);
     }
 
     @Override
     public ConcertInHall get(int id) throws SQLException {
-        return concertInHallDAO.get(id);
+        return concertInHallDAO.findById(id).get();
     }
 
     @Override
     public ConcertInHall update(ConcertInHall concertInHall) throws SQLException {
-        return concertInHallDAO.update(concertInHall);
+        return concertInHallDAO.save(concertInHall);
     }
 
     @Override
     public void delete(int id) throws SQLException {
-        concertInHallDAO.delete(id);
+        concertInHallDAO.deleteById(id);
     }
 
     @Override
     public List<ConcertInHall> getAll() throws SQLException {
-        return concertInHallDAO.getAll();
+        return (List<ConcertInHall>) concertInHallDAO.findAll();
     }
 }
-*/
+

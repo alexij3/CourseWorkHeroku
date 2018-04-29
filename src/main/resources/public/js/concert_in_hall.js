@@ -56,9 +56,9 @@ app.controller("ConcertInHallCtrl", function($scope, $http){
 
     });
 
-    $scope.contestInPalaces = [];
+    $scope.concertInHalls = [];
     $http.get('/api/concertinhall/showall').then(function (response){
-        $scope.contestInPalaces=response.data;
+        $scope.concertInHalls=response.data;
         console.log(response);
     });
 
