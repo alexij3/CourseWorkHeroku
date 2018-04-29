@@ -6,7 +6,7 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
     var impresariosToAdd = [];
 
     $scope.artists = [];
-    $http.get('/api/artistimpresario/showall').then(function(response){
+    $http.get('/api/artist/showall').then(function(response){
        $scope.artists = response.data;
 
         $http.get('/api/artist/showall').then(function(response){
@@ -20,7 +20,7 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
                 select.add(option);
             }
 
-            $http.get('/api/impresario/showAll').then(function(response) {
+            $http.get('/api/impresario/showall').then(function(response) {
                 var impresarios = response.data;
                 var select = document.getElementById('selectImpresarios');
                 var select2 = document.getElementById('updSelectImpresarios');

@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface ImpresarioService {
     Impresario insert(Impresario impresario) throws SQLException;
-    Impresario get(int id) throws SQLException ;
-    Impresario update(Impresario impresario) throws SQLException ;
+    Impresario get(int id) throws SQLException;
+    Impresario update(Impresario impresario) throws SQLException;
+    Impresario updateGenres(Impresario impresario) throws SQLException;
     void delete(int id) throws SQLException;
     Impresario deleteGenre(Impresario impresario) throws SQLException;
-    List<Impresario> getAll() throws SQLException ;
+    List<Impresario> getAll() throws SQLException;
 }

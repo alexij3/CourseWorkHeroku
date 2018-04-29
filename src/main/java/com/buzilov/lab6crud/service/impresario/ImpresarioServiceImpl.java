@@ -19,12 +19,17 @@ public class ImpresarioServiceImpl implements ImpresarioService {
     }
 
     @Override
+    public Impresario update(Impresario impresario) throws SQLException {
+        return impresarioRepository.save(impresario);
+    }
+
+    @Override
     public Impresario get(int id) throws SQLException  {
         return impresarioRepository.findById(id).get();
     }
 
     @Override
-    public Impresario update(Impresario impresario) throws SQLException  {
+    public Impresario updateGenres(Impresario impresario) throws SQLException  {
         Impresario updatedImpresario = get(impresario.getId());
         updatedImpresario.getGenreSet().addAll(impresario.getGenreSet());
         return impresarioRepository.save(updatedImpresario);

@@ -43,7 +43,7 @@ app.controller("OrganizerCtrl", function($scope, $http){
         $http(request).then(function (response){
             window.location.reload();
             console.log(response);
-        })
+        });
     }
 });
 

@@ -89,6 +89,14 @@ public class Artist {
         this.name = name;
     }
 
+    public List<Impresario> getImpresarios() {
+        return impresarios;
+    }
+
+    public void setImpresarios(List<Impresario> impresarios) {
+        this.impresarios = impresarios;
+    }
+
     @Override
     public String toString() {
         return "Artist{" +

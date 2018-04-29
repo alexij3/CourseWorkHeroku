@@ -15,7 +15,7 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
         genres = $scope.selectedGenres;
         var request = {
             method: 'PUT',
-            url: '/api/artist/update?id=' + artistId,
+            url: '/api/artist/updategenres?id=' + artistId,
             data: {
                 name : artistName,
                 genreSet : genres

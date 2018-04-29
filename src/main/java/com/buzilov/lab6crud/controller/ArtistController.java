@@ -40,6 +40,12 @@ public class ArtistController {
         return artistService.updateArtist(artist);
     }
 
+    @RequestMapping("/updategenres")
+    public Artist updateArtistGenres(@RequestParam("id") Integer id, @RequestBody Artist artist) throws SQLException {
+        artist.setId(id);
+        return artistService.updateArtistGenres(artist);
+    }
+
     @RequestMapping("/create")
     public Artist create(@RequestBody Artist artist) throws SQLException {
         return artistService.insertArtist(artist);
