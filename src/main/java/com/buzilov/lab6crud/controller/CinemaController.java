@@ -39,4 +39,9 @@ public class CinemaController {
         Cinema.setId(id);
         return service.updateCinema(Cinema);
     }
+
+    @RequestMapping("/addCinemaMovie")
+    public Cinema addCinemaMovie(@RequestBody Cinema cinema) throws SQLException {
+        return service.updateCinema(cinema);
+    }
 }

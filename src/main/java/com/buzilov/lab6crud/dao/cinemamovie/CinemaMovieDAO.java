@@ -1,12 +1,11 @@
-/*
 package com.buzilov.lab6crud.dao.cinemamovie;
 
 import com.buzilov.lab6crud.model.CinemaMovie;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
-import java.util.List;
-
-public interface CinemaMovieDAO {
+@Repository
+public interface CinemaMovieDAO extends CrudRepository<CinemaMovie, Integer> {
 
 }
-*/
+

@@ -1,5 +1,9 @@
 package com.buzilov.lab6crud.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -15,7 +19,7 @@ public class CinemaMovie {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="id_cinema", nullable = false, insertable = false, updatable = false)
     private Cinema cinema;
 

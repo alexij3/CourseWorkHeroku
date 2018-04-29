@@ -1,4 +1,3 @@
-/*
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.CinemaMovie;
@@ -25,11 +24,7 @@ public class CinemaMoviesController {
 
     @RequestMapping("/showAll")
     public List<CinemaMovie> getAll() throws SQLException {
-        List<CinemaMovie> list = service.getAll();
-        for (int i = 0; i < list.size(); i++){
-            list.get(i).setCinema(cinemaService.getCinema(list.get(i).getCinemaId()));
-        }
-        return list;
+        return service.getAll();
     }
 
     @RequestMapping("/delete")
@@ -48,7 +43,6 @@ public class CinemaMoviesController {
 
     @RequestMapping("/update")
     public CinemaMovie update(@RequestParam("id") Integer id, @RequestBody CinemaMovie CinemaMovie) throws SQLException{
-        System.out.println("updfate");
         CinemaMovie.setId(id);
         CinemaMovie.setCinema(cinemaService.getCinema(CinemaMovie.getCinemaId()));
         if (CinemaMovie.getDate() == null){
@@ -58,4 +52,3 @@ public class CinemaMoviesController {
     }
 
 }
-*/
