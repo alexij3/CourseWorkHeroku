@@ -19,7 +19,7 @@ public class CinemaMovie {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_cinema", nullable = false, insertable = false, updatable = false)
     private Cinema cinema;
 

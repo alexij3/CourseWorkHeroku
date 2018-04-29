@@ -31,8 +31,6 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
 
     });
 
-
-
     $scope.cinemaMovies = [];
      $http.get('/api/cinemamovie/showAll').then(function (response){
         $scope.cinemaMovies=response.data;
@@ -52,7 +50,6 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
     };
 
     this.createCinemaMovie = function createCinemaMovie(){
-        var id = document.getElementById('CinemaMovieId').value;
         var cinemaId = document.getElementById('CinemaMovieCinema').value;
         var name = document.getElementById('CinemaMovieName').value;
         var genre = document.getElementById('CinemaMovieGenre').value;
@@ -60,7 +57,7 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
 
         var request = {
             method: 'POST',
-            url: '/api/cinemamovie/create?id=' + id,
+            url: '/api/cinemamovie/create',
             data: {
                 name : name,
                 genre: genre,

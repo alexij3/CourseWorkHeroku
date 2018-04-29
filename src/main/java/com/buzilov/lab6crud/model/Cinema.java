@@ -23,7 +23,7 @@ public class Cinema {
     @Column
     private int screenSize;
 
-    @OneToMany(mappedBy = "cinema", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cinema", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<CinemaMovie> cinemaMovies;
 

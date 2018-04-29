@@ -48,6 +48,7 @@ public class CinemaMoviesController {
         if (CinemaMovie.getDate() == null){
             CinemaMovie.setDate(LocalDate.of(2018, 1, 1));
         }
+        System.out.println(CinemaMovie);
         return service.update(CinemaMovie);
     }
 
