@@ -1,6 +1,6 @@
 package com.buzilov.lab6crud.service.concertinhall;
 
-import com.buzilov.lab6crud.dao.concertinhall.ConcertInHallDAO;
+import com.buzilov.lab6crud.repository.concertinhall.ConcertInHallRepository;
 import com.buzilov.lab6crud.model.ConcertInHall;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,31 +11,31 @@ import java.util.List;
 @Service
 public class ConcertInHallServiceImpl implements ConcertInHallService {
     @Autowired
-    ConcertInHallDAO concertInHallDAO;
+    ConcertInHallRepository concertInHallRepository;
 
     @Override
     public ConcertInHall insert(ConcertInHall concertInHall) throws SQLException {
-        return concertInHallDAO.save(concertInHall);
+        return concertInHallRepository.save(concertInHall);
     }
 
     @Override
     public ConcertInHall get(int id) throws SQLException {
-        return concertInHallDAO.findById(id).get();
+        return concertInHallRepository.findById(id).get();
     }
 
     @Override
     public ConcertInHall update(ConcertInHall concertInHall) throws SQLException {
-        return concertInHallDAO.save(concertInHall);
+        return concertInHallRepository.save(concertInHall);
     }
 
     @Override
     public void delete(int id) throws SQLException {
-        concertInHallDAO.deleteById(id);
+        concertInHallRepository.deleteById(id);
     }
 
     @Override
     public List<ConcertInHall> getAll() throws SQLException {
-        return (List<ConcertInHall>) concertInHallDAO.findAll();
+        return (List<ConcertInHall>) concertInHallRepository.findAll();
     }
 }
 

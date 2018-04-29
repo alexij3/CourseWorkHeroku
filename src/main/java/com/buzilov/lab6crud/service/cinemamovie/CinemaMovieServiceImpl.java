@@ -1,6 +1,6 @@
 package com.buzilov.lab6crud.service.cinemamovie;
 
-import com.buzilov.lab6crud.dao.cinemamovie.CinemaMovieDAO;
+import com.buzilov.lab6crud.repository.cinemamovie.CinemaMovieRepository;
 import com.buzilov.lab6crud.model.CinemaMovie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,30 +11,30 @@ import java.util.List;
 @Service
 public class CinemaMovieServiceImpl implements CinemaMovieService{
     @Autowired
-    CinemaMovieDAO cinemaMovieDAO;
+    CinemaMovieRepository cinemaMovieRepository;
 
     @Override
     public CinemaMovie insert(CinemaMovie cinemaMovie)  throws SQLException {
-        return cinemaMovieDAO.save(cinemaMovie);
+        return cinemaMovieRepository.save(cinemaMovie);
     }
 
     @Override
     public CinemaMovie get(int id) throws SQLException {
-        return cinemaMovieDAO.findById(id).get();
+        return cinemaMovieRepository.findById(id).get();
     }
 
     @Override
     public CinemaMovie update(CinemaMovie cinemaMovie)  throws SQLException{
-        return cinemaMovieDAO.save(cinemaMovie);
+        return cinemaMovieRepository.save(cinemaMovie);
     }
 
     @Override
     public void delete(int id) throws SQLException {
-        cinemaMovieDAO.deleteById(id);
+        cinemaMovieRepository.deleteById(id);
     }
 
     @Override
     public List<CinemaMovie> getAll() throws SQLException {
-        return (List<CinemaMovie>)cinemaMovieDAO.findAll();
+        return (List<CinemaMovie>) cinemaMovieRepository.findAll();
     }
 }
