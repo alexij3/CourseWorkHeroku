@@ -1,6 +1,8 @@
 package com.buzilov.lab6crud.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,33 +24,22 @@ public class Artist {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="artist_and_impresario", joinColumns = @JoinColumn(name="id_artist", referencedColumnName = "id", nullable = false),
                                              inverseJoinColumns = @JoinColumn(name="id_impresario", referencedColumnName = "id", nullable = false))
-    private Set<Impresario> impresarios;
-    private int impresarioId;
+    private Set<Impresario> impresarios = new HashSet<>();
+
+    @Transient
+    private Set<Integer> impresarioIds = new HashSet<>();
 
     public Artist(){}
 
-    public Artist(String name, Set<Genre> genreSet, int impresarioId) {
+    public Artist(String name, Set<Genre> genreSet) {
         this.name = name;
         this.genreSet = genreSet;
-        this.impresarioId = impresarioId;
     }
 
     public Artist(String name, Set<Genre> genreSet, Set<Impresario> impresarios) {
         this.name = name;
         this.genreSet = genreSet;
         this.impresarios = impresarios;
-    }
-
-    public Artist(String name, Set<Genre> genreSet, Set<Impresario> impresarios, int impresarioId) {
-        this.name = name;
-        this.genreSet = genreSet;
-        this.impresarios = impresarios;
-        this.impresarioId = impresarioId;
-    }
-
-    public Artist(String name, Set<Genre> genreSet) {
-        this.name = name;
-        this.genreSet = genreSet;
     }
 
     public Artist(String name) {
@@ -63,12 +54,12 @@ public class Artist {
         this.genreSet = genreSet;
     }
 
-    public int getImpresarioId() {
-        return impresarioId;
+    public Set<Integer> getImpresarioIds() {
+        return impresarioIds;
     }
 
-    public void setImpresarioId(int impresarioId) {
-        this.impresarioId = impresarioId;
+    public void setImpresarioIds(Set<Integer> impresarioIds) {
+        this.impresarioIds = impresarioIds;
     }
 
     @Override
@@ -119,6 +110,9 @@ public class Artist {
         return "Artist{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", genreSet=" + genreSet +
+                ", impresarios=" + impresarios +
+                ", impresarioIds=" + impresarioIds +
                 '}';
     }
 }

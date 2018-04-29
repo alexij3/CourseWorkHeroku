@@ -16,7 +16,7 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
 
             for (var i = 0; i < impresarios.length; i++) {
                 var option = document.createElement("option");
-                option.text = impresarios[i].id;
+                option.text = impresarios[i].name;
                 option.value = impresarios[i].id;
 
                 select.add(option);
@@ -34,7 +34,7 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
             url: '/api/artist/updateimpresarios?id=' + artistId,
             data: {
                 name : artistName,
-                impresarios : impresarios
+                impresarioIds : impresarios
             }
         };
 
@@ -72,10 +72,10 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
         impresarios = $('#delSelectImpresario').val();
         var request = {
             method: 'POST',
-            url: '/api/artist/deleteimpresario?artistId=' + artistId,
+            url: '/api/artist/deleteimpresarios?artistId=' + artistId,
             data: {
                 name : artistName,
-                impresarios : impresarios
+                impresarioIds : impresarios
             }
         };
 
@@ -90,6 +90,14 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
             selectBox.remove(i);
         }
     }
+
+    this.Names = function Names(impresarios){
+        var a = [];
+        for (var i = 0; i < impresarios.length; i++)
+            a[i] = impresarios[i].name;
+
+        return a;
+    };
 
     this.onClose = function onClose(){
         removeItems(document.getElementById('delSelectImpresario'));

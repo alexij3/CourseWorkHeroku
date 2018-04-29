@@ -1,7 +1,9 @@
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.Artist;
+import com.buzilov.lab6crud.model.Impresario;
 import com.buzilov.lab6crud.service.artist.ArtistServiceImpl;
+import com.buzilov.lab6crud.service.impresario.ImpresarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,9 @@ import java.util.List;
 public class ArtistController {
     @Autowired
     ArtistServiceImpl artistService;
+
+    @Autowired
+    ImpresarioServiceImpl impresarioService;
 
     @RequestMapping("/showall")
     public List<Artist> showArtists() throws SQLException {
@@ -37,7 +43,6 @@ public class ArtistController {
     @RequestMapping("/deleteimpresarios")
     public void deleteImpresario(@RequestParam("artistId") int id, @RequestBody Artist artist) throws SQLException {
         artist.setId(id);
-        System.out.println(artist.getGenreSet());
         artistService.deleteImpresario(artist);
     }
 
@@ -50,6 +55,7 @@ public class ArtistController {
     @RequestMapping("/updateimpresarios")
     public Artist updateArtistImpresarios(@RequestParam("id") Integer id, @RequestBody Artist artist) throws SQLException {
         artist.setId(id);
+        System.out.println("IMPRESARIOS: " + artist.getImpresarioIds());
         return artistService.updateArtistImpresarios(artist);
     }
 

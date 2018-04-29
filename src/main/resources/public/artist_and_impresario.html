@@ -32,7 +32,7 @@
             <tr ng-repeat = "item in artists">
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
-                <td>{{item.impresarios.toString()}}</td>
+                <td>{{artistImpresarioCtrl.Names(item.impresarios).toString()}}</td>
                 <td>
                     <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistImpresarioCtrl.startAddImpresario(item.id, item.name, item.impresarios)">Додати</button>
                     <button id="delete" ng-click="artistImpresarioCtrl.startDeleteImpresario(item.id, item.name, item.impresarios)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">Видалити</button>
@@ -54,7 +54,6 @@
                     <span id="artistName"></span><br>
                     <label>Імпресаріо:</label><br>
                     <select multiple="multiple" ng-model="selectedImpresarios" id="selectImpresarios" name="selectImpresarios" title="Жанри">
-
                     </select>
                     <br>
                     <button id="addImpresarioButton" ng-click="artistImpresarioCtrl.addImpresario()">Додати</button>
