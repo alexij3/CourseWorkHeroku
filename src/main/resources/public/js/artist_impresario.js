@@ -28,7 +28,6 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
 
     this.addImpresario = function addImpresario(){
         impresarios = $('#selectImpresarios').val();
-        window.alert(impresarios);
         var request = {
             method: 'PUT',
             url: '/api/artist/updateimpresarios?id=' + artistId,

@@ -32,10 +32,9 @@ app.controller("ConcertHallCtrl", function($scope, $http){
             }
         };
 
-        $http(createRequest).success(
-            console.log('created concertHall with name ' + name)
-        ).then(function(){
-            window.parent.location.reload();
+        $http(createRequest).then(function(response){
+            console.log(response);
+            window.location.reload();
         });
     };
 

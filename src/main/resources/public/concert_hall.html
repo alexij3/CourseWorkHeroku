@@ -33,8 +33,8 @@
                 <td>{{item.address}}</td>
                 <td>{{item.capacity}}</td>
                 <td>
-                    <button id="update" ng-click="concertHallCtrl.startUpdateConcertHall(item.id, item.name, item.address, item.capacity)" class="btn-warning" data-toggle="modal" data-target="#editModal">Edit</button>
-                    <button id="delete" ng-click="concertHallCtrl.deleteConcertHall(item.id)" class="btn-danger">Del</button>
+                    <button id="update" ng-click="concertHallCtrl.startUpdateConcertHall(item.id, item.name, item.address, item.capacity)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="concertHallCtrl.deleteConcertHall(item.id)" class="btn-danger">Видалити</button>
                 </td>
             </tr>
             </tbody>
@@ -55,7 +55,7 @@
                     <label>Адреса:</label>
                     <input type="text" id="ConcertHallAddress" name="ConcertHallAddress" /> <br>
                     <label>Місткість:</label>
-                    <input type="text" id="ConcertHallCapacity" name="ConcertHallCapacity" /> <br>
+                    <input type="number" min="10" id="ConcertHallCapacity" name="ConcertHallCapacity" /> <br>
                     <button id="createConcertHallButton" ng-click="concertHallCtrl.createConcertHall()">Створити</button>
                 </div>
                 <div class="modal-footer">
@@ -80,7 +80,7 @@
                     <label>Адреса:</label>
                     <input type="text" id="updateConcertHallAddress" name="updateConcertHallAddress" /> <br>
                     <label>Місткість:</label>
-                    <input type="text" id="updateConcertHallCapacity" name="updateConcertHallCapacity" /> <br>
+                    <input type="number" min="10" id="updateConcertHallCapacity" name="updateConcertHallCapacity" /> <br>
                     <button id="editConcertHallButton" ng-click="concertHallCtrl.updateConcertHall()">Змінити</button>
                 </div>
                 <div class="modal-footer">

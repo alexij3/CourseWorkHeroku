@@ -65,7 +65,7 @@ public class Cinema {
     }
 
     public void setScreenSize(int screenSize) {
-        this.screenSize = screenSize;
+        this.screenSize = Math.abs(screenSize);
     }
 
     public List<CinemaMovie> getCinemaMovies() {

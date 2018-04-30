@@ -58,11 +58,11 @@ public class ConcertHall{
         return result;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -87,6 +87,6 @@ public class ConcertHall{
     }
 
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        this.capacity = Math.abs(capacity);
     }
 }

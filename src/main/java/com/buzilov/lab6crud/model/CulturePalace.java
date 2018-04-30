@@ -77,7 +77,7 @@ public class CulturePalace {
     }
 
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        this.capacity = Math.abs(capacity);
     }
 
     @Override
