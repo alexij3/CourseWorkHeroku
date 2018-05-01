@@ -1,8 +1,7 @@
-/*
 package com.buzilov.lab6crud.service.contestresults;
 
-import com.buzilov.lab6crud.dao.contestresults.ContestResultsDAOImpl;
 import com.buzilov.lab6crud.model.ContestResults;
+import com.buzilov.lab6crud.repository.contestresults.ContestResultsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +11,31 @@ import java.util.List;
 @Service
 public class ContestResultsServiceImpl implements ContestResultsService {
     @Autowired
-    ContestResultsDAOImpl contestResultsDAO;
+    ContestResultsRepository contestResultsRepository;
 
     @Override
     public ContestResults insert(ContestResults contest) throws SQLException {
-        return contestResultsDAO.insert(contest);
+        return contestResultsRepository.save(contest);
     }
 
     @Override
     public ContestResults get(int id) throws SQLException {
-        return contestResultsDAO.get(id);
+        return contestResultsRepository.findById(id).get();
     }
 
     @Override
-    public ContestResults update(int oldContestId, int oldArtistId,ContestResults contest) throws SQLException {
-        return contestResultsDAO.update(oldContestId, oldArtistId, contest);
+    public ContestResults update(int oldContestId, int oldArtistId, ContestResults contest) throws SQLException {
+       // return contestResultsRepository.save(oldContestId, oldArtistId, contest);
+        return null;
     }
 
     @Override
     public void delete(int contestId, int artistId) throws SQLException {
-        contestResultsDAO.delete(contestId, artistId);
+       // contestResultsRepository.deleteBy(contestId, artistId);
     }
 
     @Override
     public List<ContestResults> getAll() throws SQLException {
-        return contestResultsDAO.getAll();
+        return (List<ContestResults>) contestResultsRepository.findAll();
     }
 }
-*/

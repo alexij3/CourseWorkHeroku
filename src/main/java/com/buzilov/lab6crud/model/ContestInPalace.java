@@ -1,7 +1,13 @@
 package com.buzilov.lab6crud.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="contest_in_palace")
@@ -29,6 +35,10 @@ public class ContestInPalace {
 
     @Column
     private LocalDate date;
+
+    @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<ContestResults> contestResults = new HashSet<>();
 
     public ContestInPalace() {
     }
@@ -103,6 +113,14 @@ public class ContestInPalace {
 
     public void setOrganizerId(int organizerId) {
         this.organizerId = organizerId;
+    }
+
+    public Set<ContestResults> getContestResults() {
+        return contestResults;
+    }
+
+    public void setContestResults(Set<ContestResults> contestResults) {
+        this.contestResults = contestResults;
     }
 
     @Override

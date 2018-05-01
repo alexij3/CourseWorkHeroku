@@ -1,22 +1,31 @@
 package com.buzilov.lab6crud.model;
 
-public class ContestResults {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@IdClass(ContestResultsID.class)
+@Table(name="contest_results")
+public class ContestResults implements Serializable {
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_contest", insertable = false, updatable = false)
     private ContestInPalace contest;
-    private int contestId;
+
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_artist", insertable = false, updatable = false)
     private Artist artist;
-    private int artistId;
+
+    @Column
     private int place;
+
+    @Column(name="is_winner")
     private char isWinner;
 
     public ContestResults() {
     }
 
-    public ContestResults(int contestId, int artistId, int place, char isWinner) {
-        this.contestId = contestId;
-        this.artistId = artistId;
-        this.place = place;
-        this.isWinner = isWinner;
-    }
 
     public ContestResults(ContestInPalace contest, Artist artist, int place, char isWinner) {
         this.contest = contest;
@@ -32,6 +41,7 @@ public class ContestResults {
     public void setContest(ContestInPalace contest) {
         this.contest = contest;
     }
+
 
     public Artist getArtist() {
         return artist;
@@ -55,22 +65,6 @@ public class ContestResults {
 
     public void setIsWinner(char isWinner) {
         this.isWinner = isWinner;
-    }
-
-    public int getContestId() {
-        return contestId;
-    }
-
-    public void setContestId(int contestId) {
-        this.contestId = contestId;
-    }
-
-    public int getArtistId() {
-        return artistId;
-    }
-
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
     }
 
     @Override

@@ -1,7 +1,10 @@
-/*
 package com.buzilov.lab6crud.controller;
 
+import com.buzilov.lab6crud.model.Artist;
+import com.buzilov.lab6crud.model.ContestInPalace;
 import com.buzilov.lab6crud.model.ContestResults;
+import com.buzilov.lab6crud.service.artist.ArtistServiceImpl;
+import com.buzilov.lab6crud.service.contestinpalace.ContestInPalaceServiceImpl;
 import com.buzilov.lab6crud.service.contestresults.ContestResultsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +21,12 @@ public class ContestResultsController {
     @Autowired
     ContestResultsServiceImpl contestResultsService;
 
+    @Autowired
+    ArtistServiceImpl artistService;
+
+    @Autowired
+    ContestInPalaceServiceImpl contestInPalaceService;
+
     @RequestMapping("/showall")
     public List<ContestResults> showContestResults() throws SQLException {
         return contestResultsService.getAll();
@@ -25,6 +34,7 @@ public class ContestResultsController {
 
     @RequestMapping("/insert")
     public ContestResults insert(@RequestBody ContestResults contestResults) throws SQLException {
+        System.out.println(contestResults);
         return contestResultsService.insert(contestResults);
     }
 
@@ -41,4 +51,3 @@ public class ContestResultsController {
     }
 
 }
-*/

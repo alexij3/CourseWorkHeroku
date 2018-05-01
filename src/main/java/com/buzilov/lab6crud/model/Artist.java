@@ -29,6 +29,9 @@ public class Artist {
     @Transient
     private Set<Integer> impresarioIds = new HashSet<>();
 
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
+    private Set<ContestResults> contestResults = new HashSet<>();
+
     public Artist(){}
 
     public Artist(String name, Set<Genre> genreSet) {
