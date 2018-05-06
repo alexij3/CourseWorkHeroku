@@ -18,12 +18,12 @@ public class ContestResultsID implements Serializable {
         return artist;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
-
     public ContestInPalace getContest() {
         return contest;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
     public void setContest(ContestInPalace contest) {

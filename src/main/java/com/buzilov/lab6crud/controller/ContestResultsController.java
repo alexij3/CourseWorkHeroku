@@ -33,9 +33,30 @@ public class ContestResultsController {
     }
 
     @RequestMapping("/insert")
-    public ContestResults insert(@RequestBody ContestResults contestResults) throws SQLException {
-        System.out.println(contestResults);
-        return contestResultsService.insert(contestResults);
+    public ContestResults insert(@RequestParam("artistId") int artistId,
+                                 @RequestParam("contestId") int contestId,
+                                 @RequestParam("place") int place,
+                                 @RequestParam("isWinner") char isWinner) throws SQLException {
+        /*contestResults.setArtist(artistService.getArtist(artistId));
+        contestResults.setContest(contestInPalaceService.get(contestId));
+        System.out.println(contestResults.getArtist() + " - ARTIST");
+        System.out.println(contestResults.getContest() + " - CONTEST");
+        System.out.println(contestResults + " - CONTEST RESULTS");*/
+
+        Artist artist = artistService.getArtist(artistId);
+
+        ContestResults contestResults = new ContestResults();
+        contestResults.setArtist(artist);
+        contestResults.setContest(contestInPalaceService.get(contestId));
+        contestResults.setPlace(place);
+        contestResults.setIsWinner(isWinner);
+
+        artist.getContestResults().add(contestResults);
+
+        artistService.updateArtist(artist);
+
+
+        return null;
     }
 
     @RequestMapping("/update")

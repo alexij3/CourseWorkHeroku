@@ -70,18 +70,9 @@ app.controller("ContestResultsCtrl", function($scope, $http){
         var place = document.getElementById('place').value;
         var isWinner = document.getElementById('isWinner').value;
 
-        var artist = $http.get('/api/artist/get?id=' + artistId);
-        var contest = $http.get('/api/contestinpalace/get?id=' + contestId);
-
         var request = {
             method: 'PUT',
-            url : '/api/contestresults/insert',
-            data :{
-                artist : artist,
-                contest: contest,
-                place : place,
-                isWinner : isWinner
-            }
+            url : '/api/contestresults/insert?artistId=' + artistId + '&contestId=' + contestId + '&place=' + place + '&isWinner=' + isWinner
         };
 
         $http(request).then(function(response){

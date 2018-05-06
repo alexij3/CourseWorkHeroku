@@ -1,5 +1,7 @@
 package com.buzilov.lab6crud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,6 +31,7 @@ public class Artist {
     @Transient
     private Set<Integer> impresarioIds = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
     private Set<ContestResults> contestResults = new HashSet<>();
 
@@ -63,6 +66,14 @@ public class Artist {
 
     public void setImpresarioIds(Set<Integer> impresarioIds) {
         this.impresarioIds = impresarioIds;
+    }
+
+    public Set<ContestResults> getContestResults() {
+        return contestResults;
+    }
+
+    public void setContestResults(Set<ContestResults> contestResults) {
+        this.contestResults = contestResults;
     }
 
     @Override

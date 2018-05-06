@@ -36,8 +36,8 @@ public class ContestInPalace {
     @Column
     private LocalDate date;
 
-    @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL)
     private Set<ContestResults> contestResults = new HashSet<>();
 
     public ContestInPalace() {
@@ -58,6 +58,8 @@ public class ContestInPalace {
         this.organizer = organizer;
         this.date = date;
     }
+
+
 
     public CulturePalace getCulturePalace() {
         return culturePalace;
