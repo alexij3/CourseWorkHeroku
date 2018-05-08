@@ -64,8 +64,8 @@ app.controller("ContestInPalaceCtrl", function($scope, $http){
 
     this.deleteContestInPalace = function deleteContestInPalace(id){
         $http.post('/api/contestinpalace/delete?id=' + id).then(function(response){
-            window.location.reload();
             console.log(response);
+            window.location.reload();
         });
     };
 

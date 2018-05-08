@@ -51,7 +51,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public Artist updateArtist(Artist artist){
+    public Artist updateArtist(Artist artist) throws SQLException{
         return artistRepository.save(artist);
     }
 

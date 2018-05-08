@@ -6,8 +6,11 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
     var delGenres = [];
     var genres = [];
 
+    var time = performance.now();
     $scope.artists = [];
     $http.get('/api/artist/showall').then(function (response) {
+        time = performance.now() - time;
+        console.log("Виведення відбулося за " + time + " мс.");
         $scope.artists = response.data;
     });
 
@@ -22,7 +25,10 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
             }
         };
 
+        var time = performance.now();
         $http(request).then(function(){
+            time = performance.now() - time;
+            console.log("Створення відбулося за " + time + " мс.");
             window.location.reload();
         });
     };
@@ -63,7 +69,10 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
             }
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            console.log("Видалення відбулося за " + time + " мс.");
             document.getElementById('delSelectGenre').options.length = 0;
             window.location.reload();
         });

@@ -31,14 +31,20 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
 
     });
 
+    var time = performance.now();
     $scope.cinemaMovies = [];
      $http.get('/api/cinemamovie/showAll').then(function (response){
+         time = performance.now() - time;
+         console.log("Виведення відбулося за " + time + " мс.");
         $scope.cinemaMovies=response.data;
         console.log(response);
     });
 
     this.deleteCinemaMovie = function deleteCinemaMovie(id){
+        var time = performance.now();
         $http.get('/api/cinemamovie/delete?id=' + id).then(function(response){
+            time = performance.now() - time;
+            console.log("Видалення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
 
@@ -66,7 +72,10 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
             }
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            console.log("Створення відбулося за " + time + " мс.");
             console.log(response);
         });
 
@@ -99,7 +108,10 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
             }
         };
 
+        var time = performance.now();
         $http(request).then(function (response){
+            time = performance.now() - time;
+            console.log("Оновлення відбулося за " + time + " мс.");
             console.log(response);
         });
 

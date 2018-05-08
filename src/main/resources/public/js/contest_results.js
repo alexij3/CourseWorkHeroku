@@ -99,13 +99,8 @@ app.controller("ContestResultsCtrl", function($scope, $http){
 
         var request = {
             method: 'POST',
-            url: '/api/contestresults/update?oldContestId=' + oldContestId + '&oldArtistId=' + oldArtistId,
-            data: {
-                contestId : contestId,
-                artistId : artistId,
-                place : place,
-                isWinner : isWinner
-            }
+            url: '/api/contestresults/update?oldContestId=' + oldContestId + '&oldArtistId=' + oldArtistId
+            + '&contestId=' + contestId + '&artistId=' + artistId + '&place=' + place + '&isWinner=' + isWinner
         };
 
         $http(request).then(function(response){
@@ -116,7 +111,6 @@ app.controller("ContestResultsCtrl", function($scope, $http){
 
     this.del = function del(contestId, artistId){
         $http.post('/api/contestresults/delete?contestId=' + contestId + '&artistId=' + artistId).then(function(response){
-            console.log(response);
             window.location.reload();
         });
     }

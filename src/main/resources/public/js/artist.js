@@ -4,14 +4,20 @@ app.controller("ArtistCtrl", function($scope, $http){
     var idToUpdate;
     var genres = [];
 
+    var time = performance.now();
     $scope.artists = [];
      $http.get('/api/artist/showall').then(function (response){
+         time = performance.now() - time;
+         console.log("Виведення відбулося за " + time + " мс.");
         $scope.artists=response.data;
         console.log(response);
     });
 
     this.deleteArtist = function deleteArtist(id){
+        var time = performance.now();
         $http.get('/api/artist/delete?id=' + id).then(function(){
+            time = performance.now() - time;
+            console.log("Видалення відбулося за " + time + " мс.");
             window.alert("Видалено артиста з ІД " + id);
             window.location.reload();
         });
@@ -28,7 +34,10 @@ app.controller("ArtistCtrl", function($scope, $http){
             }
         };
 
+        var time = performance.now();
         $http(createRequest).then(function(response){
+            time = performance.now() - time;
+            console.log("Створення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });
@@ -49,11 +58,13 @@ app.controller("ArtistCtrl", function($scope, $http){
             }
         };
 
+        var time = performance.now();
         $http(request).then(function (response){
+            time = performance.now() - time;
+            console.log("Оновлення відбулося за " + time + " мс.");
             console.log(response);
+            window.location.reload();
         });
-
-        window.location.reload();
     };
 
     this.getArtist = function getArtist(id){

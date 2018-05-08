@@ -1,5 +1,6 @@
 package com.buzilov.lab6crud.service.contestresults;
 
+import com.buzilov.lab6crud.model.Artist;
 import com.buzilov.lab6crud.model.ContestResults;
 import com.buzilov.lab6crud.repository.contestresults.ContestResultsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,7 @@ public class ContestResultsServiceImpl implements ContestResultsService {
     }
 
     @Override
-    public ContestResults update(int oldContestId, int oldArtistId, ContestResults contest) throws SQLException {
-       // return contestResultsRepository.save(oldContestId, oldArtistId, contest);
+    public ContestResults update(ContestResults contest) throws SQLException {
         return null;
     }
 

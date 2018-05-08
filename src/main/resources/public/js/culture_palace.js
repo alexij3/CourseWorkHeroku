@@ -3,14 +3,20 @@ var app = angular.module("demo", []);
 app.controller("CulturePalaceCtrl", function($scope, $http){
     var idToUpdate;
 
+    var time = performance.now();
     $scope.culturePalaces = [];
      $http.get('/api/culturepalace/showAll').then(function (response){
+         time = performance.now()-time;
+         console.log("Виведення відбулося за " + time + " мс.");
         $scope.culturePalaces=response.data;
         console.log(response);
     });
 
     this.deleteCulturePalace = function deleteCulturePalace(id){
+        var time = performance.now();
         $http.get('/api/culturepalace/delete?id=' + id).then(function(){
+            time = performance.now()-time;
+            console.log("Видалення відбулося за " + time + " мс.");
             window.location.reload();
             console.log("deleted culturePalace with id " + id);
         });
@@ -22,7 +28,7 @@ app.controller("CulturePalaceCtrl", function($scope, $http){
         var capacity = document.getElementById('CulturePalaceCapacity').value;
 
         var createRequest ={
-            method: 'POST',
+            method: 'PUT',
             url: '/api/culturepalace/create',
             data: {
                 name : name,
@@ -31,7 +37,10 @@ app.controller("CulturePalaceCtrl", function($scope, $http){
             }
         };
 
+        var time = performance.now();
         $http(createRequest).then(function(){
+            time = performance.now() - time;
+            console.log("Створення відбулося за " + time + " мс.");
             window.location.reload();
         });
     };
@@ -59,7 +68,10 @@ app.controller("CulturePalaceCtrl", function($scope, $http){
             }
         };
 
+        var time = performance.now();
         $http(request).then(function (response){
+            time = performance.now() - time;
+            console.log("Оновлення відбулося за " + time + " мс.");
             console.log(response);
             window.location.reload();
         });

@@ -6,8 +6,11 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
     var delGenres = [];
     var genres = [];
 
+    var time = performance.now();
     $scope.impresarios = [];
     $http.get('/api/impresario/showall').then(function (response) {
+        time = performance.now() - time;
+        console.log("Виведення відбулося за " + time + " мс.");
         $scope.impresarios = response.data;
     });
 
@@ -22,7 +25,11 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
             }
         };
 
-        $http(request).then(function(){
+        var time = performance.now();
+        $http(request).then(function(response){
+            time = performance.now() - time;
+            console.log("Створення відбулося за " + time + " мс."):
+            console.log(response);
             window.location.reload();
         });
     };
@@ -63,8 +70,12 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
             }
         };
 
+        var time = performance.now();
         $http(request).then(function(response){
+            time = performance.now() - time;
+            console.log("Видалення відбулося за " + time + " мс.");
             document.getElementById('delSelectGenre').options.length = 0;
+            console.log(response);
             window.location.reload();
         });
     };
