@@ -52,6 +52,6 @@ public class ImpresarioController {
     @RequestMapping("/updategenres")
     public Impresario updateGenres(@RequestParam("id") Integer id, @RequestBody Impresario Impresario) throws SQLException {
         Impresario.setId(id);
-        return service.update(Impresario);
+        return service.updateGenres(Impresario);
     }
 }

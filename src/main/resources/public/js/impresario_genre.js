@@ -9,16 +9,16 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
     var time = performance.now();
     $scope.impresarios = [];
     $http.get('/api/impresario/showall').then(function (response) {
+        $scope.impresarios = response.data;
         time = performance.now() - time;
         console.log("Виведення відбулося за " + time + " мс.");
-        $scope.impresarios = response.data;
     });
 
     this.addGenre = function addGenre(){
         genres = $scope.selectedGenres;
         var request = {
             method: 'PUT',
-            url: '/api/impresario/update?id=' + impresarioId,
+            url: '/api/impresario/updategenres?id=' + impresarioId,
             data: {
                 name : impresarioName,
                 genreSet : genres
@@ -26,10 +26,9 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
         };
 
         var time = performance.now();
-        $http(request).then(function(response){
+        $http(request).then(function(){
             time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс."):
-            console.log(response);
+            console.log("Створення відбулося за " + time + " мс.");
             window.location.reload();
         });
     };
@@ -73,10 +72,9 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
         var time = performance.now();
         $http(request).then(function(response){
             time = performance.now() - time;
-            console.log("Видалення відбулося за " + time + " мс.");
             document.getElementById('delSelectGenre').options.length = 0;
-            console.log(response);
             window.location.reload();
+            console.log("Видалення відбулося за " + time + " мс.");
         });
     };
 
