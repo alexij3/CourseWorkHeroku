@@ -72,9 +72,9 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
         var time = performance.now();
         $http(request).then(function(response){
             time = performance.now() - time;
-            console.log("Видалення відбулося за " + time + " мс.");
             document.getElementById('delSelectGenre').options.length = 0;
             window.location.reload();
+            console.log("Видалення відбулося за " + time + " мс.");
         });
     };
 

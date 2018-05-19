@@ -1,26 +1,30 @@
 package com.buzilov.lab6crud.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
 @Table(name="contest_results")
-@IdClass(ContestResultsID.class)
-public class ContestResults implements Serializable {
+public class ContestResults {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @ManyToOne
-    @JoinColumn(name = "id_artist")
+    @NotNull
     private Artist artist;
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "id_contest")
+    @NotNull
     private ContestInPalace contest;
 
     @Column
+    @NotNull
     private int place;
 
     @Column(name="is_winner")
+    @NotNull
     private char isWinner;
 
     public ContestResults() {
@@ -36,6 +40,14 @@ public class ContestResults implements Serializable {
         this.contest = contest;
         this.place = place;
         this.isWinner = isWinner;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPlace() {

@@ -1,8 +1,7 @@
 var app = angular.module("demo", []);
 
 app.controller("ContestResultsCtrl", function($scope, $http){
-    var oldContestId;
-    var oldArtistId;
+    var contestResultId;
 
     $scope.contestResults = [];
     $http.get('/api/contestresults/showall').then(function(response){
@@ -81,10 +80,8 @@ app.controller("ContestResultsCtrl", function($scope, $http){
         });
     };
 
-    this.startUpdate = function startUpdate(contestId, artistId, place, isWinner){
-        oldContestId = contestId;
-        oldArtistId = artistId;
-
+    this.startUpdate = function startUpdate(contestResultIdUpd, contestId, artistId, place, isWinner){
+        contestResultId = contestResultIdUpd;
         document.getElementById('updateContestResultContest').value = contestId;
         document.getElementById('updateContestResultArtist').value = artistId;
         document.getElementById('updatePlace').value = place;
@@ -99,8 +96,8 @@ app.controller("ContestResultsCtrl", function($scope, $http){
 
         var request = {
             method: 'POST',
-            url: '/api/contestresults/update?oldContestId=' + oldContestId + '&oldArtistId=' + oldArtistId
-            + '&contestId=' + contestId + '&artistId=' + artistId + '&place=' + place + '&isWinner=' + isWinner
+            url: '/api/contestresults/update?contestResultId=' + contestResultId +
+                    '&contestId=' + contestId + '&artistId=' + artistId + '&place=' + place + '&isWinner=' + isWinner
         };
 
         $http(request).then(function(response){
@@ -109,8 +106,8 @@ app.controller("ContestResultsCtrl", function($scope, $http){
         });
     };
 
-    this.del = function del(contestId, artistId){
-        $http.post('/api/contestresults/delete?contestId=' + contestId + '&artistId=' + artistId).then(function(response){
+    this.del = function del(contestResultId){
+        $http.post('/api/contestresults/delete?contestResultId=' + contestResultId).then(function(response){
             window.location.reload();
         });
     }

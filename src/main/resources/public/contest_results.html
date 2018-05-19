@@ -18,7 +18,6 @@
         <table>
             <thead>
             <tr>
-                <th>&#128273ІД</th>
                 <th>Назва</th>
                 <th>Артист</th>
                 <th>Місце</th>
@@ -31,14 +30,13 @@
             <tbody>
 
             <tr ng-repeat = "item in contestResults">
-                <td>{{item.contest.id}}</td>
                 <td>{{item.contest.name}}</td>
                 <td>{{item.artist.name}}</td>
                 <td>{{item.place}}</td>
                 <td>{{item.isWinner == 'y' ? 'Так' : 'Ні'}}</td>
                 <td>
-                    <button id="update" ng-click="contestResultsCtrl.startUpdate(item.contest.id, item.artist.id, item.place, item.isWinner)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="contestResultsCtrl.del(item.contest.id, item.artist.id)" class="btn-danger">Видалити</button>
+                    <button id="update" ng-click="contestResultsCtrl.startUpdate(item.id, item.contest.id, item.artist.id, item.place, item.isWinner)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="contestResultsCtrl.del(item.id)" class="btn-danger">Видалити</button>
                 </td>
             </tr>
             </tbody>

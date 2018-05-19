@@ -17,9 +17,6 @@ public class ContestResultsServiceImpl implements ContestResultsService {
 
     @Override
     public ContestResults insert(ContestResults contest) throws SQLException {
-        System.out.println("in insert");
-        System.out.println(contest);
-        System.out.println("ARTIST: " + contest.getArtist());
         return contestResultsRepository.save(contest);
     }
 
@@ -30,12 +27,12 @@ public class ContestResultsServiceImpl implements ContestResultsService {
 
     @Override
     public ContestResults update(ContestResults contest) throws SQLException {
-        return null;
+        return contestResultsRepository.save(contest);
     }
 
     @Override
-    public void delete(int contestId, int artistId) throws SQLException {
-       // contestResultsRepository.deleteBy(contestId, artistId);
+    public void delete(int id) throws SQLException {
+       contestResultsRepository.deleteById(id);
     }
 
     @Override

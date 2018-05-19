@@ -39,72 +39,36 @@ public class ContestResultsController {
                                  @RequestParam("contestId") int contestId,
                                  @RequestParam("place") int place,
                                  @RequestParam("isWinner") char isWinner) throws SQLException {
-        /*contestResults.setArtist(artistService.getArtist(artistId));
-        contestResults.setContest(contestInPalaceService.get(contestId));
-        System.out.println(contestResults.getArtist() + " - ARTIST");
-        System.out.println(contestResults.getContest() + " - CONTEST");
-        System.out.println(contestResults + " - CONTEST RESULTS");*/
+        Artist artist = new Artist();
+        artist.setId(artistId);
+        ContestInPalace contest = new ContestInPalace();
+        contest.setId(contestId);
+        ContestResults contestResults = new ContestResults(artist, contest, place, isWinner);
 
-        Artist artist = artistService.getArtist(artistId);
-
-        ContestResults contestResults = new ContestResults();
-        contestResults.setArtist(artist);
-        contestResults.setContest(contestInPalaceService.get(contestId));
-        contestResults.setPlace(place);
-        contestResults.setIsWinner(isWinner);
-
-        artist.getContestResults().add(contestResults);
-
-        artistService.updateArtist(artist);
-
-        return null;
+        return contestResultsService.insert(contestResults);
     }
 
     @RequestMapping("/update")
-    public ContestResults update(@RequestParam("oldContestId") int oldContestId,
-                                 @RequestParam("oldArtistId") int oldArtistId,
+    public ContestResults update(@RequestParam("contestResultId") int contestResultId,
                                  @RequestParam("contestId") int contestId,
                                  @RequestParam("artistId") int artistId,
                                  @RequestParam("place") int place,
                                  @RequestParam("isWinner") char isWinner) throws SQLException {
-        Artist oldArtist = artistService.getArtist(oldArtistId);
-        Artist newArtist = artistService.getArtist(artistId);
 
-        ContestInPalace oldContest = contestInPalaceService.get(oldContestId);
-        ContestInPalace newContest = contestInPalaceService.get(contestId);
+        ContestInPalace contest = new ContestInPalace();
+        contest.setId(contestId);
 
-        ContestResults oldContestResults = new ContestResults();
-        oldContestResults.setArtist(oldArtist);
-        oldContestResults.setContest(oldContest);
-        oldContestResults.setPlace(place);
-        oldContestResults.setIsWinner(isWinner);
+        Artist artist = new Artist();
+        artist.setId(artistId);
 
-        ContestResults newContestResults = new ContestResults();
-        newContestResults.setArtist(newArtist);
-        newContestResults.setContest(newContest);
-        newContestResults.setPlace(place);
-        newContestResults.setIsWinner(isWinner);
+        ContestResults contestResults = new ContestResults(artist, contest, place, isWinner);
+        contestResults.setId(contestResultId);
 
-        oldArtist.getContestResults().remove(oldContestResults);
-        newArtist.getContestResults().add(newContestResults);
-
-        artistService.updateArtist(newArtist);
-
-
-        return null;
+        return contestResultsService.update(contestResults);
     }
 
     @RequestMapping("/delete")
-    public void delete(@RequestParam("contestId") int contestId, @RequestParam("artistId") int artistId) throws SQLException {
-        Artist artist = artistService.getArtist(artistId);
-        ContestInPalace contest = contestInPalaceService.get(contestId);
-
-        ContestResults contestResults = artist.getContestResults().stream().filter(el->el.getContest() == contest).findFirst().get();
-        System.out.println(artist.getContestResults().size());
-        System.out.println("RES ARTIST: " + contestResults.getArtist());
-        System.out.println("RES CONTEST: " + contestResults.getContest());
-        System.out.println(artist.getContestResults().remove(contestResults));
-        System.out.println(artist.getContestResults().size());
-        System.out.println(artistService.updateArtist(artist).getContestResults().size());
+    public void delete(@RequestParam("contestResultId") int contestResultId) throws SQLException {
+        contestResultsService.delete(contestResultId);
     }
 }
