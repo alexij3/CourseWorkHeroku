@@ -1,6 +1,10 @@
 package com.buzilov.lab6crud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Theatre {

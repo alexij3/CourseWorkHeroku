@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.Theatre;
+import com.buzilov.lab6crud.repository.theatreperformance.TheatrePerformanceRepository;
 import com.buzilov.lab6crud.service.theatre.TheatreServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

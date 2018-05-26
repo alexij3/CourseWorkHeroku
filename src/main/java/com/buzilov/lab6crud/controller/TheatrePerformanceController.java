@@ -45,4 +45,14 @@ public class TheatrePerformanceController {
         return theatrePerformanceService.update(theatrePerformance);
     }
 
+    @RequestMapping("findTheatresAndPerformancesDates")
+    public List<TheatrePerformance> findTheatresAndPerformancesDates(@RequestParam("firstDate") String firstDateStr,
+                                                                     @RequestParam("secondDate") String secondDateStr){
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+
+        return theatrePerformanceService.findTheatresAndPerformancesDates(firstDate, secondDate);
+    }
+
 }

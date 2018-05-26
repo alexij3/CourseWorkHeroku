@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,5 +37,10 @@ public class TheatrePerformanceServiceImpl implements TheatrePerformanceService 
     @Override
     public List<TheatrePerformance> getAll() throws SQLException {
         return (List<TheatrePerformance>) theatrePerformanceRepository.findAll();
+    }
+
+    @Override
+    public List<TheatrePerformance> findTheatresAndPerformancesDates(LocalDate firstDate, LocalDate secondDate) {
+        return theatrePerformanceRepository.findTheatresAndPerformancesDates(firstDate, secondDate);
     }
 }

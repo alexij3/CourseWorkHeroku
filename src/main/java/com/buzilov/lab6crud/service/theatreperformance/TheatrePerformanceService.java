@@ -3,6 +3,7 @@ package com.buzilov.lab6crud.service.theatreperformance;
 import com.buzilov.lab6crud.model.TheatrePerformance;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TheatrePerformanceService {
@@ -11,4 +12,5 @@ public interface TheatrePerformanceService {
     TheatrePerformance update(TheatrePerformance theatrePerformance) throws SQLException;
     void delete(int id) throws SQLException;
     List<TheatrePerformance> getAll() throws SQLException;
+    List<TheatrePerformance> findTheatresAndPerformancesDates(LocalDate firstDate, LocalDate secondDate);
 }
