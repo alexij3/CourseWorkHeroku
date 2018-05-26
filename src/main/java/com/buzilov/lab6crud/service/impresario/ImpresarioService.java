@@ -1,5 +1,6 @@
 package com.buzilov.lab6crud.service.impresario;
 
+import com.buzilov.lab6crud.model.Artist;
 import com.buzilov.lab6crud.model.Impresario;
 
 import java.sql.SQLException;

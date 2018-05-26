@@ -11,4 +11,5 @@ public interface CinemaService {
     Cinema updateCinema(Cinema cinema) throws SQLException;
     void deleteCinema(int id) throws SQLException;
     List<Cinema> getAll() throws SQLException;
+    List<Cinema> findCinemasByScreenSizeGreaterThan(int size);
 }

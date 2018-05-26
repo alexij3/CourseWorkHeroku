@@ -1,9 +1,12 @@
 package com.buzilov.lab6crud.service.artist;
 
 import com.buzilov.lab6crud.model.Artist;
+import com.buzilov.lab6crud.model.Genre;
+import com.buzilov.lab6crud.model.Impresario;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
 public interface ArtistService {
     Artist insertArtist(Artist artist) throws SQLException;
@@ -15,4 +18,8 @@ public interface ArtistService {
     Artist deleteGenre(Artist artist) throws SQLException;
     Artist deleteImpresario(Artist artist) throws SQLException;
     List<Artist> getAll() throws SQLException;
+    List<Artist> findAllByGenreSetContaining(Genre genre);
+    List<Artist> findArtistByImpresariosContaining(Impresario impresario);
+    List<Artist> findAllByHavingMoreThanOneGenre();
+    Set<Impresario> findArtistImpresarios(int id);
 }

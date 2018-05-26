@@ -44,4 +44,9 @@ public class CinemaController {
     public Cinema addCinemaMovie(@RequestBody Cinema cinema) throws SQLException {
         return service.updateCinema(cinema);
     }
+
+    @RequestMapping("/findCinemasByScreenSizeGreaterThan")
+    public List<Cinema> findCinemasByScreenSizeGreaterThan(@RequestParam("size") int size){
+        return service.findCinemasByScreenSizeGreaterThan(size);
+    }
 }

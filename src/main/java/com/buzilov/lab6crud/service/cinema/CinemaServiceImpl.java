@@ -37,4 +37,9 @@ public class CinemaServiceImpl implements CinemaService {
     public List<Cinema> getAll() throws SQLException{
         return (List<Cinema>) cinemaRepository.findAll();
     }
+
+    @Override
+    public List<Cinema> findCinemasByScreenSizeGreaterThan(int size) {
+        return cinemaRepository.findCinemasByScreenSizeGreaterThan(size);
+    }
 }

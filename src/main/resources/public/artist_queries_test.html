@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Концертні площадки</title>
+    <title>Артисти</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -11,30 +11,28 @@
 
 </head>
 <body ng-app = "demo">
-Концертні площадки
-<div class="container-fluid" ng-controller = "ConcertHallCtrl as concertHallCtrl">
+Артисти
+<div class="container-fluid" ng-controller = "ArtistCtrl as artistCtrl">
     <div class="datagrid">
         <table>
             <thead>
                 <tr>
                     <th>&#128273ІД</th>
-                    <th>Назва</th>
-                    <th>Адреса</th>
-                    <th>Місткість</th>
+                    <th>Ім'я</th>
+                    <th>Жанри</th>
                     <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
                 </tr>
             </thead>
 
             <tbody>
 
-            <tr ng-repeat = "item in concertHalls">
+            <tr ng-repeat = "item in artists">
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
-                <td>{{item.address}}</td>
-                <td>{{item.capacity}}</td>
+                <td>{{item.genreSet.toString()}}</td>
                 <td>
-                    <button id="update" ng-click="concertHallCtrl.startUpdateConcertHall(item.id, item.name, item.address, item.capacity)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="concertHallCtrl.deleteConcertHall(item.id)" class="btn-danger">Видалити</button>
+                    <button id="update" ng-click="artistCtrl.startUpdateArtist(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
+                    <button id="delete" ng-click="artistCtrl.deleteArtist(item.id)" class="btn-danger">Видалити</button>
                 </td>
             </tr>
             </tbody>
@@ -50,15 +48,12 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="ConcertHallName" name="ConcertHallName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="ConcertHallAddress" name="ConcertHallAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="number" min="10" id="ConcertHallCapacity" name="ConcertHallCapacity" /> <br>
-                    <button id="createConcertHallButton" ng-click="concertHallCtrl.createConcertHall()">Створити</button>
+                    <label>Ім'я:</label>
+                    <input type="text" id="artistName" name="artistName" /> <br>
+
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="createArtistButton" ng-click="artistCtrl.createArtist()">Створити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -75,13 +70,9 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="updateConcertHallName" name="updateConcertHallName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="updateConcertHallAddress" name="updateConcertHallAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="number" min="10" id="updateConcertHallCapacity" name="updateConcertHallCapacity" /> <br>
-                    <button id="editConcertHallButton" ng-click="concertHallCtrl.updateConcertHall()">Змінити</button>
+                    <label>Ім'я:</label>
+                    <input type="text" id="updateArtistName" name="updateArtistName" />
+                    <button id="editArtistButton" ng-click="artistCtrl.updateArtist()">Змінити</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
@@ -93,10 +84,15 @@
 
 </div>
 
+
+
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/concert_hall.js"></script>
+<script type="text/javascript" src="js/artist_queries.js"></script>
+
+
+
 
 </body>
 </html>

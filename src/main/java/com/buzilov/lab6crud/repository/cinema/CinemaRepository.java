@@ -1,10 +1,15 @@
 package com.buzilov.lab6crud.repository.cinema;
 
 import com.buzilov.lab6crud.model.Cinema;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface CinemaRepository extends CrudRepository<Cinema, Integer> {
+import java.util.List;
 
+@Repository
+public interface CinemaRepository extends JpaRepository<Cinema, Integer> {
+    List<Cinema> findCinemasByScreenSizeGreaterThan(@Param("size") int size);
 }

@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.Artist;
+import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.model.Impresario;
 import com.buzilov.lab6crud.service.artist.ArtistServiceImpl;
 import com.buzilov.lab6crud.service.impresario.ImpresarioServiceImpl;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/artist")
@@ -73,6 +75,29 @@ public class ArtistController {
     @RequestMapping("/get")
     public Artist get(@RequestParam("id") int id) throws SQLException{
         return artistService.getArtist(id);
+    }
+
+    @RequestMapping("findAllByGenreSetContaining")
+    public List<Artist> findAllByGenreSetContaining(@RequestParam("genre") Genre genre){
+        return artistService.findAllByGenreSetContaining(genre);
+    }
+
+    @RequestMapping("findArtistByImpresariosContaining")
+    public List<Artist> findArtistByImpresariosContaining(@RequestParam("id") int id){
+        Impresario impresario = new Impresario();
+        impresario.setId(id);
+
+        return artistService.findArtistByImpresariosContaining(impresario);
+    }
+
+    @RequestMapping("findAllByHavingMoreThanOneGenre")
+    public List<Artist> findAllByHavingMoreThanOneGenre(){
+        return artistService.findAllByHavingMoreThanOneGenre();
+    }
+
+    @RequestMapping("findArtistImpresarios")
+    public Set<Impresario> findArtistImpresarios(int id){
+        return artistService.findArtistImpresarios(id);
     }
 
 }

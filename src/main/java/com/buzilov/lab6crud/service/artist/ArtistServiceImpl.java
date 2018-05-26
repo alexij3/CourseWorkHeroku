@@ -1,5 +1,7 @@
 package com.buzilov.lab6crud.service.artist;
 
+import com.buzilov.lab6crud.model.Genre;
+import com.buzilov.lab6crud.model.Impresario;
 import com.buzilov.lab6crud.repository.artist.ArtistRepository;
 import com.buzilov.lab6crud.model.Artist;
 import com.buzilov.lab6crud.repository.impresario.ImpresarioRepository;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ArtistServiceImpl implements ArtistService {
@@ -77,5 +80,32 @@ public class ArtistServiceImpl implements ArtistService {
         Artist updatedArtist = artistRepository.findById(artist.getId()).get();
         updatedArtist.getGenreSet().removeAll(artist.getGenreSet());
         return artistRepository.save(updatedArtist);
+    }
+
+    @Override
+    public List<Artist> findAllByGenreSetContaining(Genre genre) {
+        return artistRepository.findAllByGenreSetContaining(genre);
+    }
+
+    @Override
+    public List<Artist> findArtistByImpresariosContaining(Impresario impresario) {
+        return artistRepository.findArtistByImpresariosContaining(impresario);
+    }
+
+    @Override
+    public List<Artist> findAllByHavingMoreThanOneGenre() {
+        List<Artist> artistList = artistRepository.findAll();
+        List<Artist> listToShow = new ArrayList<>();
+
+        for (Artist a : artistList)
+            if (a.getGenreSet().size() > 1) listToShow.add(a);
+
+        return listToShow;
+    }
+
+    @Override
+    public Set<Impresario> findArtistImpresarios(int id) {
+
+        return artistRepository.findById(id).get().getImpresarios();
     }
 }
