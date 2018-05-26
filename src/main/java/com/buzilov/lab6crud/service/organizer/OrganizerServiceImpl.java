@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,5 +37,10 @@ public class OrganizerServiceImpl implements OrganizerService {
     @Override
     public List<Organizer> getAll() throws SQLException {
         return (List<Organizer>) organizerRepository.findAll();
+    }
+
+    @Override
+    public List<Organizer> findAllAndConcertCount(LocalDate firstDate, LocalDate secondDate) {
+        return organizerRepository.findAllAndConcertCount(firstDate, secondDate);
     }
 }

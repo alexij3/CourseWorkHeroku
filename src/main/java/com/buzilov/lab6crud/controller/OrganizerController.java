@@ -1,7 +1,9 @@
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.Organizer;
+import com.buzilov.lab6crud.repository.organizer.OrganizerRepository;
 import com.buzilov.lab6crud.service.organizer.OrganizerServiceImpl;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/organizer")
@@ -43,5 +47,14 @@ public class OrganizerController {
     public Organizer update(@RequestParam("id") Integer id, @RequestBody Organizer organizer) throws SQLException{
         organizer.setId(id);
         return service.update(organizer);
+    }
+
+    @RequestMapping("/findAllAndConcertCount")
+    public List<Organizer> findAllAndConcertCount(@RequestParam("firstDate") String firstDateStr,
+                                                  @RequestParam("secondDate") String secondDateStr){
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return service.findAllAndConcertCount(firstDate, secondDate);
     }
 }

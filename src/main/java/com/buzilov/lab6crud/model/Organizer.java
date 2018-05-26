@@ -1,6 +1,10 @@
 package com.buzilov.lab6crud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Organizer {
@@ -10,6 +14,13 @@ public class Organizer {
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "organizer")
+    @JsonIgnore
+    private Set<ConcertInHall> concertInHalls = new HashSet<>();
+
+    @Transient
+    private int concertCount;
 
     public Organizer() {
     }
@@ -32,6 +43,12 @@ public class Organizer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Organizer(String name, Set<ConcertInHall> concertInHalls) {
+        this.name = name;
+        this.concertInHalls = concertInHalls;
+        this.concertCount = concertInHalls.size();
     }
 
     @Override
@@ -58,5 +75,17 @@ public class Organizer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public Set<ConcertInHall> getConcertInHalls() {
+        return concertInHalls;
+    }
+
+    public void setConcertInHalls(Set<ConcertInHall> concertInHalls) {
+        this.concertInHalls = concertInHalls;
+    }
+
+    public int getConcertCount() {
+        return concertInHalls.size();
     }
 }
