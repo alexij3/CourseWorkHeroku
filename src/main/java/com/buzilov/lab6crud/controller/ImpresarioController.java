@@ -1,5 +1,6 @@
 package com.buzilov.lab6crud.controller;
 
+import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.model.Impresario;
 import com.buzilov.lab6crud.service.impresario.ImpresarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,11 @@ public class ImpresarioController {
     public Impresario updateGenres(@RequestParam("id") Integer id, @RequestBody Impresario Impresario) throws SQLException {
         Impresario.setId(id);
         return service.updateGenres(Impresario);
+    }
+
+    @RequestMapping("/findAllByGenreSetContaining")
+    public List<Impresario> findAllByGenreSetContaining(@RequestParam("genre") Genre genre){
+        return service.findAllByGenreSetContaining(genre);
     }
 
 }

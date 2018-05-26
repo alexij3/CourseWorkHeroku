@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ConcertInHall;
+import com.buzilov.lab6crud.model.Organizer;
 import com.buzilov.lab6crud.service.concertinhall.ConcertInHallServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class ConcertInHallController {
 
     @RequestMapping("/insert")
     public ConcertInHall insert(@RequestBody ConcertInHall concertInHall) throws SQLException {
-        if (concertInHall.getDate() == null){
+        if (concertInHall.getDate() == null) {
             concertInHall.setDate(LocalDate.of(2018, 1, 1));
         }
         return concertInHallService.insert(concertInHall);
@@ -36,10 +37,30 @@ public class ConcertInHallController {
 
     @RequestMapping("/update")
     public ConcertInHall update(@RequestBody ConcertInHall concertInHall) throws SQLException {
-        if (concertInHall.getDate() == null){
+        if (concertInHall.getDate() == null) {
             concertInHall.setDate(LocalDate.of(2018, 1, 1));
         }
         return concertInHallService.update(concertInHall);
+    }
+
+    @RequestMapping("/findAllByDateBetween")
+    public List<ConcertInHall> findAllByDateBetween(@RequestParam("firstDate") String firstDateStr,
+                                                    @RequestParam("secondDate") String secondDateStr) {
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return concertInHallService.findAllByDateBetween(firstDate, secondDate);
+    }
+
+    @RequestMapping("/findAllByDateBetweenAndOrganizer")
+    public List<ConcertInHall> findAllByDateBetweenAndOrganizer(@RequestParam("firstDate") String firstDateStr,
+                                                                @RequestParam("secondDate") String secondDateStr,
+                                                                @RequestParam("organizerId") int organizerId) {
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+
+        return concertInHallService.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
     }
 }
 

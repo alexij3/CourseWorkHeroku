@@ -47,4 +47,9 @@ public class ContestResultsServiceImpl implements ContestResultsService {
         //return (List<ContestResults>) contestResultsRepository.findAll();
         return contestResults;
     }
+
+    @Override
+    public List<ContestResults> findAllByContestId(int contestId) {
+        return contestResultsRepository.findAllByContestId(contestId);
+    }
 }

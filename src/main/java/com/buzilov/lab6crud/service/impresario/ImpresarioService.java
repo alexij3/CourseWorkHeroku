@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.service.impresario;
 
 import com.buzilov.lab6crud.model.Artist;
+import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.model.Impresario;
 
 import java.sql.SQLException;
@@ -14,4 +15,5 @@ public interface ImpresarioService {
     void delete(int id) throws SQLException;
     Impresario deleteGenre(Impresario impresario) throws SQLException;
     List<Impresario> getAll() throws SQLException;
+    List<Impresario> findAllByGenreSetContaining(Genre genre);
 }

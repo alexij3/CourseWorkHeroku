@@ -11,4 +11,5 @@ public interface ContestResultsService {
     ContestResults update(ContestResults contest) throws SQLException;
     void delete(int id) throws SQLException;
     List<ContestResults> getAll() throws SQLException;
+    List<ContestResults> findAllByContestId(int contestId);
 }

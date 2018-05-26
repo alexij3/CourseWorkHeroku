@@ -12,8 +12,12 @@ public class ContestResults {
     private int id;
 
     @ManyToOne
+    @JoinColumn(name="artist_id")
     @NotNull
     private Artist artist;
+
+    @Column(name="artist_id", insertable = false, updatable = false)
+    private int artist_id;
 
     @ManyToOne
     @NotNull
@@ -42,6 +46,14 @@ public class ContestResults {
         this.isWinner = isWinner;
     }
 
+    public int getArtist_id() {
+        return artist_id;
+    }
+
+    public void setArtist_id(int artist_id) {
+        this.artist_id = artist_id;
+    }
+
     public int getId() {
         return id;
     }
@@ -67,7 +79,6 @@ public class ContestResults {
     }
 
     public void setArtist(Artist artist) {
-        System.out.println(artist);
         this.artist = artist;
     }
 

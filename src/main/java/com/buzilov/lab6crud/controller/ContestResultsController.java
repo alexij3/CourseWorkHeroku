@@ -71,4 +71,9 @@ public class ContestResultsController {
     public void delete(@RequestParam("contestResultId") int contestResultId) throws SQLException {
         contestResultsService.delete(contestResultId);
     }
+
+    @RequestMapping("/findAllByContestId")
+    public List<ContestResults> findAllByContestId(@RequestParam("contestId") int contestId){
+        return contestResultsService.findAllByContestId(contestId);
+    }
 }

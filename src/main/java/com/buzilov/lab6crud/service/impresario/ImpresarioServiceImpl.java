@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.service.impresario;
 
 import com.buzilov.lab6crud.model.Artist;
+import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.repository.impresario.ImpresarioRepository;
 import com.buzilov.lab6crud.model.Impresario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class ImpresarioServiceImpl implements ImpresarioService {
         Impresario updatedImpresario = impresarioRepository.findById(impresario.getId()).get();
         updatedImpresario.getGenreSet().removeAll(impresario.getGenreSet());
         return impresarioRepository.save(updatedImpresario);
+    }
+
+    @Override
+    public List<Impresario> findAllByGenreSetContaining(Genre genre) {
+        return impresarioRepository.findAllByGenreSetContaining(genre);
     }
 }

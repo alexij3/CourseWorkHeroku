@@ -3,6 +3,7 @@ package com.buzilov.lab6crud.controller;
 import com.buzilov.lab6crud.model.Artist;
 import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.model.Impresario;
+import com.buzilov.lab6crud.repository.artist.ArtistRepository;
 import com.buzilov.lab6crud.service.artist.ArtistServiceImpl;
 import com.buzilov.lab6crud.service.impresario.ImpresarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +26,9 @@ public class ArtistController {
 
     @Autowired
     ImpresarioServiceImpl impresarioService;
+
+    @Autowired
+    ArtistRepository artistRepository;
 
     @RequestMapping("/showall")
     public List<Artist> showArtists() throws SQLException {
@@ -98,6 +103,15 @@ public class ArtistController {
     @RequestMapping("findArtistImpresarios")
     public Set<Impresario> findArtistImpresarios(int id){
         return artistService.findArtistImpresarios(id);
+    }
+
+    @RequestMapping("/findAllByContestDateNotBetween")
+    public List<Artist> findAllByContestDateNotBetween(@RequestParam("firstDate") String firstDateStr,
+                                                       @RequestParam("secondDate") String secondDateStr){
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return artistRepository.findAllByContestDateNotBetween(firstDate, secondDate);
     }
 
 }

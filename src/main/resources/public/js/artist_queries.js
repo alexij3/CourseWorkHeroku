@@ -5,7 +5,7 @@ app.controller("ArtistCtrl", function($scope, $http){
     var genres = [];
 
     $scope.artists = [];
-    $http.get('/api/artist/findAllByHavingMoreThanOneGenre').then(function (response){
+    $http.get('/api/artist/testquery').then(function (response){
         $scope.artists = response.data;
     });
 });

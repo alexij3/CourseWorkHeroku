@@ -5,6 +5,7 @@ import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.model.Impresario;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -22,4 +23,5 @@ public interface ArtistService {
     List<Artist> findArtistByImpresariosContaining(Impresario impresario);
     List<Artist> findAllByHavingMoreThanOneGenre();
     Set<Impresario> findArtistImpresarios(int id);
+    List<Artist> findAllByContestDateNotBetween(LocalDate firstDate, LocalDate secondDate);
 }

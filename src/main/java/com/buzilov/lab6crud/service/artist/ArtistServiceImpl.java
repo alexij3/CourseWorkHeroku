@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -105,7 +106,11 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Set<Impresario> findArtistImpresarios(int id) {
-
         return artistRepository.findById(id).get().getImpresarios();
+    }
+
+    @Override
+    public List<Artist> findAllByContestDateNotBetween(LocalDate firstDate, LocalDate secondDate) {
+        return artistRepository.findAllByContestDateNotBetween(firstDate, secondDate);
     }
 }
