@@ -69,6 +69,7 @@ public class ArtistController {
     @RequestMapping("/updategenres")
     public Artist updateArtistGenres(@RequestParam("id") Integer id, @RequestBody Artist artist) throws SQLException {
         artist.setId(id);
+        System.out.println("update genres");
         return artistService.updateArtistGenres(artist);
     }
 

@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Жанри імпресаріо</title>
-    <link rel="stylesheet" href="css/styless.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/styles.css">
 
 
 
@@ -59,8 +57,8 @@
                 <td>{{item.name}}</td>
                 <td>{{item.genreSet.toString()}}</td>
                 <td>
-                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="impresarioGenreCtrl.startAddGenre(item.id, item.name, item.genreSet)">Додати</button>
-                    <button id="delete" ng-click="impresarioGenreCtrl.startDeleteGenre(item.id, item.name, item.genreSet)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">Видалити</button>
+                    <button type="create" style="width: 40px; font-size: 18px" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="impresarioGenreCtrl.startAddGenre(item.id, item.name, item.genreSet)">✚</button>
+                    <button id="delete" ng-click="impresarioGenreCtrl.startDeleteGenre(item.id, item.name, item.genreSet)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">❌</button>
                 </td>
             </tr>
             </tbody>
@@ -68,7 +66,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div id="addModal" class="modal fade" role="dialog">
@@ -93,11 +90,22 @@
                         <option>Фентезі</option>
                         <option>Тріллер</option>
                         <option>Детектив</option>
+                        <option>Симфонія</option>
+                        <option>Соната</option>
+                        <option>Тріо</option>
+                        <option>Ораторія</option>
+                        <option>Квартет</option>
+                        <option>Натюрморт</option>
+                        <option>Портрет</option>
+                        <option>Пейзаж</option>
+                        <option>Скульптура</option>
+                        <option>Різьблення</option>
                     </select>
                     <br>
-                    <button id="addGenreButton" ng-click="impresarioGenreCtrl.addGenre()">Додати</button>
+
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="addGenreButton" ng-click="impresarioGenreCtrl.addGenre()">Додати</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="">Закрити</button>
                 </div>
             </div>

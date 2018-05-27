@@ -14,6 +14,14 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
         $scope.artists = response.data;
     });
 
+
+
+    this.startAddGenre = function startAddGenre(id, name){
+        artistId = id;
+        artistName = name;
+        document.getElementById('artistName').innerHTML = name;
+    };
+
     this.addGenre = function addGenre(){
         genres = $scope.selectedGenres;
         var request = {
@@ -31,12 +39,6 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
             console.log("Створення відбулося за " + time + " мс.");
             window.location.reload();
         });
-    };
-
-    this.startAddGenre = function startAddGenre(id, name){
-        artistId = id;
-        artistName = name;
-        document.getElementById('artistName').innerHTML = name;
     };
 
     this.startDeleteGenre = function startDeleteGenre(idArtist, name, genresToDelete){
@@ -86,7 +88,24 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
 
     this.onClose = function onClose(){
         removeItems(document.getElementById('delSelectGenre'));
+    };
+
+
+    /*************
+     *
+     *
+     * Requests
+     *
+     *
+     * ******** */
+
+    this.selectMoreThanOneGenre = function selectMoreThanOneGenre(){
+        $http.get('/api/artist/findAllByHavingMoreThanOneGenre').then(function(response){
+           $scope.artists = response.data;
+        });
     }
+
+
 });
 
 

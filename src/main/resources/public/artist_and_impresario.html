@@ -57,8 +57,8 @@
                 <td>{{item.name}}</td>
                 <td>{{artistImpresarioCtrl.Names(item.impresarios).toString()}}</td>
                 <td>
-                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistImpresarioCtrl.startAddImpresario(item.id, item.name, item.impresarios)" style="width:83px; height: 25px; font-size: 16px">✚</button></th>
-                    <button id="delete" ng-click="artistImpresarioCtrl.startDeleteImpresario(item.id, item.name, item.impresarios)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">Видалити</button>
+                    <button type="create" style="width: 40px; font-size: 18px" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistImpresarioCtrl.startAddImpresario(item.id, item.name, item.impresarios)">✚</button></th>
+                    <button id="delete" ng-click="artistImpresarioCtrl.startDeleteImpresario(item.id, item.name, item.impresarios)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">❌</button>
                 </td>
             </tr>
             </tbody>

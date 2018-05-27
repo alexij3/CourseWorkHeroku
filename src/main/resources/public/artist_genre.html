@@ -35,6 +35,13 @@
                             <a href ="theatre_performance.html">Виступи</a>
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="margin-left: 0">Запити</button>
+                        <div style="min-width: 400px;" class="dropdown-content">
+                            <a href="" ng-click="artistGenreCtrl.selectMoreThanOneGenre()">Список артистів, що працюють більше, ніж в одному жанрі</a>
+                            <a href="query.html">Запит 3</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -56,8 +63,8 @@
                 <td>{{item.name}}</td>
                 <td>{{item.genreSet.toString()}}</td>
                 <td>
-                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistGenreCtrl.startAddGenre(item.id, item.name, item.genreSet)">Додати</button>
-                    <button id="delete" ng-click="artistGenreCtrl.startDeleteGenre(item.id, item.name, item.genreSet)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">Видалити</button>
+                    <button id="create" style="width: 40px; font-size: 18px" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistGenreCtrl.startAddGenre(item.id, item.name)">✚</button>
+                    <button id="delete" ng-click="artistGenreCtrl.startDeleteGenre(item.id, item.name, item.genreSet)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">❌</button>
                 </td>
             </tr>
             </tbody>
@@ -66,7 +73,6 @@
 </div>
 </div>
 </div>
-    </div>
 
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -90,12 +96,23 @@
                         <option>Фентезі</option>
                         <option>Тріллер</option>
                         <option>Детектив</option>
+                        <option>Симфонія</option>
+                        <option>Соната</option>
+                        <option>Тріо</option>
+                        <option>Ораторія</option>
+                        <option>Квартет</option>
+                        <option>Натюрморт</option>
+                        <option>Портрет</option>
+                        <option>Пейзаж</option>
+                        <option>Скульптура</option>
+                        <option>Різьблення</option>
                     </select>
                     <br>
-                    <button id="addGenreButton" ng-click="artistGenreCtrl.addGenre()">Додати</button>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="">Закрити</button>
+                    <button class="btn btn-default" id="addGenreButton" ng-click="artistGenreCtrl.addGenre()">Додати</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
 
@@ -126,6 +143,7 @@
     </div>
 
 </div>
+
 
 
 
