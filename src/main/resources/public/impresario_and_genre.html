@@ -13,11 +13,32 @@
 </head>
 <body ng-app = "demo">
 
-<div class="container" style="margin-top: 30px" ng-controller = "ImpresarioGenreCtrl as impresarioGenreCtrl">
+<div class="container" ng-controller = "ImpresarioGenreCtrl as impresarioGenreCtrl">
     <div class="row">
         <div class="col-md12">
             <div class="panel panel-default">
-                <div class="panel-heading">Жанри імпресаріо</div>
+                <div class="panel-heading">
+                    <div class="dropdown">
+                        <button class="dropbtn">Жанри імпресаріо</button>
+                        <div class="dropdown-content">
+                            <a href ="title.html">Титульна сторінка</a>
+                            <a href="artist.html">Артисти</a>
+                            <a href ="artist_genre.html">Жанри артиста</a>
+                            <a href ="artist_and_impresario.html">Імпресаріо артистів</a>
+                            <a href ="cinema.html">Кінотеатри</a>
+                            <a href ="cinema_movies.html">Фільми</a>
+                            <a href ="concert_hall.html">Концертні площадки</a>
+                            <a href ="concert_in_hall.html">Концерти</a>
+                            <a href ="contest_in_palace.html">Конкурси</a>
+                            <a href ="contest_results.html">Результати конкурсів</a>
+                            <a href ="culture_palace.html">Палаци культури</a>
+                            <a href ="impresario_and_genre.html">Жанри імпресаріо</a>
+                            <a href ="organizer.html">Організатори</a>
+                            <a href ="theatre.html">Театри</a>
+                            <a href ="theatre_performance.html">Виступи</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <table class="table table-striped">
             <thead>
