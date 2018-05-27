@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Артисти</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
 
 
 
@@ -46,8 +45,9 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:</label>
-                    <input type="text" id="artistName" name="artistName" /> <br>
+                    <label>Ім'я:
+                    <input type="text" id="artistName"/></label><br>
+                    <span style="color: #c00000; text-align: left;" id="wrongName"></span>
 
                 </div>
                 <div class="modal-footer">
@@ -68,11 +68,13 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:</label>
-                    <input type="text" id="updateArtistName" name="updateArtistName" />
-                    <button id="editArtistButton" ng-click="artistCtrl.updateArtist()">Змінити</button>
+                    <label>Ім'я:
+                    <input type="text" id="updateArtistName" name="updateArtistName" /></label><br>
+                    <span style="color: #c00000; text-align: left; font-size: 6px" id="editWrongName"></span>
+
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="editArtistButton" ng-click="artistCtrl.updateArtist()">Змінити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -88,8 +90,6 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/artist.js"></script>
-
-
 
 
 </body>

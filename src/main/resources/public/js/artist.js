@@ -2,7 +2,7 @@ var app = angular.module("demo", []);
 
 app.controller("ArtistCtrl", function($scope, $http){
     var idToUpdate;
-    var genres = [];
+    var nameValidationRegEx = /^([А-ЯІЇЄҐ]'?([а-яіїєґ](-[А-ЯІЇЄҐ]|')?)+[а-яіїєґ]*\s){2,}[А-ЯІЇЄҐ]'?[а-яіїєґ]{4,}$/;
 
     var time = performance.now();
     $scope.artists = [];
@@ -26,21 +26,25 @@ app.controller("ArtistCtrl", function($scope, $http){
     this.createArtist = function createArtist(){
         console.log("In createartist()");
         var name = document.getElementById('artistName').value;
-        var createRequest = {
-            method: 'PUT',
-            url: '/api/artist/create',
-            data : {
-                name : name
-            }
-        };
+        if (!name.match(nameValidationRegEx)){
+            document.getElementById("wrongName").innerHTML = "Некоректне ім'я!";
+        }else {
+            var createRequest = {
+                method: 'PUT',
+                url: '/api/artist/create',
+                data: {
+                    name: name
+                }
+            };
 
-        var time = performance.now();
-        $http(createRequest).then(function(response){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            console.log(response);
-            window.location.reload();
-        });
+            var time = performance.now();
+            $http(createRequest).then(function (response) {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
     };
 
     this.startUpdateArtist = function startUpdateArtist(id, name){
@@ -50,21 +54,25 @@ app.controller("ArtistCtrl", function($scope, $http){
 
     this.updateArtist = function updateArtist(){
         var name = document.getElementById('updateArtistName').value;
-        var request = {
-            method: 'POST',
-            url : '/api/artist/update?id=' + idToUpdate,
-            data: {
-                name : name
-            }
-        };
+        if (!name.match(nameValidationRegEx)){
+            document.getElementById("editWrongName").innerHTML = "Некоректне ім'я!";
+        }else {
+            var request = {
+                method: 'POST',
+                url: '/api/artist/update?id=' + idToUpdate,
+                data: {
+                    name: name
+                }
+            };
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            console.log(response);
-            window.location.reload();
-        });
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Оновлення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
     };
 
     this.getArtist = function getArtist(id){
