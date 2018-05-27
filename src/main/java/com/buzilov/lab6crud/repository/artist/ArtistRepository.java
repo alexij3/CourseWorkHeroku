@@ -19,4 +19,5 @@ public interface ArtistRepository extends JpaRepository<Artist, Integer> {
     @Query("SELECT a FROM Artist a WHERE a.id NOT IN (SELECT b FROM Artist b JOIN b.contestResults c WHERE c.contest.date BETWEEN :firstDate AND :secondDate)")
     List<Artist> findAllByContestDateNotBetween(@Param("firstDate") LocalDate firstDate,
                                                 @Param("secondDate") LocalDate secondDate);
+
 }

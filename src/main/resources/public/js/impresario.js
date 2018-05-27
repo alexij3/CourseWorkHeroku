@@ -12,6 +12,21 @@ app.controller("ImpresarioCtrl", function($scope, $http){
         console.log(response);
     });
 
+    $http.get('/api/artist/showall').then(function(response){
+        var artists = response.data;
+        var select = document.getElementById('selectByArtistArtists');
+
+        for (var i = 0; i < artists.length; i++) {
+            var option = document.createElement("option");
+            option.text = artists[i].name;
+            option.value = artists[i].id;
+
+            select.add(option);
+
+            console.log(select);
+        }
+    });
+
     this.deleteImpresario = function deleteImpresario(id){
         var time = performance.now();
         $http.get('/api/impresario/delete?id=' + id).then(function(){
@@ -54,7 +69,25 @@ app.controller("ImpresarioCtrl", function($scope, $http){
             window.location.reload();
             console.log(response);
         });
-    }
+    };
+
+    /**
+     *
+     *
+     * QUERIES
+     *
+     *
+     */
+
+    this.showImpresariosByArtist = function showImpresariosByArtist(){
+        var id = document.getElementById('selectByArtistArtists').value;
+
+
+        $http.get('/api/artist/findArtistImpresarios?id=' + id).then(function (response){
+            $scope.impresarios = response.data;
+        });
+    };
+
 });
 
 

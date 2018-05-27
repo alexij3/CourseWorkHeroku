@@ -34,6 +34,14 @@
                             <a href ="theatre_performance.html">Виступи</a>
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="margin-left: 0">Запити</button>
+                        <div style="min-width: 400px;" class="dropdown-content">
+                            <a href="" data-toggle="modal" data-target="#selectByArtist">Список імпресаріо вказаного артиста</a>
+                            <a href="" data-toggle="modal" data-target="#selectByArtist">Список артистів, що працюють із вказаним імпресаріо</a>
+                            <a href="query.html">Запит 3</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -60,7 +68,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- Додавання артиста -->
@@ -104,6 +111,26 @@
 
         </div>
     </div>
+
+    <div id="selectByArtist" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір імпресаріо</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectByArtistArtists"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="credateArtistButton" ng-click="impresarioCtrl.showImpresariosByArtist()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
 </div>
 
