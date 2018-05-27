@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Концерти</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 
 
 
 </head>
 <body ng-app = "demo">
-Концерти
-<div class="container-fluid" ng-controller = "ConcertInHallCtrl as concertInHallCtrl">
-    <div class="datagrid">
-        <div class="panel-heading">Концерти</div>
 
-        <table>
+<div class="container" ng-controller = "ConcertInHallCtrl as concertInHallCtrl">
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Концерти</div>
+                <div class="panel-body">
+
+                    <table class="table table-striped">
             <thead>
             <tr>
                 <th>&#128273ІД</th>
@@ -24,8 +26,8 @@
                 <th>Концертна площадка</th>
                 <th>Організатор</th>
                 <th>Дата</th>
-                <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
-                                         ng-click="concertInHallCtrl.startCreateConcertInHall()">Створити</button></th>
+                <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                                         ng-click="concertInHallCtrl.startCreateConcertInHall()">✚</button></th>
             </tr>
             </thead>
 
@@ -38,12 +40,16 @@
                 <td>{{item.organizer.name}}</td>
                 <td>{{item.date}}</td>
                 <td>
-                    <button id="update" ng-click="concertInHallCtrl.startUpdateConcertInHall(item.id, item.name, item.concertHall.id, item.organizer.id, item.date)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="concertInHallCtrl.deleteConcertInHall(item.id)" class="btn-danger">Видалити</button>
+                    <button id="update" ng-click="concertInHallCtrl.startUpdateConcertInHall(item.id, item.name, item.concertHall.id, item.organizer.id, item.date)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
+                    <button id="delete" ng-click="concertInHallCtrl.deleteConcertInHall(item.id)" class="btn-danger">❌</button>
                 </td>
             </tr>
             </tbody>
         </table>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!-- Додавання артиста -->

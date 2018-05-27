@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Артисти та імпресаріо</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/styles.css">
 
 
 
 </head>
 <body ng-app = "demo">
-Артисти та імпресаріо
-<div class="container-fluid" ng-controller = "ArtistImpresarioCtrl as artistImpresarioCtrl">
-    <div class="datagrid">
-        <table>
+
+<div class="container" ng-controller = "ArtistImpresarioCtrl as artistImpresarioCtrl">
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Артисти та імпресаріо</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
             <thead>
             <tr>
                 <th>ІД</th>
                 <th>Артист</th>
                 <th>Імпресаріо</th>
-                <th width="200px">
+                <th class="headerWidth">
 
                 </th>
             </tr>
@@ -34,12 +36,15 @@
                 <td>{{item.name}}</td>
                 <td>{{artistImpresarioCtrl.Names(item.impresarios).toString()}}</td>
                 <td>
-                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistImpresarioCtrl.startAddImpresario(item.id, item.name, item.impresarios)">Додати</button>
+                    <button type="create" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistImpresarioCtrl.startAddImpresario(item.id, item.name, item.impresarios)" style="width:83px; height: 25px; font-size: 16px">✚</button></th>
                     <button id="delete" ng-click="artistImpresarioCtrl.startDeleteImpresario(item.id, item.name, item.impresarios)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">Видалити</button>
                 </td>
             </tr>
             </tbody>
         </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="addModal" class="modal fade" role="dialog">

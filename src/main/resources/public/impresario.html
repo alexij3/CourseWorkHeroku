@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Імпресаріо</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="css/styles.css">
 
 
 </head>
 <body ng-app = "demo">
-
-<div class="container" style="margin-top: 30px" ng-controller = "ImpresarioCtrl as impresarioCtrl">
-    <div class="datagrid">
-        <table>
+<div class="container" ng-controller = "ImpresarioCtrl as impresarioCtrl">
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Імпресаріо</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
             <thead>
                 <tr>
                     <th>&#128273ІД</th>
                     <th>Ім'я</th>
-                    <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+                    <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
                 </tr>
             </thead>
 
@@ -29,12 +30,16 @@
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td>
-                    <button id="update" ng-click="impresarioCtrl.startUpdateImpresario(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="impresarioCtrl.deleteImpresario(item.id)" class="btn-danger">Видалити</button>
+                    <button id="update" ng-click="impresarioCtrl.startUpdateImpresario(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
+                    <button id="delete" ng-click="impresarioCtrl.deleteImpresario(item.id)" class="btn-danger">❌</button>
                 </td>
             </tr>
             </tbody>
         </table>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!-- Додавання артиста -->

@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Жанри артистів</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/styles.css">
 
 
 
 </head>
 <body ng-app = "demo">
-Жанри артистів
-<div class="container-fluid" ng-controller = "ArtistGenreCtrl as artistGenreCtrl">
-    <div class="datagrid">
-        <table>
+
+<div class="container" ng-controller = "ArtistGenreCtrl as artistGenreCtrl">
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Жанри артистів</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ІД</th>
                     <th>Артист</th>
                     <th>Жанр</th>
-                    <th width="200px">
+                    <th class="headerWidth">
 
                     </th>
                 </tr>
@@ -40,6 +42,10 @@
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+</div>
+</div>
     </div>
 
     <div id="addModal" class="modal fade" role="dialog">

@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Кінотеатри</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body ng-app = "demo">
-Кінотеатри
-<div class="container-fluid" ng-controller = "CinemaCtrl as cinemaCtrl">
-    <div class="datagrid">
-        <table>
+<div class="container" ng-controller = "CinemaCtrl as cinemaCtrl">
+<div class="row">
+    <div class="col-md12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Кінотеатри</div>
+            <div class="panel-body">
+                <table class="table table-striped">
             <thead>
                 <tr>
                     <th>&#128273ІД</th>
                     <th>Назва</th>
                     <th>Адреса</th>
                     <th>Розмір екрану</th>
-                    <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">Створити</button></th>
+                    <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
                 </tr>
             </thead>
 
@@ -31,12 +33,16 @@
                 <td>{{item.address}}</td>
                 <td>{{item.screenSize}}</td>
                 <td>
-                    <button id="update" ng-click="cinemaCtrl.startUpdateCinema(item.id, item.name, item.address, item.screenSize)" class="btn-warning" data-toggle="modal" data-target="#editModal">Редагувати</button>
-                    <button id="delete" ng-click="cinemaCtrl.deleteCinema(item.id)" class="btn-danger">Видалити</button>
+                    <button id="update" ng-click="cinemaCtrl.startUpdateCinema(item.id, item.name, item.address, item.screenSize)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
+                    <button id="delete" ng-click="cinemaCtrl.deleteCinema(item.id)" class="btn-danger">❌</button>
                 </td>
             </tr>
             </tbody>
         </table>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 
     <!-- Додавання артиста -->

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Жанри імпресаріо</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styless.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/popup.css">
@@ -14,14 +14,18 @@
 <body ng-app = "demo">
 
 <div class="container" style="margin-top: 30px" ng-controller = "ImpresarioGenreCtrl as impresarioGenreCtrl">
-    <div class="datagrid">
-        <table>
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Жанри імпресаріо</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
             <thead>
             <tr>
                 <th>ІД</th>
                 <th>Імпресаріо</th>
                 <th>Жанр</th>
-                <th width="200px">
+                <th class="headerWidth">
 
                 </th>
             </tr>
@@ -40,6 +44,10 @@
             </tr>
             </tbody>
         </table>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
     <div id="addModal" class="modal fade" role="dialog">
