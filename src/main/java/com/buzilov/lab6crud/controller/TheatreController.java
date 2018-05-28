@@ -40,4 +40,9 @@ public class TheatreController {
         return service.update(Theatre);
 
     }
+
+    @RequestMapping("/findAllByCapacityGreaterThanEqual")
+    public List<Theatre> findAllByCapacityGreaterThanEqual(@RequestParam("capacity") int capacity){
+        return service.findAllByCapacityGreaterThanEqual(capacity);
+    }
 }

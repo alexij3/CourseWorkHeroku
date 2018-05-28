@@ -39,4 +39,9 @@ public class ConcertHallController {
         return service.update(ConcertHall);
     }
 
+    @RequestMapping("/findAllByCapacityGreaterThanEqual")
+    public List<ConcertHall> findAllByCapacityGreaterThanEqual(@RequestParam("capacity") int capacity){
+        return service.findAllByCapacityGreaterThanEqual(capacity);
+    }
+
 }

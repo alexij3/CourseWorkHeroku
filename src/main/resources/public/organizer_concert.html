@@ -50,6 +50,7 @@
                 <tr>
                     <th>&#128273ІД</th>
                     <th>Ім'я</th>
+                    <th>Кількість</th>
                     <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
                 </tr>
             </thead>
@@ -59,6 +60,7 @@
             <tr ng-repeat = "item in organizers">
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
+                <td>{{item.concertCount}}</td>
                 <td>
                     <button id="update" ng-click="organizerCtrl.startUpdateOrganizer(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
                     <button id="delete" ng-click="organizerCtrl.deleteOrganizer(item.id)" class="btn-danger">❌</button>

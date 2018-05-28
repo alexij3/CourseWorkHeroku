@@ -11,4 +11,5 @@ public interface ConcertHallService {
     ConcertHall update(ConcertHall concertHall)throws SQLException;
     void delete(int id)throws SQLException;
     List<ConcertHall> getAll()throws SQLException;
+    List<ConcertHall> findAllByCapacityGreaterThanEqual(int capacity);
 }

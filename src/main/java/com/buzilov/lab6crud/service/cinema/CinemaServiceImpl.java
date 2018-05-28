@@ -39,7 +39,7 @@ public class CinemaServiceImpl implements CinemaService {
     }
 
     @Override
-    public List<Cinema> findCinemasByScreenSizeGreaterThan(int size) {
-        return cinemaRepository.findCinemasByScreenSizeGreaterThan(size);
+    public List<Cinema> findAllByScreenSizeGreaterThanEqual(int size) {
+        return cinemaRepository.findAllByScreenSizeGreaterThanEqual(size);
     }
 }

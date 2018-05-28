@@ -37,4 +37,9 @@ public class CulturePalaceServiceImpl implements CulturePalaceService {
     public List<CulturePalace> getAll()throws SQLException  {
         return (List<CulturePalace>) culturePalaceRepository.findAll();
     }
+
+    @Override
+    public List<CulturePalace> findAllByCapacityGreaterThanEqual(int capacity) {
+        return culturePalaceRepository.findAllByCapacityGreaterThanEqual(capacity);
+    }
 }

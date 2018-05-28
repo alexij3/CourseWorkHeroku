@@ -43,4 +43,8 @@ public class CulturePalaceController{
         return service.update(CulturePalace);
     }
 
+    @RequestMapping("/findAllByCapacityGreaterThanEqual")
+    public List<CulturePalace> findAllByCapacityGreaterThanEqual(@RequestParam("capacity") int capacity){
+        return service.findAllByCapacityGreaterThanEqual(capacity);
+    }
 }

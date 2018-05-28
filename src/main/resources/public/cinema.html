@@ -33,6 +33,12 @@
                         <a href ="theatre_performance.html">Виступи</a>
                     </div>
                 </div>
+                <div class="dropdown">
+                    <button class="dropbtn" style="margin-left: 0">Запити</button>
+                    <div style="min-width: 400px;" class="dropdown-content">
+                        <a href="" data-toggle="modal" data-target="#selectByScreenSize">Список кінотеатрів за розміром екрану (більше або дорівнює вказаному)</a>
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
                 <table class="table table-striped">
@@ -64,7 +70,6 @@
         </div>
     </div>
 </div>
-    </div>
 
     <!-- Додавання артиста -->
     <div id="addModal" class="modal fade" role="dialog">
@@ -113,6 +118,24 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div id="selectByScreenSize" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір розміру екрану</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="number" id="screenSize"/>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByScreenSizeBtn" ng-click="cinemaCtrl.selectByScreenSize()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
         </div>
     </div>
 

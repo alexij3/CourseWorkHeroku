@@ -45,8 +45,8 @@ public class CinemaController {
         return service.updateCinema(cinema);
     }
 
-    @RequestMapping("/findCinemasByScreenSizeGreaterThan")
-    public List<Cinema> findCinemasByScreenSizeGreaterThan(@RequestParam("size") int size){
-        return service.findCinemasByScreenSizeGreaterThan(size);
+    @RequestMapping("/findAllByScreenSizeGreaterThanEqual")
+    public List<Cinema> findAllByScreenSizeGreaterThanEqual(@RequestParam("size") int size){
+        return service.findAllByScreenSizeGreaterThanEqual(size);
     }
 }

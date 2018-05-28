@@ -13,4 +13,6 @@ public interface OrganizerService {
     void delete(int id) throws SQLException;
     List<Organizer> getAll() throws SQLException;
     List<Organizer> findAllAndConcertCount(LocalDate firstDate, LocalDate secondDate);
+    List<Organizer> findAllAndContestCount(LocalDate firstDate, LocalDate secondDate);
+    List<Organizer> findAllAndTheatreCount(LocalDate firstDate, LocalDate secondDate);
 }

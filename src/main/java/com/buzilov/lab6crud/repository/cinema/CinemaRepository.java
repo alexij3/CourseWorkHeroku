@@ -11,5 +11,5 @@ import java.util.List;
 
 @Repository
 public interface CinemaRepository extends JpaRepository<Cinema, Integer> {
-    List<Cinema> findCinemasByScreenSizeGreaterThan(@Param("size") int size);
+    List<Cinema> findAllByScreenSizeGreaterThanEqual(@Param("size") int size);
 }

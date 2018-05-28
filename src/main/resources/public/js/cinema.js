@@ -76,6 +76,24 @@ app.controller("CinemaCtrl", function($scope, $http){
             console.log(response);
             window.location.reload();
         });
+    };
+
+    /*******************************
+     *
+     *
+     *
+     ********* QUERIES *********
+     *
+     *
+     *
+     *****************************/
+
+    this.selectByScreenSize = function selectByScreenSize(){
+        var screenSize = document.getElementById('screenSize').value;
+
+        $http.get('/api/cinema/findAllByScreenSizeGreaterThanEqual?size=' + screenSize).then(function(response){
+           $scope.cinemas = response.data;
+        });
     }
 });
 

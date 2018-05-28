@@ -11,4 +11,5 @@ public interface CulturePalaceService {
     CulturePalace update(CulturePalace culturePalace)throws SQLException ;
     void delete(int id)throws SQLException ;
     List<CulturePalace> getAll()throws SQLException ;
+    List<CulturePalace> findAllByCapacityGreaterThanEqual(int capacity);
 }

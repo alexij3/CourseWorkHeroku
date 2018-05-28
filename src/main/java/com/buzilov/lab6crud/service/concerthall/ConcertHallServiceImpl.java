@@ -37,4 +37,9 @@ public class ConcertHallServiceImpl implements ConcertHallService{
     public List<ConcertHall> getAll() throws SQLException {
         return (List<ConcertHall>) concertHallRepository.findAll();
     }
+
+    @Override
+    public List<ConcertHall> findAllByCapacityGreaterThanEqual(int capacity) {
+        return concertHallRepository.findAllByCapacityGreaterThanEqual(capacity);
+    }
 }

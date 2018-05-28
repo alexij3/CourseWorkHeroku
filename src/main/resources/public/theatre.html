@@ -34,6 +34,12 @@
                             <a href ="theatre_performance.html">Виступи</a>
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="margin-left: 0">Запити</button>
+                        <div style="min-width: 400px;" class="dropdown-content">
+                            <a href="" data-toggle="modal" data-target="#selectByCapacity">Список театрів із вказаною місткістю (більше або дорівнює)</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -64,7 +70,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- Додавання артиста -->
@@ -110,6 +115,25 @@
                     <button id="editTheatreButton" ng-click="theatreCtrl.updateTheatre()">Змінити</button>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByCapacity" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір місткості</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="number" id="capacity"/>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showByCapacity" ng-click="theatreCtrl.showByCapacity()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

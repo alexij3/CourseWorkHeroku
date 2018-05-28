@@ -37,4 +37,9 @@ public class TheatreServiceImpl implements TheatreService {
     public List<Theatre> getAll() throws SQLException {
         return (List<Theatre>) theatreRepository.findAll();
     }
+
+    @Override
+    public List<Theatre> findAllByCapacityGreaterThanEqual(int capacity) {
+        return theatreRepository.findAllByCapacityGreaterThanEqual(capacity);
+    }
 }

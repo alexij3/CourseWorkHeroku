@@ -75,6 +75,24 @@ app.controller("CulturePalaceCtrl", function($scope, $http){
             console.log(response);
             window.location.reload();
         });
+    };
+
+    /*******************************
+     *
+     *
+     *
+     ********* QUERIES *********
+     *
+     *
+     *
+     *****************************/
+
+    this.showByCapacity = function showByCapacity(){
+        var capacity = document.getElementById('capacity').value;
+
+        $http.get('/api/culturepalace/findAllByCapacityGreaterThanEqual?capacity=' + capacity).then(function(response){
+            $scope.culturePalaces = response.data;
+        });
     }
 });
 

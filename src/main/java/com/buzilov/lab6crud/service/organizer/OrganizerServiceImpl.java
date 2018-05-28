@@ -43,4 +43,14 @@ public class OrganizerServiceImpl implements OrganizerService {
     public List<Organizer> findAllAndConcertCount(LocalDate firstDate, LocalDate secondDate) {
         return organizerRepository.findAllAndConcertCount(firstDate, secondDate);
     }
+
+    @Override
+    public List<Organizer> findAllAndContestCount(LocalDate firstDate, LocalDate secondDate) {
+        return organizerRepository.findAllAndContestCount(firstDate, secondDate);
+    }
+
+    @Override
+    public List<Organizer> findAllAndTheatreCount(LocalDate firstDate, LocalDate secondDate) {
+        return organizerRepository.findAllAndTheatreCount(firstDate, secondDate);
+    }
 }

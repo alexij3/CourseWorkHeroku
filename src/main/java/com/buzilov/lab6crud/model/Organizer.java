@@ -19,8 +19,22 @@ public class Organizer {
     @JsonIgnore
     private Set<ConcertInHall> concertInHalls = new HashSet<>();
 
+    @OneToMany(mappedBy = "organizer")
+    @JsonIgnore
+    private Set<ContestInPalace> contests;
+
+    @OneToMany(mappedBy = "organizer")
+    @JsonIgnore
+    private Set<TheatrePerformance> theatrePerformances;
+
     @Transient
     private int concertCount;
+
+    @Transient
+    private int contestCount;
+
+    @Transient
+    private int theatrePerformanceCount;
 
     public Organizer() {
     }
@@ -88,4 +102,29 @@ public class Organizer {
     public int getConcertCount() {
         return concertInHalls.size();
     }
+
+    public int getContestCount() {
+        return contests.size();
+    }
+
+    public int getTheatrePerformanceCount() {
+        return theatrePerformances.size();
+    }
+
+    public Set<ContestInPalace> getContests() {
+        return contests;
+    }
+
+    public void setContests(Set<ContestInPalace> contests) {
+        this.contests = contests;
+    }
+
+    public Set<TheatrePerformance> getTheatrePerformances() {
+        return theatrePerformances;
+    }
+
+    public void setTheatrePerformances(Set<TheatrePerformance> theatrePerformances) {
+        this.theatrePerformances = theatrePerformances;
+    }
+
 }

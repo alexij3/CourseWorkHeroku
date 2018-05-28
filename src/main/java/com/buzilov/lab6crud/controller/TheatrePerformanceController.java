@@ -51,7 +51,6 @@ public class TheatrePerformanceController {
         LocalDate firstDate = LocalDate.parse(firstDateStr);
         LocalDate secondDate = LocalDate.parse(secondDateStr);
 
-
         return theatrePerformanceService.findTheatresAndPerformancesDates(firstDate, secondDate);
     }
 

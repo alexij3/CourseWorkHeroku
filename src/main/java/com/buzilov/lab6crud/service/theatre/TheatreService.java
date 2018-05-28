@@ -11,4 +11,5 @@ public interface TheatreService {
     Theatre update(Theatre theatre) throws SQLException;
     void delete(int id) throws SQLException;
     List<Theatre> getAll() throws SQLException;
+    List<Theatre> findAllByCapacityGreaterThanEqual(int capacity);
 }

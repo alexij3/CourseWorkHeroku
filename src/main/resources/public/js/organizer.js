@@ -56,7 +56,33 @@ app.controller("OrganizerCtrl", function($scope, $http){
             console.log(response);
             window.location.reload();
         });
-    }
+    };
+
+    /*******************************
+     *
+     *
+     *
+     ********* QUERIES *********
+     *
+     *
+     *
+     *****************************/
+
+    this.selectAndCountOfEvents = function selectAndCountOfEvents(){
+        var firstDate = document.getElementById('firstDate').value;
+        var secondDate = document.getElementById('secondDate').value;
+
+        if (document.getElementById('palace').checked){
+            $http.get('/api/organizer/findAllAndContestCount?firstDate=' + firstDate + '&secondDate=' + secondDate)
+                .then(function(response){
+
+            });
+        }else if (document.getElementById('hall').checked){
+
+        }else if (document.getElementById('theatre').checked){
+            
+        }
+    };
 });
 
 

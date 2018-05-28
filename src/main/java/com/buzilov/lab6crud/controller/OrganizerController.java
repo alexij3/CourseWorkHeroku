@@ -57,4 +57,22 @@ public class OrganizerController {
 
         return service.findAllAndConcertCount(firstDate, secondDate);
     }
+
+    @RequestMapping("/findAllAndContestCount")
+    public List<Organizer> findAllAndContestCount(@RequestParam("firstDate") String firstDateStr,
+                                                  @RequestParam("secondDate") String secondDateStr){
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return service.findAllAndContestCount(firstDate, secondDate);
+    }
+
+    @RequestMapping("/findAllAndTheatreCount")
+    public List<Organizer> findAllAndTheatreCount(@RequestParam("firstDate") String firstDateStr,
+                                                  @RequestParam("secondDate") String secondDateStr){
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return service.findAllAndTheatreCount(firstDate, secondDate);
+    }
 }
