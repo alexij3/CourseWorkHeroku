@@ -11,4 +11,5 @@ public interface CinemaMovieService {
     CinemaMovie update(CinemaMovie cinemaMovie)  throws SQLException;
     void delete(int id)  throws SQLException;
     List<CinemaMovie> getAll() throws SQLException;
+    List<CinemaMovie> findAllByCinemaId(int id);
 }

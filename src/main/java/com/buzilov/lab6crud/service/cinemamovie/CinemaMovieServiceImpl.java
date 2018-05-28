@@ -37,4 +37,9 @@ public class CinemaMovieServiceImpl implements CinemaMovieService{
     public List<CinemaMovie> getAll() throws SQLException {
         return (List<CinemaMovie>) cinemaMovieRepository.findAll();
     }
+
+    @Override
+    public List<CinemaMovie> findAllByCinemaId(int id) {
+        return cinemaMovieRepository.findAllByCinemaId(id);
+    }
 }

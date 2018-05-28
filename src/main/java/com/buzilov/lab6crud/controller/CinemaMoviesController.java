@@ -52,4 +52,9 @@ public class CinemaMoviesController {
         return service.update(CinemaMovie);
     }
 
+    @RequestMapping("findAllByCinemaId")
+    public List<CinemaMovie> findAllByCinemaId(@RequestParam("id") int id){
+        return service.findAllByCinemaId(id);
+    }
+
 }

@@ -35,6 +35,12 @@
                         <a href ="theatre_performance.html">Виступи</a>
                     </div>
                 </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="margin-left: 0">Запити</button>
+                        <div style="min-width: 400px;" class="dropdown-content">
+                            <a href="" data-toggle="modal" data-target="#selectByCinema">Список фільмів, показаних у вказаному кінотеатрі</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -68,7 +74,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- Додавання артиста -->
@@ -138,6 +143,25 @@
                     <button id="updateCinemaMovieButton" ng-click="cinemaMovieCtrl.updateCinemaMovie()">Змінити</button>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByCinema" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір кінотеатру</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectCinemaRequest"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showCinemaMoviesByCinema" ng-click="cinemaMovieCtrl.showCinemaMoviesByCinema()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

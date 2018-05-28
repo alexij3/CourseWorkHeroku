@@ -8,6 +8,7 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
         var cinemas = response.data;
         var select = document.getElementById('CinemaMovieCinema');
         var selectCinemaUpd = document.getElementById('updateCinemaMovieCinema');
+        var selectCinemaRequest = document.getElementById('selectCinemaRequest');
 
         for (var i = 0; i < cinemas.length; i++) {
             var option = document.createElement("option");
@@ -26,6 +27,15 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
 
             selectCinemaUpd.add(option2);
             console.log(selectCinemaUpd);
+        }
+
+        for (var k = 0; k < cinemas.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = cinemas[k].name;
+            option3.value = cinemas[k].id;
+
+            selectCinemaRequest.add(option3);
+            console.log(selectCinemaRequest);
         }
 
 
@@ -117,6 +127,28 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
 
         window.location.reload();
     }
+
+    /*******************************
+     *
+     *
+     *
+     ********* REQUESTS *********
+     *
+     *
+     *
+     *****************************/
+
+    /* Одержати список заходів, проведених у вказаній культурній споруді
+    *                           (в даному випадку - в кінотеатрі)*/
+
+
+    this.showCinemaMoviesByCinema = function showCinemaMoviesByCinema(){
+        var id = document.getElementById('selectCinemaRequest').value;
+
+        $http.get('/api/cinemamovie/findAllByCinemaId?id='+ id).then(function (response){
+            $scope.cinemaMovies = response.data;
+        });
+    };
 });
 
 
