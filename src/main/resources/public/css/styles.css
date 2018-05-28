@@ -137,6 +137,6 @@
     margin-bottom: 10px
 }*/
 
-.modal-header {
-    text-align: center;
+.modal-body input{
+    width: 100%
 }

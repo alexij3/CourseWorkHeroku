@@ -3,6 +3,7 @@ package com.buzilov.lab6crud.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,15 @@ public class Organizer {
     private int id;
 
     @Column
+    @NotNull
     private String name;
+
+    @Column
+    @NotNull
+    private Integer age;
+
+    @Column
+    private Integer experience;
 
     @OneToMany(mappedBy = "organizer")
     @JsonIgnore
@@ -39,6 +48,18 @@ public class Organizer {
     public Organizer() {
     }
 
+    public Organizer(@NotNull String name, @NotNull int age, int experience, Set<ConcertInHall> concertInHalls, Set<ContestInPalace> contests, Set<TheatrePerformance> theatrePerformances, int concertCount, int contestCount, int theatrePerformanceCount) {
+        this.name = name;
+        this.age = age;
+        this.experience = experience;
+        this.concertInHalls = concertInHalls;
+        this.contests = contests;
+        this.theatrePerformances = theatrePerformances;
+        this.concertCount = concertCount;
+        this.contestCount = contestCount;
+        this.theatrePerformanceCount = theatrePerformanceCount;
+    }
+
     public Organizer(String name) {
         this.name = name;
     }
@@ -49,6 +70,34 @@ public class Organizer {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public void setConcertCount(int concertCount) {
+        this.concertCount = concertCount;
+    }
+
+    public void setContestCount(int contestCount) {
+        this.contestCount = contestCount;
+    }
+
+    public void setTheatrePerformanceCount(int theatrePerformanceCount) {
+        this.theatrePerformanceCount = theatrePerformanceCount;
     }
 
     public String getName() {

@@ -3,6 +3,7 @@ package com.buzilov.lab6crud.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,15 @@ public class Impresario {
     private Integer id;
 
     @Column
+    @NotNull
     private String name;
+
+    @Column
+    @NotNull
+    private Integer age;
+
+    @Column
+    private Integer experience;
 
     @ElementCollection(targetClass = Genre.class)
     @CollectionTable(name = "impresario_and_genre", joinColumns = @JoinColumn (name = "id_impresario", nullable = false))
@@ -28,10 +37,32 @@ public class Impresario {
         this.name = name;
     }
 
+    public Impresario(@NotNull String name, @NotNull int age, int experience, Set<Genre> genreSet) {
+        this.name = name;
+        this.age = age;
+        this.experience = experience;
+        this.genreSet = genreSet;
+    }
 
     public Impresario(String name, Set<Genre> genreSet) {
         this.name = name;
         this.genreSet = genreSet;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     public Integer getId() {

@@ -26,14 +26,36 @@ app.controller("ArtistCtrl", function($scope, $http){
     this.createArtist = function createArtist(){
         console.log("In createartist()");
         var name = document.getElementById('artistName').value;
+        var age = document.getElementById('age').value;
+        var experience = document.getElementById('experience').value;
+
+        var nameIsCorrect = true;
+        var ageIsCorrect = true;
+        var experienceIsCorrect = true;
+
         if (!name.match(nameValidationRegEx)){
             document.getElementById("wrongName").innerHTML = "Некоректне ім'я!";
-        }else {
+            nameIsCorrect = false;
+        }else this.clearName();
+
+        if (age < 18 || age > 100 || age == null){
+            document.getElementById("wrongAge").innerHTML = "Вік повинен бути від 18 до 100 років!";
+            ageIsCorrect = false;
+        }else this.clearAge();
+
+        if (experience < 0 || (age-experience <= 17 && experience > 1) || experience == null){
+            document.getElementById('wrongExperience').innerHTML = "Некоректний досвід!";
+            experienceIsCorrect = false;
+        }else this.clearExperience();
+
+        if (nameIsCorrect && ageIsCorrect && experienceIsCorrect) {
             var createRequest = {
                 method: 'PUT',
                 url: '/api/artist/create',
                 data: {
-                    name: name
+                    name: name,
+                    age: age,
+                    experience : experience
                 }
             };
 
@@ -47,21 +69,45 @@ app.controller("ArtistCtrl", function($scope, $http){
         }
     };
 
-    this.startUpdateArtist = function startUpdateArtist(id, name){
+    this.startUpdateArtist = function startUpdateArtist(id, name, age, experience){
         document.getElementById('updateArtistName').value = name;
+        document.getElementById('updAge').value = age;
+        document.getElementById('updExperience').value = experience;
         idToUpdate = id;
     };
 
     this.updateArtist = function updateArtist(){
         var name = document.getElementById('updateArtistName').value;
+        var age = document.getElementById('updAge').value;
+        var experience = document.getElementById('updExperience').value;
+
+        var nameIsCorrect = true;
+        var ageIsCorrect = true;
+        var experienceIsCorrect = true;
+
         if (!name.match(nameValidationRegEx)){
             document.getElementById("editWrongName").innerHTML = "Некоректне ім'я!";
-        }else {
+            nameIsCorrect = false;
+        }else this.clearName();
+
+        if (age < 18 || age > 100 || age == null){
+            document.getElementById("editWrongAge").innerHTML = "Вік повинен бути від 18 до 100 років!";
+            ageIsCorrect = false;
+        }else this.clearAge();
+
+        if (experience < 0 || (age-experience <= 17 && experience > 1) || experience == null){
+            document.getElementById('editWrongExperience').innerHTML = "Некоректний досвід!";
+            experienceIsCorrect = false;
+        }else this.clearExperience();
+
+        if (nameIsCorrect && ageIsCorrect && experienceIsCorrect){
             var request = {
                 method: 'POST',
                 url: '/api/artist/update?id=' + idToUpdate,
                 data: {
-                    name: name
+                    name: name,
+                    age : age,
+                    experience : experience
                 }
             };
 
@@ -77,6 +123,21 @@ app.controller("ArtistCtrl", function($scope, $http){
 
     this.getArtist = function getArtist(id){
         $http.get('/api/artist/get?id=' + id);
+    };
+
+    this.clearName = function clearName(){
+        document.getElementById('wrongName').innerHTML = "";
+        document.getElementById('editWrongName').innerHTML = "";
+    };
+
+    this.clearAge = function clearAge(){
+        document.getElementById('wrongAge').innerHTML = "";
+        document.getElementById('editWrongAge').innerHTML = "";
+    };
+
+    this.clearExperience = function clearExperience(){
+        document.getElementById('wrongExperience').innerHTML = "";
+        document.getElementById('editWrongExperience').innerHTML = "";
     };
 
     /*

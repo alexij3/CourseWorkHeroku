@@ -3,6 +3,7 @@ package com.buzilov.lab6crud.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,15 @@ public class Artist {
     private Integer id;
 
     @Column
+    @NotNull
     private String name;
+
+    @Column
+    @NotNull
+    private Integer age;
+
+    @Column
+    private Integer experience;
 
     @ElementCollection(targetClass = Genre.class)
     @CollectionTable(name = "artist_and_genre", joinColumns = @JoinColumn (name = "id_artist", nullable = false))
@@ -46,6 +55,16 @@ public class Artist {
         this.name = name;
         this.genreSet = genreSet;
         this.impresarios = impresarios;
+    }
+
+    public Artist(@NotNull String name, @NotNull int age, int experience, Set<Genre> genreSet, Set<Impresario> impresarios, Set<Integer> impresarioIds, Set<ContestResults> contestResults) {
+        this.name = name;
+        this.age = age;
+        this.experience = experience;
+        this.genreSet = genreSet;
+        this.impresarios = impresarios;
+        this.impresarioIds = impresarioIds;
+        this.contestResults = contestResults;
     }
 
     public Artist(String name) {
@@ -93,6 +112,22 @@ public class Artist {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     public Integer getId() {

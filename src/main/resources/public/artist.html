@@ -47,6 +47,8 @@
                             <tr style="left: 0">
                                 <th>&#128273ІД</th>
                                 <th>Ім'я</th>
+                                <th>Вік (р)</th>
+                                <th>Досвід (р)</th>
                                 <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
                             </tr>
                         </thead>
@@ -56,8 +58,10 @@
                         <tr ng-repeat = "item in artists">
                             <td>{{item.id}}</td>
                             <td>{{item.name}}</td>
+                            <td>{{item.age}}</td>
+                            <td>{{item.experience}}</td>
                             <td>
-                                <button id="update" ng-click="artistCtrl.startUpdateArtist(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
+                                <button id="update" ng-click="artistCtrl.startUpdateArtist(item.id, item.name, item.age, item.experience)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
                                 <button id="delete" ng-click="artistCtrl.deleteArtist(item.id)" class="btn-danger">❌</button>
                             </td>
                         </tr>
@@ -77,9 +81,12 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:
-                    <input type="text" id="artistName"/></label><br>
-                    <span style="color: #c00000; text-align: left; font-size: 50%" id="wrongName"></span>
+                    <input type="text" id="artistName" placeholder="Введіть ім'я"/><br>
+                    <span style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br><br>
+                    <input type="number" min="18" id="age" placeholder="Введіть вік"/><br>
+                    <span style="color: #c00000; text-align: left; font-size: 14px" id="wrongAge"></span><br><br>
+                    <input type="number" min="0" id="experience" placeholder="Введіть досвід"/><br>
+                    <span style="color: #c00000; text-align: left; font-size: 14px" id="wrongExperience"></span>
 
                 </div>
                 <div class="modal-footer">
@@ -100,10 +107,17 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:
+                    <label>Ім'я:<br>
                     <input type="text" id="updateArtistName" name="updateArtistName" /></label><br>
-                    <span style="color: #c00000; text-align: left; font-size: 12px" id="editWrongName"></span>
-
+                    <span style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br><br>
+                    <label>Вік:<br>
+                        <input type="number" min="18" id="updAge"/>
+                    </label><br>
+                    <span style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAge"></span><br><br>
+                    <label>Досвід:<br>
+                        <input type="number" min="0" id="updExperience"/>
+                    </label><br>
+                    <span style="color: #c00000; text-align: left; font-size: 14px" id="editWrongExperience"></span>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="editArtistButton" ng-click="artistCtrl.updateArtist()">Змінити</button>
