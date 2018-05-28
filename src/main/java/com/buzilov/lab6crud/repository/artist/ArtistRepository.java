@@ -20,4 +20,6 @@ public interface ArtistRepository extends JpaRepository<Artist, Integer> {
     List<Artist> findAllByContestDateNotBetween(@Param("firstDate") LocalDate firstDate,
                                                 @Param("secondDate") LocalDate secondDate);
 
+    List<Artist> findAllByGenreSetIsNull();
+
 }

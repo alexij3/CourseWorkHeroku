@@ -70,4 +70,9 @@ public class ImpresarioServiceImpl implements ImpresarioService {
 
         return listToShow;
     }
+
+    @Override
+    public List<Impresario> findAllByGenreSetIsNull() {
+        return impresarioRepository.findAllByGenreSetIsNull();
+    }
 }

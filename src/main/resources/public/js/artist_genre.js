@@ -112,7 +112,14 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
         $http.get('/api/artist/findAllByGenreSetContaining?genre=' + genre).then(function(response){
             $scope.artists = response.data;
         });
-    }
+    };
+
+    /* Список артистів без жанрів */
+    this.selectNullGenres = function selectNullGenres(){
+        $http.get('/api/artist/findAllByGenreSetIsNull').then(function(response){
+            $scope.artists = response.data;
+        });
+    };
 });
 
 

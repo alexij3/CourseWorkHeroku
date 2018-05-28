@@ -13,4 +13,5 @@ import java.util.List;
 @Repository
 public interface ImpresarioRepository extends JpaRepository<Impresario, Integer> {
     List<Impresario> findAllByGenreSetContaining(@Param("genre") Genre genre);
+    List<Impresario> findAllByGenreSetIsNull();
 }

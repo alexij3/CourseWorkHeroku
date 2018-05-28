@@ -124,4 +124,9 @@ public class ArtistServiceImpl implements ArtistService {
     public List<Artist> findAllByContestDateNotBetween(LocalDate firstDate, LocalDate secondDate) {
         return artistRepository.findAllByContestDateNotBetween(firstDate, secondDate);
     }
+
+    @Override
+    public List<Artist> findAllByGenreSetIsNull() {
+        return artistRepository.findAllByGenreSetIsNull();
+    }
 }

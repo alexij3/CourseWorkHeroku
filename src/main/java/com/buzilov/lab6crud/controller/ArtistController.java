@@ -117,5 +117,10 @@ public class ArtistController {
         return artistService.findAllByContestDateNotBetween(firstDate, secondDate);
     }
 
+    @RequestMapping("/findAllByGenreSetIsNull")
+    public List<Artist> findAllByGenreSetIsNull(){
+        return artistService.findAllByGenreSetIsNull();
+    }
+
 }
 

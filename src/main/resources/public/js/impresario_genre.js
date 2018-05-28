@@ -114,6 +114,13 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
             $scope.impresarios = response.data;
         });
     };
+
+    /* Імпресаріо без жанрів */
+    this.selectNullGenres = function selectNullGenres(){
+        $http.get('/api/impresario/findAllByGenreSetIsNull').then(function(response){
+            $scope.impresarios = response.data;
+        });
+    };
 });
 
 

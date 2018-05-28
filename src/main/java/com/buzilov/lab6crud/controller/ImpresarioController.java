@@ -61,8 +61,13 @@ public class ImpresarioController {
         return service.findAllByGenreSetContaining(genre);
     }
 
-    @RequestMapping("findAllByHavingMoreThanOneGenre")
+    @RequestMapping("/findAllByHavingMoreThanOneGenre")
     public List<Impresario> findAllByHavingMoreThanOneGenre(){
         return service.findAllByHavingMoreThanOneGenre();
+    }
+
+    @RequestMapping("/findAllByGenreSetIsNull")
+    public List<Impresario> findAllByGenreSetIsNull(){
+        return service.findAllByGenreSetIsNull();
     }
 }

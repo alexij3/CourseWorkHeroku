@@ -17,4 +17,5 @@ public interface ImpresarioService {
     List<Impresario> getAll() throws SQLException;
     List<Impresario> findAllByGenreSetContaining(Genre genre);
     List<Impresario> findAllByHavingMoreThanOneGenre();
+    List<Impresario> findAllByGenreSetIsNull();
 }
