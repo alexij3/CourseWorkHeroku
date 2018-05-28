@@ -1,11 +1,13 @@
 package com.buzilov.lab6crud.service.cinemamovie;
 
+import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.repository.cinemamovie.CinemaMovieRepository;
 import com.buzilov.lab6crud.model.CinemaMovie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -41,5 +43,15 @@ public class CinemaMovieServiceImpl implements CinemaMovieService{
     @Override
     public List<CinemaMovie> findAllByCinemaId(int id) {
         return cinemaMovieRepository.findAllByCinemaId(id);
+    }
+
+    @Override
+    public List<CinemaMovie> findAllByDateBetween(LocalDate firstDate, LocalDate secondDate) {
+        return cinemaMovieRepository.findAllByDateBetween(firstDate, secondDate);
+    }
+
+    @Override
+    public List<CinemaMovie> findAllByGenre(Genre genre) {
+        return cinemaMovieRepository.findAllByGenre(genre);
     }
 }

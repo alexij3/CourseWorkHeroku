@@ -39,6 +39,8 @@
                         <button class="dropbtn" style="margin-left: 0">Запити</button>
                         <div style="min-width: 400px;" class="dropdown-content">
                             <a href="" data-toggle="modal" data-target="#selectByCinema">Список фільмів, показаних у вказаному кінотеатрі</a>
+                            <a href="" data-toggle="modal" data-target="#selectByDate">Список фільмів, показаних у вказаний період</a>
+                            <a href="" data-toggle="modal" data-target="#selectByGenre">Список фільмів вказаного жанру</a>
                         </div>
                     </div>
                 </div>
@@ -162,6 +164,55 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="showCinemaMoviesByCinema" ng-click="cinemaMovieCtrl.showCinemaMoviesByCinema()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByGenre" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір жанру</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="genresRequest">
+                        <option>Комедія</option>
+                        <option>Драма</option>
+                        <option>Мелодрама</option>
+                        <option>Мюзикл</option>
+                        <option>Фантастика</option>
+                        <option>Боєвик</option>
+                        <option>Фентезі</option>
+                        <option>Тріллер</option>
+                        <option>Детектив</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showCinemaMoviesByGenre" ng-click="cinemaMovieCtrl.showCinemaMoviesByGenre()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByDate" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір дати</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Від:<br><input type="date" name ="Перша дата" id="firstDate"/> </label><br>
+                    <label>До: <br><input type="date" name ="Друга дата" id="secondDate"/> </label><br>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showByDate" ng-click="cinemaMovieCtrl.showByDate()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

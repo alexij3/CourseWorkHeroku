@@ -126,7 +126,7 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
         });
 
         window.location.reload();
-    }
+    };
 
     /*******************************
      *
@@ -147,6 +147,28 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
 
         $http.get('/api/cinemamovie/findAllByCinemaId?id='+ id).then(function (response){
             $scope.cinemaMovies = response.data;
+        });
+    };
+
+    /* Одержати список фільмів, показаних протягом
+                                вказаного періоду */
+
+    this.showByDate = function showByDate(){
+        var firstDate = document.getElementById('firstDate').value;
+        var secondDate = document.getElementById('secondDate').value;
+
+        $http.get('/api/cinemamovie/findAllByDateBetween?firstDate=' + firstDate + '&secondDate=' + secondDate).then(function(response){
+            $scope.cinemaMovies = response.data;
+        });
+    };
+
+    /* Одержати список фільмів у вказаному жанрі */
+
+    this.showCinemaMoviesByGenre = function showCinemaMoviesByGenre(){
+        var genre = document.getElementById('genresRequest').value;
+
+        $http.get('/api/cinemamovie/findAllByGenre?genre=' + genre).then(function(response){
+           $scope.cinemaMovies = response.data;
         });
     };
 });

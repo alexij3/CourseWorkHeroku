@@ -1,6 +1,7 @@
 package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.CinemaMovie;
+import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.service.cinema.CinemaServiceImpl;
 import com.buzilov.lab6crud.service.cinemamovie.CinemaMovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,21 @@ public class CinemaMoviesController {
     @RequestMapping("findAllByCinemaId")
     public List<CinemaMovie> findAllByCinemaId(@RequestParam("id") int id){
         return service.findAllByCinemaId(id);
+    }
+
+    @RequestMapping("/findAllByDateBetween")
+    public List<CinemaMovie> findAllByDateBetween(@RequestParam("firstDate") String firstDateStr,
+                                                    @RequestParam("secondDate") String secondDateStr) {
+        System.out.println("In datebetween");
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return service.findAllByDateBetween(firstDate, secondDate);
+    }
+
+    @RequestMapping("/findAllByGenre")
+    public List<CinemaMovie> findAllByGenre(@RequestParam("genre") Genre genre){
+        return service.findAllByGenre(genre);
     }
 
 }
