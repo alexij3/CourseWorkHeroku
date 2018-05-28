@@ -86,6 +86,15 @@ app.controller("ArtistCtrl", function($scope, $http){
     *                */
 
 
+    this.selectByDontParticipate = function selectByDontParticipate(){
+        var firstDate = document.getElementById('firstDate').value;
+        var secondDate = document.getElementById('secondDate').value;
+
+        $http.get('/api/artist/findAllByContestDateNotBetween?firstDate=' + firstDate + '&secondDate=' + secondDate).then(function(response){
+            $scope.artists = response.data;
+        });
+    }
+
 });
 
 
