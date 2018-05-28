@@ -16,4 +16,5 @@ public interface ImpresarioService {
     Impresario deleteGenre(Impresario impresario) throws SQLException;
     List<Impresario> getAll() throws SQLException;
     List<Impresario> findAllByGenreSetContaining(Genre genre);
+    List<Impresario> findAllByHavingMoreThanOneGenre();
 }

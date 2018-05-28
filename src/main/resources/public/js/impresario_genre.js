@@ -106,7 +106,14 @@ app.controller("ImpresarioGenreCtrl", function($scope, $http) {
         $http.get('/api/impresario/findAllByGenreSetContaining?genre=' + genre).then(function(response){
             $scope.impresarios = response.data;
         });
-    }
+    };
+
+    /* Імпресаріо з більше, ніж одним жанром */
+    this.selectMoreThanOneGenre = function selectMoreThanOneGenre(){
+        $http.get('/api/impresario/findAllByHavingMoreThanOneGenre').then(function(response){
+            $scope.impresarios = response.data;
+        });
+    };
 });
 
 

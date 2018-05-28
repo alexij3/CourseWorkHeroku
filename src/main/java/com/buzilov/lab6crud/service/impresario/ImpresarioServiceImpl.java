@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -57,5 +58,16 @@ public class ImpresarioServiceImpl implements ImpresarioService {
     @Override
     public List<Impresario> findAllByGenreSetContaining(Genre genre) {
         return impresarioRepository.findAllByGenreSetContaining(genre);
+    }
+
+    @Override
+    public List<Impresario> findAllByHavingMoreThanOneGenre() {
+        List<Impresario> impresarios = impresarioRepository.findAll();
+        List<Impresario> listToShow = new ArrayList<>();
+
+        for (Impresario a : impresarios)
+            if (a.getGenreSet().size() > 1) listToShow.add(a);
+
+        return listToShow;
     }
 }

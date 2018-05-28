@@ -75,6 +75,15 @@ app.controller("OrganizerCtrl", function($scope, $http){
         if (document.getElementById('palace').checked){
             $http.get('/api/organizer/findAllAndContestCount?firstDate=' + firstDate + '&secondDate=' + secondDate)
                 .then(function(response){
+                    $scope.organizers = response.data;
+                document.getElementById('count').innerHTML = "Кількість конкурсів";
+                document.getElementById('count').removeAttribute('hidden');
+
+                var tdList = document.getElementsByClassName('dataCount');
+                window.alert(tdList.length);
+                for (var i = 0; i < organizers.length; i++){
+                    tdList[i].removeAttribute('hidden');
+                }
 
             });
         }else if (document.getElementById('hall').checked){
