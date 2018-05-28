@@ -76,4 +76,9 @@ public class TheatrePerformanceController {
         return theatrePerformanceService.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
     }
 
+    @RequestMapping("findAllByTheatreId")
+    public List<TheatrePerformance> findAllByTheatreId(@RequestParam("id") int id){
+        return theatrePerformanceService.findAllByTheatreId(id);
+    }
+
 }

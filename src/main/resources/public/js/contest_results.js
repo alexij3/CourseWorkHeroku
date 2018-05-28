@@ -133,6 +133,13 @@ app.controller("ContestResultsCtrl", function($scope, $http){
      *
      *****************************/
 
+    this.showContestById = function showContestById(){
+        var id = document.getElementById('selectContestRequest').value;
+
+        $http.get('/api/contestresults/findAllByContestId?contestId=' + id).then(function(response){
+            $scope.contestResults = response.data;
+        });
+    };
 
 });
 

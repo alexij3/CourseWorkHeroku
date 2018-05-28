@@ -30,10 +30,17 @@
                             <a href ="contest_in_palace.html">Конкурси</a>
                             <a href ="contest_results.html">Результати конкурсів</a>
                             <a href ="culture_palace.html">Палаци культури</a>
-                            <a href ="impresario_and_genre.html">Жанри імпресаріо</a>
+                            <a href ="impresario.html">Імпресаріо</a>
                             <a href ="organizer.html">Організатори</a>
                             <a href ="theatre.html">Театри</a>
                             <a href ="theatre_performance.html">Виступи</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="margin-left: 0">Запити</button>
+                        <div style="min-width: 400px;" class="dropdown-content">
+                            <a href="" data-toggle="modal" data-target="#selectByGenre">Список імпресаріо за вказаним жанром</a>
+                            <a href="query.html">Запит 3</a>
                         </div>
                     </div>
                 </div>
@@ -130,6 +137,46 @@
                 <div class="modal-footer">
                     <button id="deleteGenresButton" type="button" class="btn btn-default" ng-click="impresarioGenreCtrl.deleteGenre()">Видалити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="impresarioGenreCtrl.onClose()">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByGenre" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір жанру</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="genres" name="Жанри">
+                        <option>Комедія</option>
+                        <option>Драма</option>
+                        <option>Мелодрама</option>
+                        <option>Мюзикл</option>
+                        <option>Пародія</option>
+                        <option>Фантастика</option>
+                        <option>Боєвик</option>
+                        <option>Фентезі</option>
+                        <option>Тріллер</option>
+                        <option>Детектив</option>
+                        <option>Симфонія</option>
+                        <option>Соната</option>
+                        <option>Тріо</option>
+                        <option>Ораторія</option>
+                        <option>Квартет</option>
+                        <option>Натюрморт</option>
+                        <option>Портрет</option>
+                        <option>Пейзаж</option>
+                        <option>Скульптура</option>
+                        <option>Різьблення</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showArtistsByGenre" ng-click="impresarioGenreCtrl.showImpresarioByGenre()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
 

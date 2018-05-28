@@ -15,5 +15,6 @@ public interface ContestInPalaceRepository extends JpaRepository<ContestInPalace
     List<ContestInPalace> findAllByDateBetweenAndOrganizerId(@Param("firstDate") LocalDate firstDate,
                                                            @Param("secondDate") LocalDate secondDate,
                                                            @Param("organizerId") int organizerId);
+    List<ContestInPalace> findAllByCulturePalaceId(@Param("id") int id);
 }
 

@@ -16,4 +16,5 @@ public interface TheatrePerformanceService {
     List<TheatrePerformance> findAllByDateBetween(LocalDate firstDate, LocalDate secondDate);
     List<TheatrePerformance> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate,
                                                              int organizerId);
+    List<TheatrePerformance> findAllByTheatreId(int id);
 }

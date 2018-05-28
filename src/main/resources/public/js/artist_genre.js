@@ -103,9 +103,16 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
         $http.get('/api/artist/findAllByHavingMoreThanOneGenre').then(function(response){
            $scope.artists = response.data;
         });
+    };
+
+    // Список артистів за вказаним жанром
+    this.showArtistsByGenre = function showArtistsByGenre(){
+        var genre = document.getElementById('genres').value;
+
+        $http.get('/api/artist/findAllByGenreSetContaining?genre=' + genre).then(function(response){
+            $scope.artists = response.data;
+        });
     }
-
-
 });
 
 

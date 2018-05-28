@@ -53,4 +53,9 @@ public class TheatrePerformanceServiceImpl implements TheatrePerformanceService 
     public List<TheatrePerformance> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate, int organizerId) {
         return theatrePerformanceRepository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
     }
+
+    @Override
+    public List<TheatrePerformance> findAllByTheatreId(int id) {
+        return theatrePerformanceRepository.findAllByTheatreId(id);
+    }
 }

@@ -88,6 +88,16 @@ app.controller("ImpresarioCtrl", function($scope, $http){
         });
     };
 
+    // Список імпресаріо за вказаним жанром
+    this.showImpresarioByGenre = function showImpresarioByGenre(){
+        var genre = document.getElementById('genres').value;
+
+        $http.get('/api/impresario/findAllByGenreSetContaining?genre=' + genre).then(function(response){
+            $scope.impresarios = response.data;
+        });
+    }
+
+
 });
 
 

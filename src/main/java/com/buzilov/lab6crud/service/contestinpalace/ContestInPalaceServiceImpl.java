@@ -48,4 +48,9 @@ public class ContestInPalaceServiceImpl implements ContestInPalaceService {
     public List<ContestInPalace> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate, int organizerId) {
         return contestInPalaceRepository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
     }
+
+    @Override
+    public List<ContestInPalace> findAllByCulturePalaceId(int id) {
+        return contestInPalaceRepository.findAllByCulturePalaceId(id);
+    }
 }

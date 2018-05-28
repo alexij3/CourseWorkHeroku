@@ -36,8 +36,7 @@
                     <div class="dropdown">
                         <button class="dropbtn" style="margin-left: 0">Запити</button>
                         <div style="min-width: 400px;" class="dropdown-content">
-                            <a href="" data-toggle="modal" data-target="#selectByGenre">Список артистів за вказаним жанром</a>
-                            <a href="" data-toggle="modal" data-target="#selectByImpresario">Список артистів, що працюють із вказаним імпресаріо</a>
+                            <a href="" data-toggle="modal" data-target="#selectByImpresario">Запит 1</a>
                             <a href="query.html">Запит 3</a>
                         </div>
                     </div>
@@ -108,65 +107,6 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="editArtistButton" ng-click="artistCtrl.updateArtist()">Змінити</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="selectByImpresario" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Вибір імпресаріо</h4>
-                </div>
-                <div class="modal-body">
-                    <select id="selectByImpresarioImpresarios"></select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" id="credateArtistButton" ng-click="artistCtrl.showArtistsByImpresario()" data-dismiss="modal">Вивести</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="selectByGenre" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Вибір жанру</h4>
-                </div>
-                <div class="modal-body">
-                    <select id="genres" name="Жанри">
-                        <option>Комедія</option>
-                        <option>Драма</option>
-                        <option>Мелодрама</option>
-                        <option>Мюзикл</option>
-                        <option>Пародія</option>
-                        <option>Фантастика</option>
-                        <option>Боєвик</option>
-                        <option>Фентезі</option>
-                        <option>Тріллер</option>
-                        <option>Детектив</option>
-                        <option>Симфонія</option>
-                        <option>Соната</option>
-                        <option>Тріо</option>
-                        <option>Ораторія</option>
-                        <option>Квартет</option>
-                        <option>Натюрморт</option>
-                        <option>Портрет</option>
-                        <option>Пейзаж</option>
-                        <option>Скульптура</option>
-                        <option>Різьблення</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" id="showArtistsByGenre" ng-click="artistCtrl.showArtistsByGenre()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

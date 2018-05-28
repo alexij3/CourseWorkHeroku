@@ -11,21 +11,6 @@ app.controller("ArtistCtrl", function($scope, $http){
          console.log("Виведення відбулося за " + time + " мс.");
         $scope.artists=response.data;
         console.log(response);
-
-         $http.get('/api/impresario/showall').then(function(response){
-             var impresarios = response.data;
-             var select = document.getElementById('selectByImpresarioImpresarios');
-
-             for (var i = 0; i < impresarios.length; i++) {
-                 var option = document.createElement("option");
-                 option.text = impresarios[i].name;
-                 option.value = impresarios[i].id;
-
-                 select.add(option);
-
-                 console.log(select);
-             }
-         });
     });
 
     this.deleteArtist = function deleteArtist(id){
@@ -100,23 +85,7 @@ app.controller("ArtistCtrl", function($scope, $http){
     *
     *                */
 
-    /* Список артистів за вказаним імпресаріо */
-    this.showArtistsByImpresario = function showArtistsByImpresario(){
-        var id = document.getElementById('selectByImpresarioImpresarios').value;
 
-        $http.get('/api/artist/findArtistByImpresariosContaining?id=' + id).then(function (response){
-            $scope.artists = response.data;
-        });
-    };
-
-    // Список артистів за вказаним жанром
-    this.showArtistsByGenre = function showArtistsByGenre(){
-        var genre = document.getElementById('genres').value;
-
-        $http.get('/api/artist/findAllByGenreSetContaining?genre=' + genre).then(function(response){
-            $scope.artists = response.data;
-        });
-    }
 });
 
 

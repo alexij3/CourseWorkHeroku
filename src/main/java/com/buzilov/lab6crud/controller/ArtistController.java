@@ -27,9 +27,6 @@ public class ArtistController {
     @Autowired
     ImpresarioServiceImpl impresarioService;
 
-    @Autowired
-    ArtistRepository artistRepository;
-
     @RequestMapping("/showall")
     public List<Artist> showArtists() throws SQLException {
         return artistService.getAll();
@@ -112,7 +109,7 @@ public class ArtistController {
         LocalDate firstDate = LocalDate.parse(firstDateStr);
         LocalDate secondDate = LocalDate.parse(secondDateStr);
 
-        return artistRepository.findAllByContestDateNotBetween(firstDate, secondDate);
+        return artistService.findAllByContestDateNotBetween(firstDate, secondDate);
     }
 
 }

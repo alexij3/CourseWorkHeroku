@@ -21,4 +21,5 @@ public interface TheatrePerformanceRepository extends JpaRepository<TheatrePerfo
     List<TheatrePerformance> findAllByDateBetweenAndOrganizerId(@Param("firstDate") LocalDate firstDate,
                                                              @Param("secondDate") LocalDate secondDate,
                                                              @Param("organizerId") int organizerId);
+    List<TheatrePerformance> findAllByTheatreId(@Param("id") int id);
 }

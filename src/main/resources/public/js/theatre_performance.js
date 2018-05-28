@@ -8,6 +8,7 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
         var theatres = response.data;
         var select = document.getElementById('TheatrePerformanceTheatre');
         var selectTheatreUpd = document.getElementById('updateTheatrePerformanceTheatre');
+        var selectTheatreRequest = document.getElementById('selectTheatreRequest');
 
 
         for (var i = 0; i < theatres.length; i++) {
@@ -27,6 +28,15 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
 
             selectTheatreUpd.add(option2);
             console.log(selectTheatreUpd);
+        }
+
+        for (var k = 0; k < theatres.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = theatres[k].name;
+            option3.value = theatres[k].id;
+
+            selectTheatreRequest.add(option3);
+            console.log(selectTheatreRequest);
         }
 
         $http.get('/api/organizer/showAll').then(function(response){
@@ -190,6 +200,18 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
 
         $http.get('/api/theatreperformance/findAllByDateBetweenAndOrganizer?firstDate=' + firstDate + '&secondDate=' + secondDate +
             '&organizerId=' + organizerId).then(function(response){
+            $scope.theatrePerformances = response.data;
+        });
+    };
+
+    /* Одержати список заходів, проведених у вказаній культурній споруді
+    *                           (в даному випадку - в театрі)*/
+
+
+    this.showPerformanceByTheatre = function showPerformanceByTheatre(){
+        var id = document.getElementById('selectTheatreRequest').value;
+
+        $http.get('/api/theatreperformance/findAllByTheatreId?id='+ id).then(function (response){
             $scope.theatrePerformances = response.data;
         });
     };

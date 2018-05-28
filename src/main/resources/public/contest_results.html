@@ -36,6 +36,12 @@
                             <a href ="theatre_performance.html">Виступи</a>
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="margin-left: 0">Запити</button>
+                        <div style="min-width: 400px;" class="dropdown-content">
+                            <a href="" data-toggle="modal" data-target="#selectByContest">Список лауреатів та призерів вказаного конкурсу</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
 
@@ -68,7 +74,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- Додавання артиста -->
@@ -131,6 +136,29 @@
 
         </div>
     </div>
+
+    <div id="selectByContest" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір конкурсу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectContestRequest">
+
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showConcertsByDate" ng-click="contestResultsCtrl.showContestById()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 
 </div>
 
