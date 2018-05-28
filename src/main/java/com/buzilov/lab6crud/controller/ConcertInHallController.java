@@ -46,6 +46,7 @@ public class ConcertInHallController {
     @RequestMapping("/findAllByDateBetween")
     public List<ConcertInHall> findAllByDateBetween(@RequestParam("firstDate") String firstDateStr,
                                                     @RequestParam("secondDate") String secondDateStr) {
+        System.out.println("In datebetween");
         LocalDate firstDate = LocalDate.parse(firstDateStr);
         LocalDate secondDate = LocalDate.parse(secondDateStr);
 

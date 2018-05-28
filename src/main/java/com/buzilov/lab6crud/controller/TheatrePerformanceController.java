@@ -55,4 +55,25 @@ public class TheatrePerformanceController {
         return theatrePerformanceService.findTheatresAndPerformancesDates(firstDate, secondDate);
     }
 
+    @RequestMapping("/findAllByDateBetween")
+    public List<TheatrePerformance> findAllByDateBetween(@RequestParam("firstDate") String firstDateStr,
+                                                      @RequestParam("secondDate") String secondDateStr) {
+        System.out.println("In datebetween");
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return theatrePerformanceService.findAllByDateBetween(firstDate, secondDate);
+    }
+
+    @RequestMapping("/findAllByDateBetweenAndOrganizer")
+    public List<TheatrePerformance> findAllByDateBetweenAndOrganizer(@RequestParam("firstDate") String firstDateStr,
+                                                                  @RequestParam("secondDate") String secondDateStr,
+                                                                  @RequestParam("organizerId") int organizerId) {
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+
+        return theatrePerformanceService.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
+    }
+
 }

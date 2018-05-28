@@ -44,4 +44,25 @@ public class ContestInPalaceController {
         }
         return contestInPalaceService.update(contestInPalace);
     }
+
+    @RequestMapping("/findAllByDateBetween")
+    public List<ContestInPalace> findAllByDateBetween(@RequestParam("firstDate") String firstDateStr,
+                                                    @RequestParam("secondDate") String secondDateStr) {
+        System.out.println("In datebetween");
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return contestInPalaceService.findAllByDateBetween(firstDate, secondDate);
+    }
+
+    @RequestMapping("/findAllByDateBetweenAndOrganizer")
+    public List<ContestInPalace> findAllByDateBetweenAndOrganizer(@RequestParam("firstDate") String firstDateStr,
+                                                                @RequestParam("secondDate") String secondDateStr,
+                                                                @RequestParam("organizerId") int organizerId) {
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+
+        return contestInPalaceService.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
+    }
 }

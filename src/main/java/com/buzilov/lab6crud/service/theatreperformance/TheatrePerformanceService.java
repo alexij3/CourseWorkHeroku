@@ -13,4 +13,7 @@ public interface TheatrePerformanceService {
     void delete(int id) throws SQLException;
     List<TheatrePerformance> getAll() throws SQLException;
     List<TheatrePerformance> findTheatresAndPerformancesDates(LocalDate firstDate, LocalDate secondDate);
+    List<TheatrePerformance> findAllByDateBetween(LocalDate firstDate, LocalDate secondDate);
+    List<TheatrePerformance> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate,
+                                                             int organizerId);
 }

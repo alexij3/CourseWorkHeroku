@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,5 +37,15 @@ public class ContestInPalaceServiceImpl implements ContestInPalaceService {
     @Override
     public List<ContestInPalace> getAll() throws SQLException {
         return (List<ContestInPalace>) contestInPalaceRepository.findAll();
+    }
+
+    @Override
+    public List<ContestInPalace> findAllByDateBetween(LocalDate firstDate, LocalDate secondDate) {
+        return contestInPalaceRepository.findAllByDateBetween(firstDate, secondDate);
+    }
+
+    @Override
+    public List<ContestInPalace> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate, int organizerId) {
+        return contestInPalaceRepository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
     }
 }

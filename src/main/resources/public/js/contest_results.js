@@ -11,6 +11,7 @@ app.controller("ContestResultsCtrl", function($scope, $http){
             var contests = response.data;
             var select = document.getElementById('contestResultContest');
             var selectContestUpd = document.getElementById('updateContestResultContest');
+            var selectContestRequest = document.getElementById('selectContestRequest');
 
             for (var i = 0; i < contests.length; i++) {
                 var option = document.createElement("option");
@@ -30,6 +31,16 @@ app.controller("ContestResultsCtrl", function($scope, $http){
                 selectContestUpd.add(option2);
 
                 console.log(selectContestUpd);
+            }
+
+            for (var k = 0; k < contests.length; k++){
+                var option3 = document.createElement("option");
+                option3.text = contests[k].name;
+                option3.value = contests[k].id;
+
+                selectContestRequest.add(option3);
+
+                console.log(selectContestRequest);
             }
 
         });
@@ -110,7 +121,19 @@ app.controller("ContestResultsCtrl", function($scope, $http){
         $http.post('/api/contestresults/delete?contestResultId=' + contestResultId).then(function(response){
             window.location.reload();
         });
-    }
+    };
+
+    /*******************************
+     *
+     *
+     *
+     ********* REQUESTS *********
+     *
+     *
+     *
+     *****************************/
+
+
 });
 
 

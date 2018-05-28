@@ -43,4 +43,14 @@ public class TheatrePerformanceServiceImpl implements TheatrePerformanceService 
     public List<TheatrePerformance> findTheatresAndPerformancesDates(LocalDate firstDate, LocalDate secondDate) {
         return theatrePerformanceRepository.findTheatresAndPerformancesDates(firstDate, secondDate);
     }
+
+    @Override
+    public List<TheatrePerformance> findAllByDateBetween(LocalDate firstDate, LocalDate secondDate) {
+        return theatrePerformanceRepository.findAllByDateBetween(firstDate, secondDate);
+    }
+
+    @Override
+    public List<TheatrePerformance> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate, int organizerId) {
+        return theatrePerformanceRepository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
+    }
 }

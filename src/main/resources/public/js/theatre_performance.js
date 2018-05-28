@@ -9,6 +9,7 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
         var select = document.getElementById('TheatrePerformanceTheatre');
         var selectTheatreUpd = document.getElementById('updateTheatrePerformanceTheatre');
 
+
         for (var i = 0; i < theatres.length; i++) {
             var option = document.createElement("option");
             option.text = theatres[i].name;
@@ -32,6 +33,7 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
             var organizers = response.data;
             var select = document.getElementById('TheatrePerformanceOrganizer');
             var selectOrganizersUpd = document.getElementById('updateTheatrePerformanceOrganizer');
+            var selectOrgRequest = document.getElementById('selectOrg');
 
             for (var i = 0; i < organizers.length; i++) {
                 var option = document.createElement("option");
@@ -51,6 +53,16 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
                 selectOrganizersUpd.add(option2);
 
                 console.log(selectOrganizersUpd);
+            }
+
+            for (var k = 0; k < organizers.length; k++){
+                var option3 = document.createElement("option");
+                option3.text = organizers[k].name;
+                option3.value = organizers[k].id;
+
+                selectOrgRequest.add(option3);
+
+                console.log(selectOrgRequest);
             }
         });
 
@@ -144,7 +156,43 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
             window.location.reload();
             console.log(response);
         });
-    }
+    };
+
+    /*******************************
+     *
+     *
+     *
+     ********* REQUESTS *********
+     *
+     *
+     *
+     *****************************/
+
+    /* Одержати список концертних заходів, проведених протягом
+      вказаного періоду загалом */
+
+    this.showConcertsByDate = function showConcertsByDate(){
+        var firstDate = document.getElementById('firstDate').value;
+        var secondDate = document.getElementById('secondDate').value;
+
+        $http.get('/api/theatreperformance/findAllByDateBetween?firstDate=' + firstDate + '&secondDate=' + secondDate).then(function(response){
+            $scope.theatrePerformances = response.data;
+        });
+    };
+
+    /* Одержати список концертних заходів, проведених протягом
+      вказаного періоду вказаним організатором */
+
+    this.showConcertsByDateOrganizer = function showConcertsByDateOrganizer(){
+        var firstDate = document.getElementById('orgFirstDate').value;
+        var secondDate = document.getElementById('orgSecondDate').value;
+        var organizerId = document.getElementById('selectOrg').value;
+
+        $http.get('/api/theatreperformance/findAllByDateBetweenAndOrganizer?firstDate=' + firstDate + '&secondDate=' + secondDate +
+            '&organizerId=' + organizerId).then(function(response){
+            $scope.theatrePerformances = response.data;
+        });
+    };
 });
 
 

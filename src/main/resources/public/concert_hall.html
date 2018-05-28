@@ -35,6 +35,14 @@
                             <a href ="theatre_performance.html">Виступи</a>
                         </div>
                     </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" style="margin-left: 0">Запити</button>
+                        <div style="min-width: 400px;" class="dropdown-content">
+                            <a href="" data-toggle="modal" data-target="#selectByDateGeneral">Список заходів, проведених протягом вказаного періоду (загалом)</a>
+                            <a href="" data-toggle="modal" data-target="#selectByDateOrganizer">Список заходів, проведених протягом вказаного періоду (організатором)</a>
+                            <a href="query.html">Запит 3</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -65,7 +73,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- Додавання артиста -->
@@ -111,6 +118,26 @@
                     <button id="editConcertHallButton" ng-click="concertHallCtrl.updateConcertHall()">Змінити</button>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByDateGeneral" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір дати</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="date" name ="Перша дата" id="firstDate"/> <br>
+                    <input type="date" name ="Друга дата" id="secondDate"/> <br>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showConcertsByDate" ng-click="concertHallCtrl.showConcertsByDate()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
