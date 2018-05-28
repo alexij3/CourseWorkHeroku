@@ -63,5 +63,10 @@ public class ConcertInHallController {
 
         return concertInHallService.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
     }
+
+    @RequestMapping("findAllByConcertHallId")
+    public List<ConcertInHall> findAllByConcertHallId(@RequestParam("id") int id){
+        return concertInHallService.findAllByConcertHallId(id);
+    }
 }
 

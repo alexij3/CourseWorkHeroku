@@ -49,5 +49,10 @@ public class ConcertInHallServiceImpl implements ConcertInHallService {
     public List<ConcertInHall> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate, int organizerId) {
         return concertInHallRepository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
     }
+
+    @Override
+    public List<ConcertInHall> findAllByConcertHallId(int id) {
+        return concertInHallRepository.findAllByConcertHallId(id);
+    }
 }
 

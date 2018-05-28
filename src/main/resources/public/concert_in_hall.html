@@ -41,7 +41,7 @@
                         <div style="min-width: 400px;" class="dropdown-content">
                             <a href="" data-toggle="modal" data-target="#selectByDateGeneral">Список заходів, проведених протягом вказаного періоду (загалом)</a>
                             <a href="" data-toggle="modal" data-target="#selectByDateOrganizer">Список заходів, проведених протягом вказаного періоду (організатором)</a>
-                            <a href="query.html">Запит 3</a>
+                            <a href="" data-toggle="modal" data-target="#selectByHall">Список заходів, проведених на вказаній концертній площадці</a>
                         </div>
                     </div>
                 </div>
@@ -172,6 +172,25 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="showConcertsByDateOrganizer" ng-click="concertInHallCtrl.showConcertsByDateOrganizer()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByHall" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір концертної площадки</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectHallRequest"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="showConcertsByHall" ng-click="concertInHallCtrl.showConcertsByHall()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

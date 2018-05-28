@@ -8,6 +8,7 @@ app.controller("ConcertInHallCtrl", function($scope, $http){
         var concertHalls = response.data;
         var select = document.getElementById('ConcertInHallConcertHall');
         var selectConcertHallUpd = document.getElementById('updateConcertInHallConcertHall');
+        var selectConcertHallRequest = document.getElementById('selectHallRequest');
 
         for (var i = 0; i < concertHalls.length; i++) {
             var option = document.createElement("option");
@@ -26,6 +27,15 @@ app.controller("ConcertInHallCtrl", function($scope, $http){
 
             selectConcertHallUpd.add(option2);
             console.log(selectConcertHallUpd);
+        }
+
+        for (var k = 0; k < concertHalls.length; k++){
+            var option3 = document.createElement("option");
+            option3.text = concertHalls[k].name;
+            option3.value = concertHalls[k].id;
+
+            selectConcertHallRequest.add(option3);
+            console.log(selectConcertHallRequest);
         }
 
         $http.get('/api/organizer/showAll').then(function(response){
@@ -193,6 +203,16 @@ app.controller("ConcertInHallCtrl", function($scope, $http){
         });
     };
 
+    /* Список концертних заходів, проведених
+    *   у вказаній споруді (на площадці)*/
+
+    this.showConcertsByHall = function showConcertsByHall(){
+        var id = document.getElementById('selectHallRequest').value;
+
+        $http.get('/api/concertinhall/findAllByConcertHallId?id='+ id).then(function (response){
+            $scope.concertInHalls = response.data;
+        });
+    };
 });
 
 
