@@ -141,6 +141,13 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
             $scope.artists = response.data;
         });
     };
+
+    /* Список артистів, що працюють більше, ніж з одним імпресаріо */
+    this.selectByMoreThanOneImpresario = function selectByMoreThanOneImpresario(){
+        $http.get('/api/artist/findAllByHavingMoreThanOneImpresario').then(function(response){
+            $scope.artists = response.data;
+        });
+    };
 });
 
 

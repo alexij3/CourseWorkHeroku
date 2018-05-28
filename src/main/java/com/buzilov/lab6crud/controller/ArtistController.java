@@ -98,6 +98,11 @@ public class ArtistController {
         return artistService.findAllByHavingMoreThanOneGenre();
     }
 
+    @RequestMapping("findAllByHavingMoreThanOneImpresario")
+    public List<Artist> findAllByHavingMoreThanOneImpresario(){
+        return artistService.findAllByHavingMoreThanOneImpresario();
+    }
+
     @RequestMapping("findArtistImpresarios")
     public Set<Impresario> findArtistImpresarios(int id){
         return artistService.findArtistImpresarios(id);

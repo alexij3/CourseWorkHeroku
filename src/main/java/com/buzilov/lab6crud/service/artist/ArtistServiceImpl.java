@@ -105,6 +105,17 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
+    public List<Artist> findAllByHavingMoreThanOneImpresario() {
+        List<Artist> artistList = artistRepository.findAll();
+        List<Artist> listToShow = new ArrayList<>();
+
+        for (Artist a : artistList)
+            if (a.getImpresarios().size() > 1) listToShow.add(a);
+
+        return listToShow;
+    }
+
+    @Override
     public Set<Impresario> findArtistImpresarios(int id) {
         return artistRepository.findById(id).get().getImpresarios();
     }

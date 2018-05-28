@@ -24,4 +24,5 @@ public interface ArtistService {
     List<Artist> findAllByHavingMoreThanOneGenre();
     Set<Impresario> findArtistImpresarios(int id);
     List<Artist> findAllByContestDateNotBetween(LocalDate firstDate, LocalDate secondDate);
+    List<Artist> findAllByHavingMoreThanOneImpresario();
 }
