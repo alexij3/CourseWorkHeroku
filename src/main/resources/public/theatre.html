@@ -81,12 +81,12 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="TheatreName" name="TheatreName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="TheatreAddress" name="TheatreAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="text" id="TheatreCapacity" name="TheatreCapacity" /> <br>
+                    <input class="data" type="text" id="TheatreName" name="TheatreName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br>
+                    <input class="data" type="text" id="TheatreAddress" name="TheatreAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="TheatreCapacity" name="TheatreCapacity" placeholder="Місткість" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongCapacity"></span><br>
 
                 </div>
                 <div class="modal-footer">
@@ -107,12 +107,12 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="updateTheatreName" name="updateTheatreName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="updateTheatreAddress" name="updateTheatreAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="text" id="updateTheatreCapacity" name="updateTheatreCapacity" /> <br>
+                    <input class="data" type="text" id="updateTheatreName" name="TheatreName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br>
+                    <input class="data" type="text" id="updateTheatreAddress" name="TheatreAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="updateTheatreCapacity" name="TheatreCapacity" placeholder="Місткість" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongCapacity"></span><br>
 
                 </div>
                 <div class="modal-footer">
@@ -149,6 +149,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/theatre.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 </body>
 </html>

@@ -1,8 +1,9 @@
 var app = angular.module("demo", []);
 
 app.controller("ConcertHallCtrl", function($scope, $http){
-
     var idToUpdate;
+    var nameRegEx = /^(Майданчик|Площадка){1}\s".+"$/;
+    var addressRegEx = /^(вул.|бульвар|проспект|площа){1}\s./;
 
     var time = performance.now();
     $scope.concertHalls = [];
@@ -28,23 +29,44 @@ app.controller("ConcertHallCtrl", function($scope, $http){
         var address = document.getElementById('ConcertHallAddress').value;
         var capacity = document.getElementById('ConcertHallCapacity').value;
 
-        var createRequest ={
-            method: 'POST',
-            url: '/api/concerthall/create',
-            data: {
-                name : name,
-                address : address,
-                capacity : capacity
-            }
-        };
+        var nameIsValid = true;
+        var addressIsValid = true;
+        var capacityIsValid = true;
 
-        var time = performance.now();
-        $http(createRequest).then(function(response){
-            time = performance.now()-time;
-            console.log("Створення відбулося за " + time + " мс.");
-            console.log(response);
-            window.location.reload();
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("wrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
+
+        if (!address.match(addressRegEx)){
+            document.getElementById("wrongAddress").innerHTML = "Некоректна адреса!";
+            addressIsValid = false;
+        }else this.clearAddress();
+
+        if (capacity < 1){
+            capacityIsValid = false;
+            document.getElementById("wrongCapacity").innerHTML = "Некоректна місткість!";
+        }else this.clearCapacity();
+
+        if (nameIsValid && addressIsValid && capacityIsValid) {
+            var createRequest = {
+                method: 'POST',
+                url: '/api/concerthall/create',
+                data: {
+                    name: name,
+                    address: address,
+                    capacity: capacity
+                }
+            };
+
+            var time = performance.now();
+            $http(createRequest).then(function (response) {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
     };
 
     this.startUpdateConcertHall = function startUpdateConcertHall(id, name, address, capacity){
@@ -60,23 +82,59 @@ app.controller("ConcertHallCtrl", function($scope, $http){
         var address = document.getElementById('updateConcertHallAddress').value;
         var capacity = document.getElementById('updateConcertHallCapacity').value;
 
-        var request = {
-            method: 'POST',
-            url : '/api/concerthall/update?id=' + idToUpdate,
-            data: {
-                name : name,
-                address : address,
-                capacity : capacity
-            }
-        };
+        var nameIsValid = true;
+        var addressIsValid = true;
+        var capacityIsValid = true;
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now()-time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            console.log(response);
-            window.location.reload();
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("editWrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
+
+        if (!address.match(addressRegEx)){
+            document.getElementById("editWrongAddress").innerHTML = "Некоректна адреса!";
+            addressIsValid = false;
+        }else this.clearAddress();
+
+        if (capacity < 1){
+            capacityIsValid = false;
+            document.getElementById("editWrongCapacity").innerHTML = "Некоректна місткість!";
+        }else this.clearCapacity();
+
+        if (nameIsValid && addressIsValid && capacityIsValid) {
+            var request = {
+                method: 'POST',
+                url: '/api/concerthall/update?id=' + idToUpdate,
+                data: {
+                    name: name,
+                    address: address,
+                    capacity: capacity
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Оновлення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
+    };
+
+    this.clearName = function clearName(){
+        document.getElementById('wrongName').innerHTML = "";
+        document.getElementById('editWrongName').innerHTML = "";
+    };
+
+    this.clearAddress = function clearAddress(){
+        document.getElementById('wrongAddress').innerHTML = "";
+        document.getElementById('editWrongAddress').innerHTML = "";
+    };
+
+    this.clearCapacity = function clearCapacity(){
+        document.getElementById('wrongCapacity').innerHTML = "";
+        document.getElementById('editWrongCapacity').innerHTML = "";
     };
 
     /*******************************

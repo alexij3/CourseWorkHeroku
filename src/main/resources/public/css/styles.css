@@ -185,6 +185,15 @@
     margin-bottom: 3px;
 }
 
+.error .cinemamovie{
+    display: block;
+    color: #c00000;
+    text-align: left;
+    font-size: 14px;
+    padding-top: 3px;
+    margin-bottom: 3px;
+}
+
 .genres{
     width: 175px;
 }

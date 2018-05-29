@@ -2,8 +2,8 @@ var app = angular.module("demo", []);
 
 app.controller("CinemaCtrl", function($scope, $http){
     var idToUpdate;
-    var nameRegEx = /^(Кінопалац|Кінотеатр){1}\s"[А-ЯЄЇІҐ]{1}(-?|\s?)(([А-ЯЄЇІҐ]-?)?[а-яєїіґ]+|([а-яєїіґ]-?)+\s?)+"$/;
-    //var addressRegEx = /^(вул.|бульвар|проспект|площа){1}\s"[А-ЯЄЇІҐ]{1}-?\s?(([А-ЯЄЇІҐ]-?)?[а-яєїіґ]+|([а-яєїіґ]-?)+\s?)*\d+-?[А-Я]?$/;
+    var nameRegEx = /^(Кінопалац|Кінотеатр){1}\s".+"$/;
+    var addressRegEx = /^(вул.|бульвар|проспект|площа){1}\s./;
 
     var time = performance.now();
     $scope.cinemas = [];
@@ -33,33 +33,22 @@ app.controller("CinemaCtrl", function($scope, $http){
         var addressIsValid = true;
         var screenSizeIsValid = true;
 
-        window.alert();
-
         if (!name.match(nameRegEx)){
-            window.alert();
             document.getElementById("wrongName").innerHTML = "Некоректна назва!";
             nameIsValid = false;
         }else this.clearName();
 
-        /*if (!address.match(addressRegEx)){
-            window.alert();
-
+        if (!address.match(addressRegEx)){
             document.getElementById("wrongAddress").innerHTML = "Некоректна адреса!";
             addressIsValid = false;
-        }else this.clearAddress();*/
+        }else this.clearAddress();
 
         if (screenSize < 1){
-            window.alert();
-
             screenSizeIsValid = false;
             document.getElementById("wrongSize").innerHTML = "Некоректний розмір екрану!";
         }else this.clearScreenSize();
 
-        window.alert(nameIsValid && addressIsValid && screenSizeIsValid);
         if (nameIsValid && addressIsValid && screenSizeIsValid) {
-            window.alert(name);
-            window.alert(address);
-            window.alert(screenSize);
             var createRequest = {
                 method: 'PUT',
                 url: '/api/cinema/create',
@@ -102,10 +91,10 @@ app.controller("CinemaCtrl", function($scope, $http){
             nameIsValid = false;
         }else this.clearName();
 
-        /*if (!address.match(addressRegEx)){
+        if (!address.match(addressRegEx)){
             document.getElementById("editWrongAddress").innerHTML = "Некоректна адреса!";
             addressIsValid = false;
-        }else this.clearAddress();*/
+        }else this.clearAddress();
 
         if (screenSize < 1){
             screenSizeIsValid = false;

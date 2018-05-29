@@ -82,12 +82,12 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="CulturePalaceName" name="CulturePalaceName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="CulturePalaceAddress" name="CulturePalaceAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="number" min="10" id="CulturePalaceCapacity" name="CulturePalaceCapacity" /> <br>
+                    <input class="data" type="text" id="CulturePalaceName" name="CulturePalaceName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br>
+                    <input class="data" type="text" id="CulturePalaceAddress" name="CulturePalaceAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="CulturePalaceCapacity" name="CulturePalaceCapacity" placeholder="Місткість" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongCapacity"></span><br>
 
                 </div>
                 <div class="modal-footer">
@@ -108,12 +108,12 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="updateCulturePalaceName" name="updateCulturePalaceName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="updateCulturePalaceAddress" name="updateCulturePalaceAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="number" min="10" id="updateCulturePalaceCapacity" name="updateCulturePalaceCapacity" /> <br>
+                    <input class="data" type="text" id="updateCulturePalaceName" name="CulturePalaceName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br>
+                    <input class="data" type="text" id="updateCulturePalaceAddress" name="CulturePalaceAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="updateCulturePalaceCapacity" name="CulturePalaceCapacity" placeholder="Місткість" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongCapacity"></span><br>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="editCulturePalaceButton" ng-click="culturePalaceCtrl.updateCulturePalace()">Змінити</button>
@@ -149,6 +149,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/culture_palace.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 </body>
 </html>

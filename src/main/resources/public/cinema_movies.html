@@ -87,7 +87,7 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="CinemaMovieName" name="CinemaMovieName" placeholder="Назва" title="Назва" /> <br> <br>
+                    <input class="data" type="text" id="CinemaMovieName" name="CinemaMovieName" placeholder="Назва" title="Назва" /> <br> <br>
                     <select id="CinemaMovieGenre" name="CinemaMovieGenre" title="Жанр" >
                         <option>Комедія</option>
                         <option>Драма</option>
@@ -99,8 +99,9 @@
                         <option>Тріллер</option>
                         <option>Детектив</option>
                     </select> <br> <br>
-                    <select id="CinemaMovieCinema" name="CinemaMovieCinema" title="Кінотеатр"></select> <br> <br>
-                    <input type="date" name ="date" id="datePicker" title="Дата показу"/> <br>
+                    <select class="data" id="CinemaMovieCinema" name="CinemaMovieCinema" title="Кінотеатр"></select> <br> <br>
+                    <input class="data" type="date" name ="date" id="datePicker" title="Дата показу"/> <br>
+                    <span class="error cinemamovie" style="color: #c00000; text-align: left; font-size: 14px;" id="wrongDate"></span><br>
 
                 </div>
                 <div class="modal-footer">
@@ -121,10 +122,8 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва: </label>
-                    <input type="text" id="updateCinemaMovieName" name="updateCinemaMovieName" /> <br>
-                    <label>Жанр: </label>
-                    <select id="updateCinemaMovieGenre" name="updateCinemaMovieGenre" >
+                    <input class="data" type="text" id="updateCinemaMovieName" name="CinemaMovieName" placeholder="Назва" title="Назва" /> <br> <br>
+                    <select class="data" id="updateCinemaMovieGenre" name="CinemaMovieGenre" title="Жанр" >
                         <option>Комедія</option>
                         <option>Драма</option>
                         <option>Мелодрама</option>
@@ -134,11 +133,10 @@
                         <option>Фентезі</option>
                         <option>Тріллер</option>
                         <option>Детектив</option>
-                    </select> <br>
-                    <label>Кінотеатр: </label>
-                    <select id="updateCinemaMovieCinema" name="updateCinemaMovieCinema" ></select> <br>
-                    <label>Дата: </label>
-                    <input type="date" name ="updateDate" id="updateDatePicker" placeholder="Дата"/> <br>
+                    </select> <br> <br>
+                    <select class="data" id="updateCinemaMovieCinema" name="CinemaMovieCinema" title="Кінотеатр"></select> <br> <br>
+                    <input class="data" type="date" name ="date" id="updateDatePicker" title="Дата показу"/> <br>
+                    <span class="error cinemamovie" style="color: #c00000; text-align: left; font-size: 14px;" id="editWrongDate"></span><br>
 
                 </div>
                 <div class="modal-footer">
@@ -224,6 +222,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/cinema_movie.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 </body>
 </html>

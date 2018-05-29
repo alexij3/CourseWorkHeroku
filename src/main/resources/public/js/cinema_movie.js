@@ -2,6 +2,7 @@ var app = angular.module("demo", []);
 
 app.controller("CinemaMovieCtrl", function($scope, $http){
     var idToUpdate;
+    var dateRegEx = /[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/;
 
     $http.get('/api/cinema/showall').then(function(response) {
         console.log(response);
@@ -72,13 +73,16 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
         var date = document.getElementById('datePicker').value;
 
         var dateIsCorrect = true;
-        var nameIsCorrect = true;
 
-        if (date == null){
-            window.alert("date is null")
-        }else {
+
+        if (!date.match(dateRegEx)){
+            document.getElementById("wrongDate").innerHTML = "Некоректна дата!";
+            dateIsCorrect = false;
+        }else this.clearDate();
+
+        if (dateIsCorrect){
             var request = {
-                method: 'POST',
+                method: 'PUT',
                 url: '/api/cinemamovie/create',
                 data: {
                     name: name,
@@ -115,25 +119,39 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
         var cinemaId = document.getElementById('updateCinemaMovieCinema').value;
         var date = document.getElementById('updateDatePicker').value;
 
-        var request = {
-            method: 'POST',
-            url : '/api/cinemamovie/update?id=' + idToUpdate,
-            data: {
-                name : name,
-                genre : genre,
-                cinemaId : cinemaId,
-                date : date
-            }
-        };
+        var dateIsCorrect = true;
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            console.log(response);
-        });
 
-        window.location.reload();
+        if (!date.match(dateRegEx)){
+            document.getElementById("editWrongDate").innerHTML = "Некоректна дата!";
+            dateIsCorrect = false;
+        }else this.clearDate();
+
+        if (dateIsCorrect) {
+            var request = {
+                method: 'POST',
+                url: '/api/cinemamovie/update?id=' + idToUpdate,
+                data: {
+                    name: name,
+                    genre: genre,
+                    cinemaId: cinemaId,
+                    date: date
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Оновлення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
+    };
+
+    this.clearDate = function clearDate(){
+        document.getElementById('wrongDate').innerHTML = "";
+        document.getElementById('editWrongDate').innerHTML = "";
     };
 
     /*******************************

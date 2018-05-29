@@ -16,6 +16,11 @@ function onCloseData(){
         errors[i].innerHTML = "";
     }
 
+    var errorsCinemaMovie = document.getElementsByClassName('error cinemamovie');
+    for (var k = 0; k < errorsCinemaMovie.length; k++){
+        errorsCinemaMovie[k].innerHTML = "";
+    }
+
     var data = document.getElementsByClassName('data');
     for (var j = 0; j < data.length; j++){
         data[j].value = null;

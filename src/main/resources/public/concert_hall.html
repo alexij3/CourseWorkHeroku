@@ -82,12 +82,12 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="ConcertHallName" name="ConcertHallName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="ConcertHallAddress" name="ConcertHallAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="number" min="10" id="ConcertHallCapacity" name="ConcertHallCapacity" /> <br>
+                    <input class="data" type="text" id="ConcertHallName" name="ConcertHallName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br>
+                    <input class="data" type="text" id="ConcertHallAddress" name="ConcertHallAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="ConcertHallCapacity" name="ConcertHallCapacity" placeholder="Місткість" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongCapacity"></span><br>
 
                 </div>
                 <div class="modal-footer">
@@ -108,12 +108,12 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="updateConcertHallName" name="updateConcertHallName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="updateConcertHallAddress" name="updateConcertHallAddress" /> <br>
-                    <label>Місткість:</label>
-                    <input type="number" min="10" id="updateConcertHallCapacity" name="updateConcertHallCapacity" /> <br>
+                    <input class="data" type="text" id="updateConcertHallName" name="updateConcertHallName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br>
+                    <input class="data" type="text" id="updateConcertHallAddress" name="updateConcertHallAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="updateConcertHallCapacity" name="updateConcertHallCapacity" placeholder="Місткість" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongCapacity"></span><br>
 
                 </div>
                 <div class="modal-footer">

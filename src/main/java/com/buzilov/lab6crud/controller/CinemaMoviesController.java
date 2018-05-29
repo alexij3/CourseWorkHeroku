@@ -36,9 +36,6 @@ public class CinemaMoviesController {
     @RequestMapping("/create")
     public CinemaMovie create(@RequestBody CinemaMovie CinemaMovie) throws SQLException{
         CinemaMovie.setCinema(cinemaService.getCinema(CinemaMovie.getCinemaId()));
-        if (CinemaMovie.getDate() == null){
-            CinemaMovie.setDate(LocalDate.of(2018, 1, 1));
-        }
         return service.insert(CinemaMovie);
     }
 
@@ -46,10 +43,7 @@ public class CinemaMoviesController {
     public CinemaMovie update(@RequestParam("id") Integer id, @RequestBody CinemaMovie CinemaMovie) throws SQLException{
         CinemaMovie.setId(id);
         CinemaMovie.setCinema(cinemaService.getCinema(CinemaMovie.getCinemaId()));
-        if (CinemaMovie.getDate() == null){
-            CinemaMovie.setDate(LocalDate.of(2018, 1, 1));
-        }
-        System.out.println(CinemaMovie);
+
         return service.update(CinemaMovie);
     }
 
