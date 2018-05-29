@@ -53,4 +53,24 @@ public class OrganizerServiceImpl implements OrganizerService {
     public List<Organizer> findAllAndTheatreCount(LocalDate firstDate, LocalDate secondDate) {
         return organizerRepository.findAllAndTheatreCount(firstDate, secondDate);
     }
+
+    @Override
+    public List<Organizer> findAllByAgeLessThan(int age) {
+        return organizerRepository.findAllByAgeLessThan(age);
+    }
+
+    @Override
+    public List<Organizer> findAllByAgeGreaterThanEqual(int age) {
+        return organizerRepository.findAllByAgeGreaterThanEqual(age);
+    }
+
+    @Override
+    public List<Organizer> findAllByExperienceLessThan(int experience) {
+        return organizerRepository.findAllByExperienceLessThan(experience);
+    }
+
+    @Override
+    public List<Organizer> findAllByExperienceGreaterThanEqual(int experience) {
+        return organizerRepository.findAllByExperienceGreaterThanEqual(experience);
+    }
 }

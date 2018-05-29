@@ -21,5 +21,8 @@ public interface ArtistRepository extends JpaRepository<Artist, Integer> {
                                                 @Param("secondDate") LocalDate secondDate);
 
     List<Artist> findAllByGenreSetIsNull();
-
+    List<Artist> findAllByAgeLessThan(@Param("age") int age);
+    List<Artist> findAllByAgeGreaterThanEqual(@Param("age") int age);
+    List<Artist> findAllByExperienceLessThan(@Param("experience") int experience);
+    List<Artist> findAllByExperienceGreaterThanEqual(@Param("experience") int experience);
 }

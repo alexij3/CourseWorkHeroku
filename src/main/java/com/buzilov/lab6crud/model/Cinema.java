@@ -14,7 +14,7 @@ public class Cinema {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     @Column
@@ -23,7 +23,7 @@ public class Cinema {
     @Column
     private int screenSize;
 
-    @OneToMany(mappedBy = "cinema", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cinema", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CinemaMovie> cinemaMovies;
 

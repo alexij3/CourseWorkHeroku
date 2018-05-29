@@ -26,4 +26,8 @@ public interface ArtistService {
     List<Artist> findAllByContestDateNotBetween(LocalDate firstDate, LocalDate secondDate);
     List<Artist> findAllByHavingMoreThanOneImpresario();
     List<Artist> findAllByGenreSetIsNull();
+    List<Artist> findAllByAgeLessThan(int age);
+    List<Artist> findAllByAgeGreaterThanEqual(int age);
+    List<Artist> findAllByExperienceLessThan(int experience);
+    List<Artist> findAllByExperienceGreaterThanEqual(int experience);
 }

@@ -18,7 +18,7 @@ public class ConcertInHall {
     @Column(name="id_concert_hall", nullable = false)
     private int concertHallId;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)

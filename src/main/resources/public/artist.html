@@ -39,6 +39,8 @@
                         <div style="min-width: 400px;" class="dropdown-content">
                             <a href="" data-toggle="modal" data-target="#selectByDontParticipate">Список артистів, які не брали участь в жодному конкурсі протягом
                                 вказаного періоду</a>
+                            <a href="" data-toggle="modal" data-target="#selectByAge">Список артистів за вказаним віком</a>
+                            <a href="" data-toggle="modal" data-target="#selectByExperience">Список артистів за вказаним досвідом</a>
                         </div>
                     </div>
                 </div>
@@ -137,6 +139,46 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="selectByDontParticipateBtn" ng-click="artistCtrl.selectByDontParticipate()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByAge" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір віку</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="number" min="18" name ="Вік" id="ageRequest" title="Вік" placeholder="Вік"/>
+                    <label><input id="ageLess" class="radio" type="radio" name="age"><</label>
+                    <label><input id="ageMoreEquals" class="radio"type="radio" name="age">>=</label>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByAgeBtn" ng-click="artistCtrl.selectByAge()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByExperience" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір досвіду</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="number" min="18" name ="Вік" id="experienceRequest" title="Досвід" placeholder="Досвід"/>
+                    <label><input id="experienceLess" class="radio" type="radio" name="age"><</label>
+                    <label><input id="experienceMoreEquals" class="radio"type="radio" name="age">>=</label>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByExperienceBtn" ng-click="artistCtrl.selectByExperience()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

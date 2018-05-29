@@ -16,10 +16,10 @@ public class TheatrePerformance {
     @Column(name = "id_theatre", nullable = false)
     private int theatreId;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name="id_organizer", insertable = false, updatable = false)
     private Organizer organizer;
 

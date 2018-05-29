@@ -13,7 +13,7 @@ public class Organizer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(unique = true)
     @NotNull
     private String name;
 
@@ -24,15 +24,15 @@ public class Organizer {
     @Column
     private Integer experience;
 
-    @OneToMany(mappedBy = "organizer")
+    @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<ConcertInHall> concertInHalls = new HashSet<>();
 
-    @OneToMany(mappedBy = "organizer")
+    @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<ContestInPalace> contests = new HashSet<>();
 
-    @OneToMany(mappedBy = "organizer")
+    @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TheatrePerformance> theatrePerformances = new HashSet<>();
 

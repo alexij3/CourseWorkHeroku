@@ -15,4 +15,8 @@ public interface OrganizerService {
     List<Organizer> findAllAndConcertCount(LocalDate firstDate, LocalDate secondDate);
     List<Organizer> findAllAndContestCount(LocalDate firstDate, LocalDate secondDate);
     List<Organizer> findAllAndTheatreCount(LocalDate firstDate, LocalDate secondDate);
+    List<Organizer> findAllByAgeLessThan(int age);
+    List<Organizer> findAllByAgeGreaterThanEqual(int age);
+    List<Organizer> findAllByExperienceLessThan(int experience);
+    List<Organizer> findAllByExperienceGreaterThanEqual(int experience);
 }

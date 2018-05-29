@@ -129,4 +129,24 @@ public class ArtistServiceImpl implements ArtistService {
     public List<Artist> findAllByGenreSetIsNull() {
         return artistRepository.findAllByGenreSetIsNull();
     }
+
+    @Override
+    public List<Artist> findAllByAgeLessThan(int age) {
+        return artistRepository.findAllByAgeLessThan(age);
+    }
+
+    @Override
+    public List<Artist> findAllByAgeGreaterThanEqual(int age) {
+        return artistRepository.findAllByAgeGreaterThanEqual(age);
+    }
+
+    @Override
+    public List<Artist> findAllByExperienceLessThan(int experience) {
+        return artistRepository.findAllByExperienceLessThan(experience);
+    }
+
+    @Override
+    public List<Artist> findAllByExperienceGreaterThanEqual(int experience) {
+        return artistRepository.findAllByExperienceGreaterThanEqual(experience);
+    }
 }

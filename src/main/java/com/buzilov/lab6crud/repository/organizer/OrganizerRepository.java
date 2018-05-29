@@ -23,5 +23,9 @@ public interface OrganizerRepository extends JpaRepository<Organizer, Integer> {
     @Query("SELECT DISTINCT o as counter FROM Organizer o JOIN o.theatrePerformances c WHERE c.date BETWEEN :firstDate AND :secondDate")
     List<Organizer> findAllAndTheatreCount(@Param("firstDate")LocalDate firstDate,
                                            @Param("secondDate") LocalDate secondDate);
+    List<Organizer> findAllByAgeLessThan(@Param("age") int age);
+    List<Organizer> findAllByAgeGreaterThanEqual(@Param("age") int age);
+    List<Organizer> findAllByExperienceLessThan(@Param("experience") int experience);
+    List<Organizer> findAllByExperienceGreaterThanEqual(@Param("experience") int experience);
 
 }

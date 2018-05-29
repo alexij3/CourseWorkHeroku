@@ -18,4 +18,8 @@ public interface ImpresarioService {
     List<Impresario> findAllByGenreSetContaining(Genre genre);
     List<Impresario> findAllByHavingMoreThanOneGenre();
     List<Impresario> findAllByGenreSetIsNull();
+    List<Impresario> findAllByAgeLessThan(int age);
+    List<Impresario> findAllByAgeGreaterThanEqual(int age);
+    List<Impresario> findAllByExperienceLessThan(int experience);
+    List<Impresario> findAllByExperienceGreaterThanEqual(int experience);
 }

@@ -12,7 +12,7 @@ public class Theatre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     @Column

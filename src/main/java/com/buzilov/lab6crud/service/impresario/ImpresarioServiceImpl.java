@@ -75,4 +75,24 @@ public class ImpresarioServiceImpl implements ImpresarioService {
     public List<Impresario> findAllByGenreSetIsNull() {
         return impresarioRepository.findAllByGenreSetIsNull();
     }
+
+    @Override
+    public List<Impresario> findAllByAgeLessThan(int age) {
+        return impresarioRepository.findAllByAgeLessThan(age);
+    }
+
+    @Override
+    public List<Impresario> findAllByAgeGreaterThanEqual(int age) {
+        return impresarioRepository.findAllByAgeGreaterThanEqual(age);
+    }
+
+    @Override
+    public List<Impresario> findAllByExperienceLessThan(int experience) {
+        return impresarioRepository.findAllByExperienceLessThan(experience);
+    }
+
+    @Override
+    public List<Impresario> findAllByExperienceGreaterThanEqual(int experience) {
+        return impresarioRepository.findAllByExperienceGreaterThanEqual(experience);
+    }
 }

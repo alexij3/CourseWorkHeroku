@@ -23,7 +23,7 @@ public class ContestInPalace {
     @Column(name="id_palace", nullable = false)
     private int culturePalaceId;
 
-    @Column
+    @Column(unique = true)
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)

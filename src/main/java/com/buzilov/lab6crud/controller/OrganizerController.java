@@ -74,4 +74,24 @@ public class OrganizerController {
 
         return service.findAllAndTheatreCount(firstDate, secondDate);
     }
+
+    @RequestMapping("/findAllByAgeLessThan")
+    public List<Organizer> findAllByAgeLessThan(int age) {
+        return service.findAllByAgeLessThan(age);
+    }
+
+    @RequestMapping("/findAllByAgeGreaterThanEqual")
+    public List<Organizer> findAllByAgeGreaterThanEqual(int age) {
+        return service.findAllByAgeGreaterThanEqual(age);
+    }
+
+    @RequestMapping("/findAllByExperienceLessThan")
+    public List<Organizer> findAllByExperienceLessThan(int experience) {
+        return service.findAllByExperienceLessThan(experience);
+    }
+
+    @RequestMapping("/findAllByExperienceGreaterThanEqual")
+    public List<Organizer> findAllByExperienceGreaterThanEqual(int experience) {
+        return service.findAllByExperienceGreaterThanEqual(experience);
+    }
 }

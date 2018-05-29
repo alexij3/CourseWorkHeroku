@@ -122,5 +122,25 @@ public class ArtistController {
         return artistService.findAllByGenreSetIsNull();
     }
 
+    @RequestMapping("/findAllByAgeLessThan")
+    public List<Artist> findAllByAgeLessThan(int age) {
+        return artistService.findAllByAgeLessThan(age);
+    }
+
+    @RequestMapping("/findAllByAgeGreaterThanEqual")
+    public List<Artist> findAllByAgeGreaterThanEqual(int age) {
+        return artistService.findAllByAgeGreaterThanEqual(age);
+    }
+
+    @RequestMapping("/findAllByExperienceLessThan")
+    public List<Artist> findAllByExperienceLessThan(int experience) {
+        return artistService.findAllByExperienceLessThan(experience);
+    }
+
+    @RequestMapping("/findAllByExperienceGreaterThanEqual")
+    public List<Artist> findAllByExperienceGreaterThanEqual(int experience) {
+        return artistService.findAllByExperienceGreaterThanEqual(experience);
+    }
+
 }
 

@@ -155,6 +155,36 @@ app.controller("ArtistCtrl", function($scope, $http){
         });
     };
 
+    /* Вибір за вказаним віком */
+    this.selectByAge = function selectByAge(){
+        var age = document.getElementById('ageRequest').value;
+
+        if (document.getElementById('ageLess').checked){
+            $http.get('/api/artist/findAllByAgeLessThan?age=' + age).then(function(response){
+               $scope.artists = response.data;
+            });
+        }else if (document.getElementById('ageMoreEquals').checked){
+            $http.get('/api/artist/findAllByAgeGreaterThanEqual?age=' + age).then(function(response){
+                $scope.artists = response.data;
+            });
+        }
+    };
+
+    /* Вибір за вказаним досвідом */
+    this.selectByExperience = function selectByExperience(){
+        var experience = document.getElementById('experienceRequest').value;
+
+        if (document.getElementById('experienceLess').checked){
+            $http.get('/api/artist/findAllByExperienceLessThan?experience=' + experience).then(function(response){
+                $scope.artists = response.data;
+            });
+        }else if (document.getElementById('experienceMoreEquals').checked){
+            $http.get('/api/artist/findAllByExperienceGreaterThanEqual?experience=' + experience).then(function(response){
+                $scope.artists = response.data;
+            });
+        }
+    }
+
 });
 
 

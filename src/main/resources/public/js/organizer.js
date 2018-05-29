@@ -150,26 +150,51 @@ app.controller("OrganizerCtrl", function($scope, $http){
         var firstDate = document.getElementById('firstDate').value;
         var secondDate = document.getElementById('secondDate').value;
 
-        if (document.getElementById('palace').checked){
             $http.get('/api/organizer/findAllAndContestCount?firstDate=' + firstDate + '&secondDate=' + secondDate)
                 .then(function(response){
                     $scope.organizers = response.data;
                 document.getElementById('count').innerHTML = "Кількість конкурсів";
                 document.getElementById('count').removeAttribute('hidden');
 
-                var tdList = document.getElementsByClassName('dataCount');
+                var tdList = $("#countData");
                 window.alert(tdList.length);
                 for (var i = 0; i < organizers.length; i++){
                     tdList[i].removeAttribute('hidden');
                 }
 
             });
-        }else if (document.getElementById('hall').checked){
+    };
 
-        }else if (document.getElementById('theatre').checked){
-            
+    /* Вибір за вказаним віком */
+    this.selectByAge = function selectByAge(){
+        var age = document.getElementById('ageRequest').value;
+
+        if (document.getElementById('ageLess').checked){
+            $http.get('/api/organizer/findAllByAgeLessThan?age=' + age).then(function(response){
+                $scope.artists = response.data;
+            });
+        }else if (document.getElementById('ageMoreEquals').checked){
+            $http.get('/api/organizer/findAllByAgeGreaterThanEqual?age=' + age).then(function(response){
+                $scope.artists = response.data;
+            });
         }
     };
+
+    /* Вибір за вказаним досвідом */
+    this.selectByExperience = function selectByExperience(){
+        var experience = document.getElementById('experienceRequest').value;
+
+        if (document.getElementById('experienceLess').checked){
+            $http.get('/api/organizer/findAllByExperienceLessThan?experience=' + experience).then(function(response){
+                $scope.artists = response.data;
+            });
+        }else if (document.getElementById('experienceMoreEquals').checked){
+            $http.get('/api/organizer/findAllByExperienceGreaterThanEqual?experience=' + experience).then(function(response){
+                $scope.artists = response.data;
+            });
+        }
+    }
+
 });
 
 

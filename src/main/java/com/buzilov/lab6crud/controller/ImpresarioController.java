@@ -68,4 +68,24 @@ public class ImpresarioController {
     public List<Impresario> findAllByGenreSetIsNull(){
         return service.findAllByGenreSetIsNull();
     }
+
+    @RequestMapping("/findAllByAgeLessThan")
+    public List<Impresario> findAllByAgeLessThan(int age) {
+        return service.findAllByAgeLessThan(age);
+    }
+
+    @RequestMapping("/findAllByAgeGreaterThanEqual")
+    public List<Impresario> findAllByAgeGreaterThanEqual(int age) {
+        return service.findAllByAgeGreaterThanEqual(age);
+    }
+
+    @RequestMapping("/findAllByExperienceLessThan")
+    public List<Impresario> findAllByExperienceLessThan(int experience) {
+        return service.findAllByExperienceLessThan(experience);
+    }
+
+    @RequestMapping("/findAllByExperienceGreaterThanEqual")
+    public List<Impresario> findAllByExperienceGreaterThanEqual(int experience) {
+        return service.findAllByExperienceGreaterThanEqual(experience);
+    }
 }

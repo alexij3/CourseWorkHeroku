@@ -13,7 +13,7 @@ public class Impresario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     @NotNull
     private String name;
 
