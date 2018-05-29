@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
+
 </head>
 <body ng-app = "demo">
 <div class="container" ng-controller = "ArtistCtrl as artistCtrl">
@@ -81,12 +82,12 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="artistName" placeholder="Введіть ім'я"/><br>
-                    <span style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br><br>
-                    <input type="number" min="18" id="age" placeholder="Введіть вік"/><br>
-                    <span style="color: #c00000; text-align: left; font-size: 14px" id="wrongAge"></span><br><br>
-                    <input type="number" min="0" id="experience" placeholder="Введіть досвід"/><br>
-                    <span style="color: #c00000; text-align: left; font-size: 14px" id="wrongExperience"></span>
+                    <input class="data" type="text" id="artistName" placeholder="Введіть ім'я" title="Ім'я"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px;" id="wrongName"></span><br>
+                    <input class="data" type="number" min="18" id="age" placeholder="Введіть вік" title="Вік"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongAge"></span><br>
+                    <input class="data" type="number" min="0" id="experience" placeholder="Введіть досвід" title="Досвід"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongExperience"></span>
 
                 </div>
                 <div class="modal-footer">
@@ -107,17 +108,12 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:<br>
-                    <input type="text" id="updateArtistName" name="updateArtistName" /></label><br>
-                    <span style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br><br>
-                    <label>Вік:<br>
-                        <input type="number" min="18" id="updAge"/>
-                    </label><br>
-                    <span style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAge"></span><br><br>
-                    <label>Досвід:<br>
-                        <input type="number" min="0" id="updExperience"/>
-                    </label><br>
-                    <span style="color: #c00000; text-align: left; font-size: 14px" id="editWrongExperience"></span>
+                    <input class="data" type="text" id="updateArtistName" placeholder="Введіть ім'я" title="Ім'я"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br>
+                    <input class="data" type="number" min="18" id="updAge" placeholder="Введіть вік" title="Вік"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAge"></span><br>
+                    <input class="data" type="number" min="0" id="updExperience" placeholder="Введіть досвід" title="Досвід"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongExperience"></span>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="editArtistButton" ng-click="artistCtrl.updateArtist()">Змінити</button>
@@ -155,6 +151,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/artist.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 
 </body>

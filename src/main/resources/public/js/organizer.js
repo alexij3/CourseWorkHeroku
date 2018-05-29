@@ -1,8 +1,8 @@
 var app = angular.module("demo", []);
 
 app.controller("OrganizerCtrl", function($scope, $http){
-
     var idToUpdate;
+    var nameValidationRegEx = /^([А-ЯІЇЄҐ]'?([а-яіїєґ](-[А-ЯІЇЄҐ]|')?)+[а-яіїєґ]*\s){2,}[А-ЯІЇЄҐ]'?[а-яіїєґ]{4,}$/;
 
     var time = performance.now();
     $scope.organizers = [];
@@ -25,37 +25,115 @@ app.controller("OrganizerCtrl", function($scope, $http){
 
     this.createOrganizer = function createOrganizer(){
         var name = document.getElementById('organizerName').value;
-        var time = performance.now();
-        $http.get('/api/organizer/create?name=' + name).then(function(){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            window.location.reload();
-        });
+        var age = document.getElementById('age').value;
+        var experience = document.getElementById('experience').value;
+
+        var nameIsCorrect = true;
+        var ageIsCorrect = true;
+        var experienceIsCorrect = true;
+
+        if (!name.match(nameValidationRegEx)){
+            document.getElementById("wrongName").innerHTML = "Некоректне ім'я!";
+            nameIsCorrect = false;
+        }else this.clearName();
+
+        if (age < 18 || age > 100 || age == null){
+            document.getElementById("wrongAge").innerHTML = "Вік повинен бути від 18 до 100 років!";
+            ageIsCorrect = false;
+        }else this.clearAge();
+
+        if (experience < 0 || age-experience < 17 || experience == null){
+            document.getElementById('wrongExperience').innerHTML = "Некоректний досвід!";
+            experienceIsCorrect = false;
+        }else this.clearExperience();
+
+        if (nameIsCorrect && ageIsCorrect && experienceIsCorrect) {
+            var createRequest = {
+                method: 'PUT',
+                url: '/api/organizer/create',
+                data: {
+                    name: name,
+                    age: age,
+                    experience : experience
+                }
+            };
+
+            var time = performance.now();
+            $http(createRequest).then(function (response) {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
     };
 
-    this.startUpdateOrganizer = function startUpdateOrganizer(id, name){
+    this.startUpdateOrganizer = function startUpdateOrganizer(id, name, age, experience){
         document.getElementById('updateOrganizerName').value = name;
+        document.getElementById('updAge').value = age;
+        document.getElementById('updExperience').value = experience;
 
         idToUpdate = id;
     };
 
     this.updateOrganizer = function updateOrganizer(){
         var name = document.getElementById('updateOrganizerName').value;
-        var request = {
-            method: 'POST',
-            url : '/api/organizer/update?id=' + idToUpdate,
-            data: {
-                name : name
-            }
-        };
+        var age = document.getElementById('updAge').value;
+        var experience = document.getElementById('updExperience').value;
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            console.log(response);
-            window.location.reload();
-        });
+        var nameIsCorrect = true;
+        var ageIsCorrect = true;
+        var experienceIsCorrect = true;
+
+        if (!name.match(nameValidationRegEx)){
+            document.getElementById("editWrongName").innerHTML = "Некоректне ім'я!";
+            nameIsCorrect = false;
+        }else this.clearName();
+
+        if (age < 18 || age > 100 || age == null){
+            document.getElementById("editWrongAge").innerHTML = "Вік повинен бути від 18 до 100 років!";
+            ageIsCorrect = false;
+        }else this.clearAge();
+
+        if (experience < 0 || (age-experience <= 17 && experience > 1) || experience == null){
+            document.getElementById('editWrongExperience').innerHTML = "Некоректний досвід!";
+            experienceIsCorrect = false;
+        }else this.clearExperience();
+
+        if (nameIsCorrect && ageIsCorrect && experienceIsCorrect){
+            var request = {
+                method: 'POST',
+                url: '/api/organizer/update?id=' + idToUpdate,
+                data: {
+                    name: name,
+                    age : age,
+                    experience : experience
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Оновлення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
+    };
+
+    this.clearName = function clearName(){
+        document.getElementById('wrongName').innerHTML = "";
+        document.getElementById('editWrongName').innerHTML = "";
+    };
+
+    this.clearAge = function clearAge(){
+        document.getElementById('wrongAge').innerHTML = "";
+        document.getElementById('editWrongAge').innerHTML = "";
+    };
+
+    this.clearExperience = function clearExperience(){
+        document.getElementById('wrongExperience').innerHTML = "";
+        document.getElementById('editWrongExperience').innerHTML = "";
     };
 
     /*******************************

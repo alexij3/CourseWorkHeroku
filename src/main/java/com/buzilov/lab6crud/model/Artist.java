@@ -30,7 +30,7 @@ public class Artist {
     @CollectionTable(name = "artist_and_genre", joinColumns = @JoinColumn (name = "id_artist", nullable = false))
     @Enumerated(EnumType.STRING)
     @Column(name = "genre", nullable = false)
-    private Set<Genre> genreSet;
+    private Set<Genre> genreSet = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="artist_and_impresario", joinColumns = @JoinColumn(name="id_artist", referencedColumnName = "id", nullable = false),

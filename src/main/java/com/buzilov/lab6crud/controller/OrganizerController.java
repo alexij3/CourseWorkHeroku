@@ -38,8 +38,7 @@ public class OrganizerController {
     }
 
     @RequestMapping("/create")
-    public Organizer create(String name) throws SQLException {
-        Organizer organizer = new Organizer(name);
+    public Organizer create(@RequestBody Organizer organizer) throws SQLException {
         return service.insert(organizer);
     }
 

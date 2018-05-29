@@ -24,7 +24,6 @@ app.controller("ArtistCtrl", function($scope, $http){
     };
 
     this.createArtist = function createArtist(){
-        console.log("In createartist()");
         var name = document.getElementById('artistName').value;
         var age = document.getElementById('age').value;
         var experience = document.getElementById('experience').value;
@@ -43,7 +42,7 @@ app.controller("ArtistCtrl", function($scope, $http){
             ageIsCorrect = false;
         }else this.clearAge();
 
-        if (experience < 0 || (age-experience <= 17 && experience > 1) || experience == null){
+        if (experience < 0 || age-experience < 17 || experience == null){
             document.getElementById('wrongExperience').innerHTML = "Некоректний досвід!";
             experienceIsCorrect = false;
         }else this.clearExperience();
@@ -95,7 +94,7 @@ app.controller("ArtistCtrl", function($scope, $http){
             ageIsCorrect = false;
         }else this.clearAge();
 
-        if (experience < 0 || (age-experience <= 17 && experience > 1) || experience == null){
+        if (experience < 0 || age-experience < 17 || experience == null){
             document.getElementById('editWrongExperience').innerHTML = "Некоректний досвід!";
             experienceIsCorrect = false;
         }else this.clearExperience();
@@ -154,7 +153,7 @@ app.controller("ArtistCtrl", function($scope, $http){
         $http.get('/api/artist/findAllByContestDateNotBetween?firstDate=' + firstDate + '&secondDate=' + secondDate).then(function(response){
             $scope.artists = response.data;
         });
-    }
+    };
 
 });
 

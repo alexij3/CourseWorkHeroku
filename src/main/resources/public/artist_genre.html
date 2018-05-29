@@ -83,10 +83,8 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Артист: </label>
-                    <span id="artistName"></span><br>
-                    <label>Жанри для додавання:</label><br>
-                    <select multiple ng-model="selectedGenres" id="selectGenres" name="selectGenres" title="Жанри">
+                    <label id="artistName" style="text-align: center; font: normal 20px Arial"></label><br><br>
+                    <select multiple ng-model="selectedGenres" id="selectGenres" name="selectGenres" title="Жанри" class="genres">
                         <option>Комедія</option>
                         <option>Драма</option>
                         <option>Мелодрама</option>
@@ -128,9 +126,8 @@
                     <h4 class="modal-title">Видалення</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Артист: </label>
-                    <span id="delArtistName"></span> <br>
-                    <select multiple="multiple" ng-model="delSelectedGenre" id="delSelectGenre" name="selectGenre" title="Жанри">
+                    <label id="delArtistName" style="text-align: center; font: normal 20px Arial"></label><br><br>
+                    <select multiple="multiple" ng-model="delSelectedGenre" id="delSelectGenre" name="selectGenre" title="Жанри" class="genres">
                     </select>
 
                 </div>
@@ -192,6 +189,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/artist_genre.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 
 

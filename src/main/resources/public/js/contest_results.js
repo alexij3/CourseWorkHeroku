@@ -80,15 +80,24 @@ app.controller("ContestResultsCtrl", function($scope, $http){
         var place = document.getElementById('place').value;
         var isWinner = document.getElementById('isWinner').value;
 
-        var request = {
-            method: 'PUT',
-            url : '/api/contestresults/insert?artistId=' + artistId + '&contestId=' + contestId + '&place=' + place + '&isWinner=' + isWinner
-        };
+        var placeIsCorrect = true;
 
-        $http(request).then(function(response){
-            console.log(response);
-            window.location.reload();
-        });
+        if (place <= 0){
+            placeIsCorrect = false;
+            document.getElementById('wrongPlace').innerHTML = "Некоректне місце!";
+        }else this.clearPlace();
+
+        if (placeIsCorrect) {
+            var request = {
+                method: 'PUT',
+                url: '/api/contestresults/insert?artistId=' + artistId + '&contestId=' + contestId + '&place=' + place + '&isWinner=' + isWinner
+            };
+
+            $http(request).then(function (response) {
+                console.log(response);
+                window.location.reload();
+            });
+        }
     };
 
     this.startUpdate = function startUpdate(contestResultIdUpd, contestId, artistId, place, isWinner){
@@ -105,22 +114,36 @@ app.controller("ContestResultsCtrl", function($scope, $http){
         var place = document.getElementById('updatePlace').value;
         var isWinner = document.getElementById('updateIsWinner').value;
 
-        var request = {
-            method: 'POST',
-            url: '/api/contestresults/update?contestResultId=' + contestResultId +
-                    '&contestId=' + contestId + '&artistId=' + artistId + '&place=' + place + '&isWinner=' + isWinner
-        };
+        var placeIsCorrect = true;
 
-        $http(request).then(function(response){
-            console.log(response);
-            window.location.reload();
-        });
+        if (place <= 0){
+            placeIsCorrect = false;
+            document.getElementById('editWrongPlace').innerHTML = "Некоректне місце!";
+        }else this.clearPlace();
+
+        if (placeIsCorrect) {
+            var request = {
+                method: 'POST',
+                url: '/api/contestresults/update?contestResultId=' + contestResultId +
+                '&contestId=' + contestId + '&artistId=' + artistId + '&place=' + place + '&isWinner=' + isWinner
+            };
+
+            $http(request).then(function (response) {
+                console.log(response);
+                window.location.reload();
+            });
+        }
     };
 
     this.del = function del(contestResultId){
         $http.post('/api/contestresults/delete?contestResultId=' + contestResultId).then(function(response){
             window.location.reload();
         });
+    };
+
+    this.clearPlace = function clearPlace(){
+        document.getElementById('wrongPlace').innerHTML = "";
+        document.getElementById('editWrongPlace').innerHTML = "";
     };
 
     /*******************************

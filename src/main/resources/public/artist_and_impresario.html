@@ -64,7 +64,7 @@
                 <td>{{item.name}}</td>
                 <td>{{artistImpresarioCtrl.Names(item.impresarios).toString()}}</td>
                 <td>
-                    <button type="create" style="width: 40px; font-size: 18px" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistImpresarioCtrl.startAddImpresario(item.id, item.name, item.impresarios)">✚</button></th>
+                    <button type="button" style="width: 40px; font-size: 18px" class="btn-success" data-toggle="modal" data-target="#addModal" ng-click="artistImpresarioCtrl.startAddImpresario(item.id, item.name, item.impresarios)">✚</button></th>
                     <button id="delete" ng-click="artistImpresarioCtrl.startDeleteImpresario(item.id, item.name, item.impresarios)" class="btn-danger" data-toggle="modal" data-target="#deleteModal">❌</button>
                 </td>
             </tr>
@@ -83,16 +83,14 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Артист: </label>
-                    <span id="artistName"></span><br>
-                    <label>Імпресаріо:</label><br>
-                    <select multiple="multiple" ng-model="selectedImpresarios" id="selectImpresarios" name="selectImpresarios" title="Жанри">
+                    <label id="artistName" style="text-align: center; font: normal 20px Arial"></label><br><br>
+                    <select multiple="multiple" ng-model="selectedImpresarios" id="selectImpresarios" name="selectImpresarios" title="Імпресаріо" class="selectImpresario">
                     </select>
                     <br>
-                    <button id="addImpresarioButton" ng-click="artistImpresarioCtrl.addImpresario()">Додати</button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="">Закрити</button>
+                    <button class="btn btn-default create" type="button" id="addImpresarioButton" ng-click="artistImpresarioCtrl.addImpresario()">Додати</button>
+                    <button type="button" class="btn btn-default closeBtn" data-dismiss="modal" style="width: 90px">Закрити</button>
                 </div>
             </div>
 
@@ -107,9 +105,8 @@
                     <h4 class="modal-title">Видалення</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Артист: </label>
-                    <span id="delArtistName"></span> <br>
-                    <select multiple="multiple" ng-model="delSelectedImpresario" id="delSelectImpresario" name="selectImpresario" title="Жанри">
+                    <label id="delArtistName" style="text-align: center; font: normal 20px Arial"></label><br><br>
+                    <select multiple="multiple" ng-model="delSelectedImpresario" id="delSelectImpresario" name="selectImpresario" title="Імпресаріо" class="selectImpresario">
                     </select>
 
                 </div>
@@ -130,7 +127,7 @@
                     <h4 class="modal-title">Вибір імпресаріо</h4>
                 </div>
                 <div class="modal-body">
-                    <select id="selectByImpresarioImpresarios"></select>
+                    <select id="selectByImpresarioImpresarios" ></select>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="credateArtistButton" ng-click="artistImpresarioCtrl.showArtistsByImpresario()" data-dismiss="modal">Вивести</button>
@@ -149,6 +146,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/artist_impresario.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 
 

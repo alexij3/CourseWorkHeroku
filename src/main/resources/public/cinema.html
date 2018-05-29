@@ -80,15 +80,16 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="CinemaName" name="CinemaName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="CinemaAddress" name="CinemaAddress" /> <br>
-                    <label>Розмір екрану:</label>
-                    <input type="number" min="1" id="CinemaScreenSize" name="CinemaScreenSize" /> <br>
-                    <button id="createCinemaButton" ng-click="cinemaCtrl.createCinema()">Створити</button>
+                    <input class="data" type="text" id="CinemaName" name="CinemaName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br>
+                    <input class="data" type="text" id="CinemaAddress" name="CinemaAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="CinemaScreenSize" name="CinemaScreenSize" placeholder="Розмір екрану" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongSize"></span><br>
+
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="createCinemaButton" ng-click="cinemaCtrl.createCinema()">Створити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -105,15 +106,15 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва:</label>
-                    <input type="text" id="updateCinemaName" name="updateCinemaName" /> <br>
-                    <label>Адреса:</label>
-                    <input type="text" id="updateCinemaAddress" name="updateCinemaAddress" /> <br>
-                    <label>Розмір екрану:</label>
-                    <input type="number" min="1" id="updateCinemaScreenSize" name="updateCinemaScreenSize" /> <br>
-                    <button id="editCinemaButton" ng-click="cinemaCtrl.updateCinema()">Змінити</button>
+                    <input class="data" type="text" id="updateCinemaName" name="CinemaName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br>
+                    <input class="data" type="text" id="updateCinemaAddress" name="CinemaAddress" placeholder="Адреса" title="Адреса" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAddress"></span><br>
+                    <input class="data" type="number" min="1" id="updateCinemaScreenSize" name="CinemaScreenSize" placeholder="Розмір екрану" title="Розмір екрану" /> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongSize"></span><br>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="editCinemaButton" ng-click="cinemaCtrl.updateCinema()">Змінити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

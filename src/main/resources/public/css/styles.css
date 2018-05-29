@@ -137,6 +137,54 @@
     margin-bottom: 10px
 }*/
 
+.modal-header{
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #3c608f;
+    background-color: #5673b0;
+    color: #FFF;
+}
+
+.modal-header .close{
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #FFF;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .5;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body input{
+    padding-left: 2px;
+}
+
+.modal-header .close:hover{
+    color: #000;
+}
+
 .modal-body input{
     width: 100%
+}
+
+.error{
+    display: block;
+    color: #c00000;
+    text-align: left;
+    font-size: 14px;
+    padding-top: 3px;
+    margin-bottom: 3px;
+}
+
+.genres{
+    width: 175px;
+}
+
+.selectImpresario{
+    width: 220px;
 }

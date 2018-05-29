@@ -2,6 +2,8 @@ var app = angular.module("demo", []);
 
 app.controller("CinemaCtrl", function($scope, $http){
     var idToUpdate;
+    var nameRegEx = /^(Кінопалац|Кінотеатр){1}\s"[А-ЯЄЇІҐ]{1}(-?|\s?)(([А-ЯЄЇІҐ]-?)?[а-яєїіґ]+|([а-яєїіґ]-?)+\s?)+"$/;
+    //var addressRegEx = /^(вул.|бульвар|проспект|площа){1}\s"[А-ЯЄЇІҐ]{1}-?\s?(([А-ЯЄЇІҐ]-?)?[а-яєїіґ]+|([а-яєїіґ]-?)+\s?)*\d+-?[А-Я]?$/;
 
     var time = performance.now();
     $scope.cinemas = [];
@@ -27,23 +29,55 @@ app.controller("CinemaCtrl", function($scope, $http){
         var address = document.getElementById('CinemaAddress').value;
         var screenSize = document.getElementById('CinemaScreenSize').value;
 
-        var createRequest ={
-            method: 'PUT',
-            url: '/api/cinema/create',
-            data: {
-                name : name,
-                address : address,
-                screenSize : screenSize
-            }
-        };
+        var nameIsValid = true;
+        var addressIsValid = true;
+        var screenSizeIsValid = true;
 
-        var time = performance.now();
-        $http(createRequest).then(function(response){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            console.log(response);
-            window.location.reload();
-        });
+        window.alert();
+
+        if (!name.match(nameRegEx)){
+            window.alert();
+            document.getElementById("wrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
+
+        /*if (!address.match(addressRegEx)){
+            window.alert();
+
+            document.getElementById("wrongAddress").innerHTML = "Некоректна адреса!";
+            addressIsValid = false;
+        }else this.clearAddress();*/
+
+        if (screenSize < 1){
+            window.alert();
+
+            screenSizeIsValid = false;
+            document.getElementById("wrongSize").innerHTML = "Некоректний розмір екрану!";
+        }else this.clearScreenSize();
+
+        window.alert(nameIsValid && addressIsValid && screenSizeIsValid);
+        if (nameIsValid && addressIsValid && screenSizeIsValid) {
+            window.alert(name);
+            window.alert(address);
+            window.alert(screenSize);
+            var createRequest = {
+                method: 'PUT',
+                url: '/api/cinema/create',
+                data: {
+                    name: name,
+                    address: address,
+                    screenSize: screenSize
+                }
+            };
+
+            var time = performance.now();
+            $http(createRequest).then(function (response) {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
     };
 
     this.startUpdateCinema = function startUpdateCinema(id, name, address, screenSize){
@@ -59,23 +93,59 @@ app.controller("CinemaCtrl", function($scope, $http){
         var address = document.getElementById('updateCinemaAddress').value;
         var screenSize = document.getElementById('updateCinemaScreenSize').value;
 
-        var request = {
-            method: 'POST',
-            url : '/api/cinema/update?id=' + idToUpdate,
-            data: {
-                name : name,
-                address : address,
-                screenSize : screenSize
-            }
-        };
+        var nameIsValid = true;
+        var addressIsValid = true;
+        var screenSizeIsValid = true;
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            console.log(response);
-            window.location.reload();
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("editWrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
+
+        /*if (!address.match(addressRegEx)){
+            document.getElementById("editWrongAddress").innerHTML = "Некоректна адреса!";
+            addressIsValid = false;
+        }else this.clearAddress();*/
+
+        if (screenSize < 1){
+            screenSizeIsValid = false;
+            document.getElementById("editWrongSize").innerHTML = "Некоректний розмір екрану!";
+        }else this.clearScreenSize();
+
+        if (nameIsValid && addressIsValid && screenSizeIsValid) {
+            var request = {
+                method: 'POST',
+                url: '/api/cinema/update?id=' + idToUpdate,
+                data: {
+                    name: name,
+                    address: address,
+                    screenSize: screenSize
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Оновлення відбулося за " + time + " мс.");
+                console.log(response);
+                window.location.reload();
+            });
+        }
+    };
+
+    this.clearName = function clearName(){
+        document.getElementById('wrongName').innerHTML = "";
+        document.getElementById('editWrongName').innerHTML = "";
+    };
+
+    this.clearAddress = function clearAddress(){
+        document.getElementById('wrongAddress').innerHTML = "";
+        document.getElementById('editWrongAddress').innerHTML = "";
+    };
+
+    this.clearScreenSize = function clearScreenSize(){
+        document.getElementById('wrongSize').innerHTML = "";
+        document.getElementById('editWrongSize').innerHTML = "";
     };
 
     /*******************************

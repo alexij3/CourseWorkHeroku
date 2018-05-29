@@ -24,21 +24,25 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
 
     this.addGenre = function addGenre(){
         genres = $scope.selectedGenres;
-        var request = {
-            method: 'PUT',
-            url: '/api/artist/updategenres?id=' + artistId,
-            data: {
-                name : artistName,
-                genreSet : genres
-            }
-        };
+        if (genres == null){
+            window.alert("null!");
+        }else {
+            var request = {
+                method: 'PUT',
+                url: '/api/artist/updategenres?id=' + artistId,
+                data: {
+                    name: artistName,
+                    genreSet: genres
+                }
+            };
 
-        var time = performance.now();
-        $http(request).then(function(){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            window.location.reload();
-        });
+            var time = performance.now();
+            $http(request).then(function () {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                window.location.reload();
+            });
+        }
     };
 
     this.startDeleteGenre = function startDeleteGenre(idArtist, name, genresToDelete){
@@ -79,17 +83,6 @@ app.controller("ArtistGenreCtrl", function($scope, $http) {
             console.log("Видалення відбулося за " + time + " мс.");
         });
     };
-
-    function removeItems(selectBox){
-        for (var i = selectBox.length-1; i >= 0; i--){
-            selectBox.remove(i);
-        }
-    }
-
-    this.onClose = function onClose(){
-        removeItems(document.getElementById('delSelectGenre'));
-    };
-
 
     /*************
      *

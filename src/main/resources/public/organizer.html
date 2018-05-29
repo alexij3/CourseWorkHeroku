@@ -49,6 +49,8 @@
                 <tr id="organizerHeader">
                     <th>&#128273ІД</th>
                     <th>Ім'я</th>
+                    <th>Вік (р)</th>
+                    <th>Досвід (р)</th>
                     <th hidden id="count"></th>
                     <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
                 </tr>
@@ -59,9 +61,11 @@
             <tr ng-repeat = "item in organizers">
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.experience}}</td>
                 <td hidden class="dataCount"></td>
                 <td>
-                    <button id="update" ng-click="organizerCtrl.startUpdateOrganizer(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
+                    <button id="update" ng-click="organizerCtrl.startUpdateOrganizer(item.id, item.name, item.age, item.experience)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
                     <button id="delete" ng-click="organizerCtrl.deleteOrganizer(item.id)" class="btn-danger">❌</button>
                 </td>
             </tr>
@@ -80,11 +84,15 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:</label>
-                    <input type="text" id="organizerName" name="organizerName" />
-                    <button id="createOrganizerButton" ng-click="organizerCtrl.createOrganizer()">Створити</button>
+                    <input class="data" type="text" id="organizerName" placeholder="Введіть ім'я" title="Ім'я"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br><br>
+                    <input class="data" type="number" min="18" id="age" placeholder="Введіть вік" title="Вік"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongAge"></span><br><br>
+                    <input class="data" type="number" min="0" id="experience" placeholder="Введіть досвід" title="Досвід"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongExperience"></span>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="createOrganizerBtn" ng-click="organizerCtrl.createOrganizer()">Створити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -101,11 +109,15 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:</label>
-                    <input type="text" id="updateOrganizerName" name="updateOrganizerName" />
-                    <button id="editOrganizerButton" ng-click="organizerCtrl.updateOrganizer()">Змінити</button>
+                    <input class="data" type="text" id="updateOrganizerName" placeholder="Введіть ім'я" title="Ім'я"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br><br>
+                    <input class="data" type="number" min="18" id="updAge" placeholder="Введіть вік" title="Вік"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAge"></span><br><br>
+                    <input class="data" type="number" min="0" id="updExperience" placeholder="Введіть досвід" title="Досвід"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongExperience"></span>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="editOrganizerButton" ng-click="organizerCtrl.updateOrganizer()">Змінити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -144,6 +156,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/organizer.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 
 

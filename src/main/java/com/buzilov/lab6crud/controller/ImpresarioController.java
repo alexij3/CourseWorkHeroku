@@ -38,10 +38,8 @@ public class ImpresarioController {
     }
 
     @RequestMapping("/create")
-    public Impresario create(String name) throws SQLException {
-        Impresario Impresario = new Impresario(name);
-        System.out.println("create impresario " + Impresario);
-        return service.insert(Impresario);
+    public Impresario create(@RequestBody Impresario impresario) throws SQLException {
+        return service.insert(impresario);
     }
 
     @RequestMapping("/update")

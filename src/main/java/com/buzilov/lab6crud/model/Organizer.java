@@ -30,11 +30,11 @@ public class Organizer {
 
     @OneToMany(mappedBy = "organizer")
     @JsonIgnore
-    private Set<ContestInPalace> contests;
+    private Set<ContestInPalace> contests = new HashSet<>();
 
     @OneToMany(mappedBy = "organizer")
     @JsonIgnore
-    private Set<TheatrePerformance> theatrePerformances;
+    private Set<TheatrePerformance> theatrePerformances = new HashSet<>();
 
     @Transient
     private int concertCount;
@@ -62,6 +62,14 @@ public class Organizer {
 
     public Organizer(String name) {
         this.name = name;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 
     public int getId() {

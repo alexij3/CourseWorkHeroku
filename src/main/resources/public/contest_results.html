@@ -88,9 +88,10 @@
                     <label>Конкурс: </label> <br>
                     <select id="contestResultContest"></select> <br>
                     <label>Артист: </label> <br>
-                    <select id="contestResultArtist"></select> <br>
+                    <select id="contestResultArtist"></select> <br><br>
                     <label>Місце: </label>
-                    <input type="number" width="20px" min="1" id="place"/><br>
+                    <input style="width: 60px" type="number" width="20px" min="1" id="place"/><br><br>
+                    <span class="error" style="color: #c00000; text-align: center; font-size: 14px" id="wrongPlace"></span><br>
                     <label>Переможець: </label>
                     <select id="isWinner">
                         <option value="y">Так</option>
@@ -119,17 +120,18 @@
                     <label>Конкурс: </label> <br>
                     <select id="updateContestResultContest"></select> <br>
                     <label>Артист: </label> <br>
-                    <select id="updateContestResultArtist"></select> <br>
+                    <select id="updateContestResultArtist"></select> <br><br>
                     <label>Місце: </label>
-                    <input type="number" width="20px" min="1" id="updatePlace"/><br>
+                    <input style="width: 60px" type="number" width="20px" min="1" id="updatePlace"/><br><br>
+                    <span class="error" style="color: #c00000; text-align: center; font-size: 14px" id="editWrongPlace"></span><br>
                     <label>Переможець: </label>
                     <select id="updateIsWinner">
                         <option value="y">Так</option>
                         <option value="n">Ні</option>
                     </select>
-                    <button id="updatecontestResultsButton" ng-click="contestResultsCtrl.update()">Змінити</button>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="updatecontestResultsButton" ng-click="contestResultsCtrl.update()">Змінити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>

@@ -28,7 +28,7 @@ public class Impresario {
     @CollectionTable(name = "impresario_and_genre", joinColumns = @JoinColumn (name = "id_impresario", nullable = false))
     @Enumerated(EnumType.STRING)
     @Column(name = "genre", nullable = false)
-    private Set<Genre> genreSet;
+    private Set<Genre> genreSet = new HashSet<>();
 
     public Impresario() {
     }
@@ -37,15 +37,15 @@ public class Impresario {
         this.name = name;
     }
 
-    public Impresario(@NotNull String name, @NotNull int age, int experience, Set<Genre> genreSet) {
+    public Impresario(String name, Set<Genre> genreSet) {
         this.name = name;
-        this.age = age;
-        this.experience = experience;
         this.genreSet = genreSet;
     }
 
-    public Impresario(String name, Set<Genre> genreSet) {
+    public Impresario(@NotNull String name, @NotNull Integer age, Integer experience, Set<Genre> genreSet) {
         this.name = name;
+        this.age = age;
+        this.experience = experience;
         this.genreSet = genreSet;
     }
 

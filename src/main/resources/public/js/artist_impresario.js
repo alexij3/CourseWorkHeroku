@@ -104,12 +104,6 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
         });
     };
 
-    function removeItems(selectBox){
-        for (var i = selectBox.length-1; i >= 0; i--){
-            selectBox.remove(i);
-        }
-    }
-
     this.Names = function Names(impresarios){
         var a = [];
         for (var i = 0; i < impresarios.length; i++)
@@ -117,11 +111,6 @@ app.controller("ArtistImpresarioCtrl", function($scope, $http) {
 
         return a;
     };
-
-    this.onClose = function onClose(){
-        removeItems(document.getElementById('delSelectImpresario'));
-    };
-
 
     /*******************************
      *
