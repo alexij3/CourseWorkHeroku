@@ -53,7 +53,6 @@
                     <th>Ім'я</th>
                     <th>Вік (р)</th>
                     <th>Досвід (р)</th>
-                    <th id="count"></th>
                     <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
                 </tr>
             </thead>
@@ -65,7 +64,6 @@
                 <td>{{item.name}}</td>
                 <td>{{item.age}}</td>
                 <td>{{item.experience}}</td>
-                <td id="countData">{{item.concertCount}}</td>
                 <td>
                     <button id="update" ng-click="organizerCtrl.startUpdateOrganizer(item.id, item.name, item.age, item.experience)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
                     <button id="delete" ng-click="organizerCtrl.deleteOrganizer(item.id)" class="btn-danger">❌</button>

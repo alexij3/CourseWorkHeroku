@@ -39,40 +39,45 @@
                     <div class="dropdown">
                         <button class="dropbtn" style="margin-left: 0">Запити</button>
                         <div style="min-width: 400px;" class="dropdown-content">
-                            <a href="" data-toggle="modal" data-target="#selectAndCountOfEvents">Список організаторів та кількість проведених ними заходів</a>
-                            <a href="query.html">Запит 3</a>
+                            <a href="" data-toggle="modal" data-target="#selectAndCountOfEvents">Список організаторів та кількість проведених ними концертів протягом періоду</a>
+                            <a href="" data-toggle="modal" data-target="#selectByAge">Список організаторів за вказаним віком</a>
+                            <a href="" data-toggle="modal" data-target="#selectByExperience">Список організаторів за вказаним досвідом</a>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-striped" id="organizer">
-            <thead>
-                <tr>
-                    <th>&#128273ІД</th>
-                    <th>Ім'я</th>
-                    <th>Кількість</th>
-                    <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
-                </tr>
-            </thead>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr id="organizerHeader">
+                            <th>&#128273ІД</th>
+                            <th>Ім'я</th>
+                            <th>Вік (р)</th>
+                            <th>Досвід (р)</th>
+                            <th id="count">Кількість концертів</th>
+                            <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
+                        </tr>
+                        </thead>
 
-            <tbody>
+                        <tbody>
 
-            <tr ng-repeat = "item in organizers">
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.concertCount}}</td>
-                <td>
-                    <button id="update" ng-click="organizerCtrl.startUpdateOrganizer(item.id, item.name)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
-                    <button id="delete" ng-click="organizerCtrl.deleteOrganizer(item.id)" class="btn-danger">❌</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        <tr ng-repeat = "item in organizers">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.age}}</td>
+                            <td>{{item.experience}}</td>
+                            <td id="countData">{{item.concertCount}}</td>
+                            <td>
+                                <button id="update" ng-click="organizerCtrl.startUpdateOrganizer(item.id, item.name, item.age, item.experience)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
+                                <button id="delete" ng-click="organizerCtrl.deleteOrganizer(item.id)" class="btn-danger">❌</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Додавання артиста -->
+    <!-- Додавання  -->
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -81,11 +86,15 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:</label>
-                    <input type="text" id="organizerName" name="organizerName" />
-                    <button id="createOrganizerButton" ng-click="organizerCtrl.createOrganizer()">Створити</button>
+                    <input class="data" type="text" id="organizerName" placeholder="Введіть ім'я" title="Ім'я"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongName"></span><br>
+                    <input class="data" type="number" min="18" id="age" placeholder="Введіть вік" title="Вік"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongAge"></span><br>
+                    <input class="data" type="number" min="0" id="experience" placeholder="Введіть досвід" title="Досвід"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="wrongExperience"></span>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="createOrganizerBtn" ng-click="organizerCtrl.createOrganizer()">Створити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -93,7 +102,7 @@
         </div>
     </div>
 
-    <!-- Редагування артиста -->
+    <!-- Редагування  -->
     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -102,11 +111,15 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Ім'я:</label>
-                    <input type="text" id="updateOrganizerName" name="updateOrganizerName" />
-                    <button id="editOrganizerButton" ng-click="organizerCtrl.updateOrganizer()">Змінити</button>
+                    <input class="data" type="text" id="updateOrganizerName" placeholder="Введіть ім'я" title="Ім'я"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongName"></span><br><br>
+                    <input class="data" type="number" min="18" id="updAge" placeholder="Введіть вік" title="Вік"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongAge"></span><br><br>
+                    <input class="data" type="number" min="0" id="updExperience" placeholder="Введіть досвід" title="Досвід"/><br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px" id="editWrongExperience"></span>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="editOrganizerButton" ng-click="organizerCtrl.updateOrganizer()">Змінити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -119,18 +132,55 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Вибір споруд</h4>
+                    <h4 class="modal-title">Вибір дати</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Палаци<input type="radio" name="place" id="palace"></label> <br>
-                    <label>Театри<input type="radio" name="place" id="theatre"></label> <br>
-                    <label>Концертні площадки<input type="radio" name="place" id="hall"></label><br>
                     <label>Від:<br><input type="date" name ="Перша дата" id="firstDate"/> </label><br>
                     <label>До: <br><input type="date" name ="Друга дата" id="secondDate"/> </label><br>
 
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" id="selectAndCountOfEventsBtn" ng-click="organizerCtrl.selectAndCountOfEvents()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByAge" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір віку</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="number" min="18" name ="Вік" id="ageRequest" title="Вік" placeholder="Вік"/>
+                    <label><input id="ageLess" class="radio" type="radio" name="age"><</label>
+                    <label><input id="ageMoreEquals" class="radio"type="radio" name="age">>=</label>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByAgeBtn" ng-click="organizerCtrl.selectByAge()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByExperience" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір досвіду</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="number" min="18" name ="Вік" id="experienceRequest" title="Досвід" placeholder="Досвід"/>
+                    <label><input id="experienceLess" class="radio" type="radio" name="age"><</label>
+                    <label><input id="experienceMoreEquals" class="radio"type="radio" name="age">>=</label>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByExperienceBtn" ng-click="organizerCtrl.selectByExperience()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -145,6 +195,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/organizer.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 
 

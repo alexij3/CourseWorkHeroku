@@ -4,6 +4,8 @@ app.controller("OrganizerCtrl", function($scope, $http){
     var idToUpdate;
     var nameValidationRegEx = /^([А-ЯІЇЄҐ]'?([а-яіїєґ](-[А-ЯІЇЄҐ]|')?)+[а-яіїєґ]*\s){2,}[А-ЯІЇЄҐ]'?[а-яіїєґ]{4,}$/;
 
+    $("#addModal").modal('show');
+
     var time = performance.now();
     $scope.organizers = [];
      $http.get('/api/organizer/showAll').then(function (response){
@@ -159,7 +161,7 @@ app.controller("OrganizerCtrl", function($scope, $http){
                 var tdList = $("#countData");
                 window.alert(tdList.length);
                 for (var i = 0; i < organizers.length; i++){
-                    tdList[i].removeAttribute('hidden');
+                    tdList[i].removeAttr('hidden');
                 }
 
             });
