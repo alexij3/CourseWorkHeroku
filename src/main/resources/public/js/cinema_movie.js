@@ -71,26 +71,34 @@ app.controller("CinemaMovieCtrl", function($scope, $http){
         var genre = document.getElementById('CinemaMovieGenre').value;
         var date = document.getElementById('datePicker').value;
 
-        var request = {
-            method: 'POST',
-            url: '/api/cinemamovie/create',
-            data: {
-                name : name,
-                genre: genre,
-                cinemaId: cinemaId,
-                date: date
-            }
-        };
+        var dateIsCorrect = true;
+        var nameIsCorrect = true;
 
-        var time = performance.now();
-        $http(request).then(function(response){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            console.log(response);
-        });
+        if (date == null){
+            window.alert("date is null")
+        }else {
+            var request = {
+                method: 'POST',
+                url: '/api/cinemamovie/create',
+                data: {
+                    name: name,
+                    genre: genre,
+                    cinemaId: cinemaId,
+                    date: date
+                }
+            };
 
-        window.location.reload();
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                console.log(response);
+            });
+
+            window.location.reload();
+        }
     };
+
 
     this.startUpdateCinemaMovie = function startUpdateCinemaMovie(id, name, genre, cinemaId, date) {
         idToUpdate = id;
