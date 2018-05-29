@@ -183,11 +183,11 @@ app.controller("ImpresarioCtrl", function($scope, $http){
 
         if (document.getElementById('ageLess').checked){
             $http.get('/api/impresario/findAllByAgeLessThan?age=' + age).then(function(response){
-                $scope.artists = response.data;
+                $scope.impresarios = response.data;
             });
         }else if (document.getElementById('ageMoreEquals').checked){
             $http.get('/api/impresario/findAllByAgeGreaterThanEqual?age=' + age).then(function(response){
-                $scope.artists = response.data;
+                $scope.impresarios = response.data;
             });
         }
     };
@@ -198,11 +198,11 @@ app.controller("ImpresarioCtrl", function($scope, $http){
 
         if (document.getElementById('experienceLess').checked){
             $http.get('/api/impresario/findAllByExperienceLessThan?experience=' + experience).then(function(response){
-                $scope.artists = response.data;
+                $scope.impresarios = response.data;
             });
         }else if (document.getElementById('experienceMoreEquals').checked){
             $http.get('/api/impresario/findAllByExperienceGreaterThanEqual?experience=' + experience).then(function(response){
-                $scope.artists = response.data;
+                $scope.impresarios = response.data;
             });
         }
     }

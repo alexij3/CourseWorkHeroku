@@ -171,11 +171,11 @@ app.controller("OrganizerCtrl", function($scope, $http){
 
         if (document.getElementById('ageLess').checked){
             $http.get('/api/organizer/findAllByAgeLessThan?age=' + age).then(function(response){
-                $scope.artists = response.data;
+                $scope.organizers = response.data;
             });
         }else if (document.getElementById('ageMoreEquals').checked){
             $http.get('/api/organizer/findAllByAgeGreaterThanEqual?age=' + age).then(function(response){
-                $scope.artists = response.data;
+                $scope.organizers = response.data;
             });
         }
     };
@@ -186,11 +186,11 @@ app.controller("OrganizerCtrl", function($scope, $http){
 
         if (document.getElementById('experienceLess').checked){
             $http.get('/api/organizer/findAllByExperienceLessThan?experience=' + experience).then(function(response){
-                $scope.artists = response.data;
+                $scope.organizers = response.data;
             });
         }else if (document.getElementById('experienceMoreEquals').checked){
             $http.get('/api/organizer/findAllByExperienceGreaterThanEqual?experience=' + experience).then(function(response){
-                $scope.artists = response.data;
+                $scope.organizers = response.data;
             });
         }
     }
