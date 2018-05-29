@@ -2,6 +2,8 @@ var app = angular.module("demo", []);
 
 app.controller("TheatrePerformanceCtrl", function($scope, $http){
     var idToUpdate;
+    var nameRegEx = /^(Виступ){1}\s".+"$/;
+    var dateRegEx = /[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/;
 
     $http.get('/api/theatre/showAll').then(function(response) {
         console.log(response);
@@ -102,34 +104,43 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
     };
 
     this.createTheatrePerformance = function createTheatrePerformance(){
-        /*window.alert(document.getElementById('TheatrePerformanceTheatre').value);
-        window.alert(document.getElementById('TheatrePerformanceName').value);
-        window.alert(document.getElementById('TheatrePerformanceOrganizer').value);
-        window.alert(document.getElementById('datePicker').value);*/
         var theatreId = document.getElementById('TheatrePerformanceTheatre').value;
         var name = document.getElementById('TheatrePerformanceName').value;
         var organizerId = document.getElementById('TheatrePerformanceOrganizer').value;
         var date = document.getElementById('datePicker').value;
 
-        var request = {
-            method: 'PUT',
-            url: '/api/theatreperformance/insert',
-            data: {
-                name : name,
-                theatreId : theatreId,
-                organizerId: organizerId,
-                date : date
-            }
-        };
+        var nameIsValid = true;
+        var dateIsValid = true;
 
-        var time = performance.now();
-        $http(request).then(function(response){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            window.location.reload();
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("wrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
 
-        //window.alert(date);
+        if (!date.match(dateRegEx)){
+            document.getElementById("wrongDate").innerHTML = "Некоректна дата!";
+            dateIsValid = false;
+        }else this.clearDate();
+
+        if (nameIsValid && dateIsValid) {
+            var request = {
+                method: 'PUT',
+                url: '/api/theatreperformance/insert',
+                data: {
+                    name: name,
+                    theatreId: theatreId,
+                    organizerId: organizerId,
+                    date: date
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                window.location.reload();
+            });
+        }
     };
 
     this.startUpdateTheatrePerformance = function startUpdateTheatrePerformance(id, name, theatreId, organizerId, date) {
@@ -147,25 +158,50 @@ app.controller("TheatrePerformanceCtrl", function($scope, $http){
         var organizerId = document.getElementById('updateTheatrePerformanceOrganizer').value;
         var date = document.getElementById('updateDatePicker').value;
 
-        var request = {
-            method: 'POST',
-            url : '/api/theatreperformance/update',
-            data: {
-                id: idToUpdate,
-                theatreId : theatreId,
-                name: name,
-                organizerId: organizerId,
-                date: date
-            }
-        };
+        var nameIsValid = true;
+        var dateIsValid = true;
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            window.location.reload();
-            console.log(response);
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("editWrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
+
+        if (!date.match(dateRegEx)){
+            document.getElementById("editWrongDate").innerHTML = "Некоректна дата!";
+            dateIsValid = false;
+        }else this.clearDate();
+
+        if (nameIsValid && dateIsValid) {
+            var request = {
+                method: 'POST',
+                url: '/api/theatreperformance/update',
+                data: {
+                    id: idToUpdate,
+                    theatreId: theatreId,
+                    name: name,
+                    organizerId: organizerId,
+                    date: date
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Оновлення відбулося за " + time + " мс.");
+                window.location.reload();
+                console.log(response);
+            });
+        }
+    };
+
+    this.clearName = function clearName(){
+        document.getElementById('wrongName').innerHTML = "";
+        document.getElementById('editWrongName').innerHTML = "";
+    };
+
+    this.clearDate = function clearDate(){
+        document.getElementById('wrongDate').innerHTML = "";
+        document.getElementById('editWrongDate').innerHTML = "";
     };
 
     /*******************************

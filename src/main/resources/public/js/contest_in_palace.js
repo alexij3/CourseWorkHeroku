@@ -2,6 +2,9 @@ var app = angular.module("demo", []);
 
 app.controller("ContestInPalaceCtrl", function($scope, $http){
     var idToUpdate;
+    var nameRegEx = /^(Конкурс|Конкурс-виставка){1}\s".+"$/;
+    var dateRegEx = /[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/;
+
 
     $http.get('/api/culturepalace/showAll').then(function(response) {
         console.log(response);
@@ -100,22 +103,35 @@ app.controller("ContestInPalaceCtrl", function($scope, $http){
         var organizerId = document.getElementById('ContestInPalaceOrganizer').value;
         var date = document.getElementById('datePicker').value;
 
-        var request = {
-            method: 'PUT',
-            url: '/api/contestinpalace/insert',
-            data: {
-                name : name,
-                culturePalaceId : culturePalaceId,
-                organizerId: organizerId,
-                date : date
-            }
-        };
+        var nameIsValid = true;
+        var dateIsValid = true;
 
-        $http(request).then(function(response){
-            window.location.reload();
-        })
+        if (!name.match(nameRegEx)){
+            document.getElementById("wrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
 
-        //window.alert(date);
+        if (!date.match(dateRegEx)){
+            document.getElementById("wrongDate").innerHTML = "Некоректна дата!";
+            dateIsValid = false;
+        }else this.clearDate();
+
+        if (nameIsValid && dateIsValid) {
+            var request = {
+                method: 'PUT',
+                url: '/api/contestinpalace/insert',
+                data: {
+                    name: name,
+                    culturePalaceId: culturePalaceId,
+                    organizerId: organizerId,
+                    date: date
+                }
+            };
+
+            $http(request).then(function (response) {
+                window.location.reload();
+            });
+        }
     };
 
     this.startUpdateContestInPalace = function startUpdateContestInPalace(id, name, culturePalaceId, organizerId, date) {
@@ -133,22 +149,47 @@ app.controller("ContestInPalaceCtrl", function($scope, $http){
         var organizerId = document.getElementById('updateContestInPalaceOrganizer').value;
         var date = document.getElementById('updateDatePicker').value;
 
-        var request = {
-            method: 'POST',
-            url : '/api/contestinpalace/update',
-            data: {
-                id: idToUpdate,
-                culturePalaceId : culturePalaceId,
-                name: name,
-                organizerId: organizerId,
-                date: date
-            }
-        };
+        var nameIsValid = true;
+        var dateIsValid = true;
 
-        $http(request).then(function (response){
-            window.location.reload();
-            console.log(response);
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("editWrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
+
+        if (!date.match(dateRegEx)){
+            document.getElementById("editWrongDate").innerHTML = "Некоректна дата!";
+            dateIsValid = false;
+        }else this.clearDate();
+
+        if (nameIsValid && dateIsValid) {
+            var request = {
+                method: 'POST',
+                url: '/api/contestinpalace/update',
+                data: {
+                    id: idToUpdate,
+                    culturePalaceId: culturePalaceId,
+                    name: name,
+                    organizerId: organizerId,
+                    date: date
+                }
+            };
+
+            $http(request).then(function (response) {
+                window.location.reload();
+                console.log(response);
+            });
+        }
+    };
+
+    this.clearName = function clearName(){
+        document.getElementById('wrongName').innerHTML = "";
+        document.getElementById('editWrongName').innerHTML = "";
+    };
+
+    this.clearDate = function clearDate(){
+        document.getElementById('wrongDate').innerHTML = "";
+        document.getElementById('editWrongDate').innerHTML = "";
     };
 
     /**

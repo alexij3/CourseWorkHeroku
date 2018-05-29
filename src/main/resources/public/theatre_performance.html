@@ -78,7 +78,7 @@
         </div>
     </div>
 
-    <!-- Додавання артиста -->
+    <!-- Додавання  -->
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -87,19 +87,16 @@
                     <h4 class="modal-title">Додавання</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва: </label>
-                    <input type="text" id="TheatrePerformanceName" name="TheatrePerformanceName" /> <br>
-                    <label>Культурний палац: </label> <br>
-                    <select id="TheatrePerformanceTheatre" name="updateTheatrePerformanceTheatre" >
+                    <input class="data" type="text" id="TheatrePerformanceName" name="TheatrePerformanceName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px;" id="wrongName"></span><br>
+                    <select class="data" id="TheatrePerformanceTheatre" name="TheatrePerformanceTheatre" title="Театр"></select> <br><br>
+                    <select class="data" id="TheatrePerformanceOrganizer" name="TheatrePerformanceOrganizer" title="Організатор"></select> <br><br>
+                    <input class="data" type="date" name ="date" id="datePicker" title="Дата"/> <br>
+                    <span class="error cinemamovie" style="color: #c00000; text-align: left; font-size: 14px;" id="wrongDate"></span><br>
 
-                    </select> <br>
-                    <label>Організатор: </label> <br>
-                    <select id="TheatrePerformanceOrganizer" name="updateTheatrePerformanceOrganizer" ></select> <br>
-                    <label>Дата: </label>
-                    <input type="date" name ="updateDate" id="datePicker"/> <br>
-                    <button id="createTheatrePerformanceButton" ng-click="theatrePerformanceCtrl.createTheatrePerformance()">Створити</button>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-default" id="createTheatrePerformanceButton" ng-click="theatrePerformanceCtrl.createTheatrePerformance()">Створити</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
@@ -107,7 +104,7 @@
         </div>
     </div>
 
-    <!-- Редагування артиста -->
+    <!-- Редагування  -->
     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -116,16 +113,13 @@
                     <h4 class="modal-title">Редагування</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Назва: </label>
-                    <input type="text" id="updateTheatrePerformanceName" name="updateTheatrePerformanceName" /> <br>
-                    <label>Концертна площадка: </label> <br>
-                    <select id="updateTheatrePerformanceTheatre" name="updateTheatrePerformanceTheatre" >
 
-                    </select> <br>
-                    <label>Організатор: </label> <br>
-                    <select id="updateTheatrePerformanceOrganizer" name="updateTheatrePerformanceOrganizer" ></select> <br>
-                    <label>Дата: </label>
-                    <input type="date" name ="updateDate" id="updateDatePicker"/> <br>
+                    <input class="data" type="text" id="updateTheatrePerformanceName" name="TheatrePerformanceName" placeholder="Назва" title="Назва"/> <br>
+                    <span class="error" style="color: #c00000; text-align: left; font-size: 14px;" id="editWrongName"></span><br>
+                    <select class="data" id="updateTheatrePerformanceTheatre" name="TheatrePerformanceTheatre" title="Театр"></select> <br><br>
+                    <select class="data" id="updateTheatrePerformanceOrganizer" name="TheatrePerformanceOrganizer" title="Організатор"></select> <br><br>
+                    <input class="data" type="date" name ="date" id="updateDatePicker" title="Дата"/> <br>
+                    <span class="error cinemamovie" style="color: #c00000; text-align: left; font-size: 14px;" id="editWrongDate"></span><br>
 
                 </div>
                 <div class="modal-footer">
@@ -204,6 +198,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/theatre_performance.js"></script>
+<script type="text/javascript" src="js/onclose.js"></script>
 
 </body>
 </html>

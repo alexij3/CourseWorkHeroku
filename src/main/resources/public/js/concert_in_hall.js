@@ -2,6 +2,8 @@ var app = angular.module("demo", []);
 
 app.controller("ConcertInHallCtrl", function($scope, $http){
     var idToUpdate;
+    var nameRegEx = /^(Концерт){1}\s".+"$/;
+    var dateRegEx = /[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])/;
 
     $http.get('/api/concerthall/showAll').then(function(response) {
         console.log(response);
@@ -101,34 +103,43 @@ app.controller("ConcertInHallCtrl", function($scope, $http){
     };
 
     this.createConcertInHall = function createConcertInHall(){
-        /*window.alert(document.getElementById('ConcertInHallConcertHall').value);
-        window.alert(document.getElementById('ConcertInHallName').value);
-        window.alert(document.getElementById('ConcertInHallOrganizer').value);
-        window.alert(document.getElementById('datePicker').value);*/
         var concertHallId = document.getElementById('ConcertInHallConcertHall').value;
         var name = document.getElementById('ConcertInHallName').value;
         var organizerId = document.getElementById('ConcertInHallOrganizer').value;
         var date = document.getElementById('datePicker').value;
 
-        var request = {
-            method: 'PUT',
-            url: '/api/concertinhall/insert',
-            data: {
-                name : name,
-                concertHallId : concertHallId,
-                organizerId: organizerId,
-                date : date
-            }
-        };
+        var nameIsValid = true;
+        var dateIsValid = true;
 
-        var time = performance.now();
-        $http(request).then(function(response){
-            time = performance.now() - time;
-            console.log("Створення відбулося за " + time + " мс.");
-            window.location.reload();
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("wrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
 
-        //window.alert(date);
+        if (!date.match(dateRegEx)){
+            document.getElementById("wrongDate").innerHTML = "Некоректна дата!";
+            dateIsValid = false;
+        }else this.clearDate();
+
+        if (nameIsValid && dateIsValid) {
+            var request = {
+                method: 'PUT',
+                url: '/api/concertinhall/insert',
+                data: {
+                    name: name,
+                    concertHallId: concertHallId,
+                    organizerId: organizerId,
+                    date: date
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Створення відбулося за " + time + " мс.");
+                window.location.reload();
+            });
+        }
     };
 
     this.startUpdateConcertInHall = function startUpdateConcertInHall(id, name, concertHallId, organizerId, date) {
@@ -146,25 +157,50 @@ app.controller("ConcertInHallCtrl", function($scope, $http){
         var organizerId = document.getElementById('updateConcertInHallOrganizer').value;
         var date = document.getElementById('updateDatePicker').value;
 
-        var request = {
-            method: 'POST',
-            url : '/api/concertinhall/update',
-            data: {
-                id: idToUpdate,
-                concertHallId : concertHallId,
-                name: name,
-                organizerId: organizerId,
-                date: date
-            }
-        };
+        var nameIsValid = true;
+        var dateIsValid = true;
 
-        var time = performance.now();
-        $http(request).then(function (response){
-            time = performance.now() - time;
-            console.log("Оновлення відбулося за " + time + " мс.");
-            window.location.reload();
-            console.log(response);
-        });
+        if (!name.match(nameRegEx)){
+            document.getElementById("editWrongName").innerHTML = "Некоректна назва!";
+            nameIsValid = false;
+        }else this.clearName();
+
+        if (!date.match(dateRegEx)){
+            document.getElementById("editWrongDate").innerHTML = "Некоректна дата!";
+            dateIsValid = false;
+        }else this.clearDate();
+
+        if (nameIsValid && dateIsValid) {
+            var request = {
+                method: 'POST',
+                url: '/api/concertinhall/update',
+                data: {
+                    id: idToUpdate,
+                    concertHallId: concertHallId,
+                    name: name,
+                    organizerId: organizerId,
+                    date: date
+                }
+            };
+
+            var time = performance.now();
+            $http(request).then(function (response) {
+                time = performance.now() - time;
+                console.log("Оновлення відбулося за " + time + " мс.");
+                window.location.reload();
+                console.log(response);
+            });
+        }
+    };
+
+    this.clearName = function clearName(){
+        document.getElementById('wrongName').innerHTML = "";
+        document.getElementById('editWrongName').innerHTML = "";
+    };
+
+    this.clearDate = function clearDate(){
+        document.getElementById('wrongDate').innerHTML = "";
+        document.getElementById('editWrongDate').innerHTML = "";
     };
 
     /**
