@@ -164,6 +164,10 @@
     padding-left: 2px;
 }
 
+.modal-body select{
+    width: 100%
+}
+
 .modal-header .close:hover{
     color: #000;
 }
