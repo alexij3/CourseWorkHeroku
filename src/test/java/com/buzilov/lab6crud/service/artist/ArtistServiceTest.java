@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -36,16 +37,12 @@ public class ArtistServiceTest {
         artistList = Arrays.asList(
             new Artist("Artist 1") ,
             new Artist("Artist 2"),
-            new Artist("Artist 3"),
-            new Artist("Artist 4"),
-            new Artist("Artist 5")
+            new Artist("Artist 3")
         );
 
         artistList.get(0).setId(1);
         artistList.get(1).setId(2);
         artistList.get(2).setId(3);
-        artistList.get(3).setId(4);
-        artistList.get(4).setId(5);
 
         artistToCompareWith = new Artist("Artist Comparison");
 
@@ -63,7 +60,7 @@ public class ArtistServiceTest {
 
     @Test
     public void insertArtist() throws Exception {
-        Artist artist = repository.save(artistToCompareWith);
+        Artist artist = service.insertArtist(artistToCompareWith);
 
         assertEquals(artist, artistToCompareWith);
     }
@@ -81,7 +78,7 @@ public class ArtistServiceTest {
 
     @Test
     public void updateArtist() throws Exception {
-        Artist artist = repository.save(artistToCompareWith);
+        Artist artist = service.updateArtist(artistToCompareWith);
 
         assertEquals(artist, artistToCompareWith);
     }

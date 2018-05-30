@@ -48,6 +48,15 @@ public class TheatrePerformance {
         this.date = date;
     }
 
+    public TheatrePerformance(Theatre theatre, int theatreId, String name, Organizer organizer, int organizerId, LocalDate date) {
+        this.theatre = theatre;
+        this.theatreId = theatreId;
+        this.name = name;
+        this.organizer = organizer;
+        this.organizerId = organizerId;
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "TheatrePerformance{" +

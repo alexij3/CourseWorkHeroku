@@ -59,7 +59,14 @@ public class ContestInPalace {
         this.date = date;
     }
 
-
+    public ContestInPalace(CulturePalace culturePalace, int culturePalaceId, String name, Organizer organizer, int organizerId, LocalDate date) {
+        this.culturePalace = culturePalace;
+        this.culturePalaceId = culturePalaceId;
+        this.name = name;
+        this.organizer = organizer;
+        this.organizerId = organizerId;
+        this.date = date;
+    }
 
     public CulturePalace getCulturePalace() {
         return culturePalace;

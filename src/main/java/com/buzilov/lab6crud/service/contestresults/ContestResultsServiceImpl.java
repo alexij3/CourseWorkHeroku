@@ -38,12 +38,12 @@ public class ContestResultsServiceImpl implements ContestResultsService {
     @Override
     public List<ContestResults> getAll() throws SQLException {
         List <ContestResults> contestResults = (List<ContestResults>) contestResultsRepository.findAll();
-        contestResults.sort(new Comparator<ContestResults>() {
+        /*contestResults.sort(new Comparator<ContestResults>() {
             @Override
             public int compare(ContestResults o1, ContestResults o2) {
                 return o1.getContest().getId() < o2.getContest().getId() ? -1 : 1;
             }
-        });
+        });*/
         //return (List<ContestResults>) contestResultsRepository.findAll();
         return contestResults;
     }
