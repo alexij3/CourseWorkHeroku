@@ -37,18 +37,27 @@ public class Organizer {
     private Set<TheatrePerformance> theatrePerformances = new HashSet<>();
 
     @Transient
-    private int concertCount;
-
-    @Transient
-    private int contestCount;
-
-    @Transient
-    private int theatrePerformanceCount;
+    private long concertCount;
 
     public Organizer() {
     }
 
-    public Organizer(@NotNull String name, @NotNull int age, int experience, Set<ConcertInHall> concertInHalls, Set<ContestInPalace> contests, Set<TheatrePerformance> theatrePerformances, int concertCount, int contestCount, int theatrePerformanceCount) {
+    public Organizer(@NotNull Integer id, @NotNull String name, @NotNull Integer age, Integer experience, long concertCount) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.experience = experience;
+        this.concertCount = concertCount;
+    }
+
+    public Organizer(@NotNull String name, @NotNull Integer age, Integer experience, long concertCount) {
+        this.name = name;
+        this.age = age;
+        this.experience = experience;
+        this.concertCount = concertCount;
+    }
+
+    public Organizer(@NotNull String name, @NotNull Integer age, Integer experience, Set<ConcertInHall> concertInHalls, Set<ContestInPalace> contests, Set<TheatrePerformance> theatrePerformances, int concertCount) {
         this.name = name;
         this.age = age;
         this.experience = experience;
@@ -56,8 +65,6 @@ public class Organizer {
         this.contests = contests;
         this.theatrePerformances = theatrePerformances;
         this.concertCount = concertCount;
-        this.contestCount = contestCount;
-        this.theatrePerformanceCount = theatrePerformanceCount;
     }
 
     public Organizer(String name) {
@@ -96,16 +103,12 @@ public class Organizer {
         this.experience = experience;
     }
 
+    public long getConcertCount() {
+        return concertCount;
+    }
+
     public void setConcertCount(int concertCount) {
         this.concertCount = concertCount;
-    }
-
-    public void setContestCount(int contestCount) {
-        this.contestCount = contestCount;
-    }
-
-    public void setTheatrePerformanceCount(int theatrePerformanceCount) {
-        this.theatrePerformanceCount = theatrePerformanceCount;
     }
 
     public String getName() {
@@ -114,12 +117,6 @@ public class Organizer {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Organizer(String name, Set<ConcertInHall> concertInHalls) {
-        this.name = name;
-        this.concertInHalls = concertInHalls;
-        this.concertCount = concertInHalls.size();
     }
 
     @Override
@@ -156,17 +153,6 @@ public class Organizer {
         this.concertInHalls = concertInHalls;
     }
 
-    public int getConcertCount() {
-        return concertInHalls.size();
-    }
-
-    public int getContestCount() {
-        return contests.size();
-    }
-
-    public int getTheatrePerformanceCount() {
-        return theatrePerformances.size();
-    }
 
     public Set<ContestInPalace> getContests() {
         return contests;

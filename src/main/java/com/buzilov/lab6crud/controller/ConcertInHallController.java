@@ -35,6 +35,16 @@ public class ConcertInHallController {
         concertInHallService.delete(id);
     }
 
+    @RequestMapping("findHallsAndConcertsDates")
+    public List<ConcertInHall> findHallsAndConcertsDates(@RequestParam("firstDate") String firstDateStr,
+                                                                  @RequestParam("secondDate") String secondDateStr){
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return concertInHallService.findHallsAndConcertsDates(firstDate, secondDate);
+    }
+
+
     @RequestMapping("/update")
     public ConcertInHall update(@RequestBody ConcertInHall concertInHall) throws SQLException {
         if (concertInHall.getDate() == null) {

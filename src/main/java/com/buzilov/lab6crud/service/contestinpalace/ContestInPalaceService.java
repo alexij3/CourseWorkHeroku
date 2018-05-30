@@ -16,4 +16,5 @@ public interface ContestInPalaceService {
     List<ContestInPalace> findAllByDateBetweenAndOrganizerId(LocalDate firstDate, LocalDate secondDate,
                                                            int organizerId);
     List<ContestInPalace> findAllByCulturePalaceId(int id);
+    List<ContestInPalace> findPalacesAndContestsDates(LocalDate firstDate, LocalDate secondDate);
 }

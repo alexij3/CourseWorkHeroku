@@ -19,7 +19,7 @@
                     <div class="dropdown">
                         <button class="dropbtn">Організатори</button>
                         <div class="dropdown-content">
-                            <a href ="title.html">Титульна сторінка</a>
+                            <a href ="index.html">Титульна сторінка</a>
                             <a href="artist.html">Артисти</a>
                             <a href ="artist_genre.html">Жанри артиста</a>
                             <a href ="artist_and_impresario.html">Імпресаріо артистів</a>
@@ -39,7 +39,7 @@
                     <div class="dropdown">
                         <button class="dropbtn" style="margin-left: 0">Запити</button>
                         <div style="min-width: 400px;" class="dropdown-content">
-                            <a href="" data-toggle="modal" data-target="#selectAndCountOfEvents">Список організаторів та кількість проведених ними концертів протягом періоду</a>
+                            <a href="organizer_concert.html" target="_blank">Список організаторів та кількість проведених ними концертів протягом періоду</a>
                             <a href="" data-toggle="modal" data-target="#selectByAge">Список організаторів за вказаним віком</a>
                             <a href="" data-toggle="modal" data-target="#selectByExperience">Список організаторів за вказаним досвідом</a>
                         </div>
@@ -122,26 +122,6 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    <div id="selectAndCountOfEvents" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Вибір дати</h4>
-                </div>
-                <div class="modal-body">
-                    <label>Від:<br><input type="date" name ="Перша дата" id="firstDate"/> </label><br>
-                    <label>До: <br><input type="date" name ="Друга дата" id="secondDate"/> </label><br>
-
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" id="selectAndCountOfEventsBtn" ng-click="organizerCtrl.selectAndCountOfEvents()" data-dismiss="modal">Вивести</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                </div>
-            </div>
         </div>
     </div>
 

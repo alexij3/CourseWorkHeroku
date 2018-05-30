@@ -4,7 +4,7 @@ app.controller("OrganizerCtrl", function($scope, $http){
     var idToUpdate;
     var nameValidationRegEx = /^([А-ЯІЇЄҐ]'?([а-яіїєґ](-[А-ЯІЇЄҐ]|')?)+[а-яіїєґ]*\s){2,}[А-ЯІЇЄҐ]'?[а-яіїєґ]{4,}$/;
 
-    $("#addModal").modal('show');
+    $("#selectAndCountOfEvents").modal('show');
 
     var time = performance.now();
     $scope.organizers = [];
@@ -152,18 +152,9 @@ app.controller("OrganizerCtrl", function($scope, $http){
         var firstDate = document.getElementById('firstDate').value;
         var secondDate = document.getElementById('secondDate').value;
 
-            $http.get('/api/organizer/findAllAndContestCount?firstDate=' + firstDate + '&secondDate=' + secondDate)
+            $http.get('/api/organizer/findAllAndConcertCount?firstDate=' + firstDate + '&secondDate=' + secondDate)
                 .then(function(response){
                     $scope.organizers = response.data;
-                document.getElementById('count').innerHTML = "Кількість конкурсів";
-                document.getElementById('count').removeAttribute('hidden');
-
-                var tdList = $("#countData");
-                window.alert(tdList.length);
-                for (var i = 0; i < organizers.length; i++){
-                    tdList[i].removeAttr('hidden');
-                }
-
             });
     };
 

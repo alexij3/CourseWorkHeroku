@@ -45,6 +45,15 @@ public class ContestInPalaceController {
         return contestInPalaceService.update(contestInPalace);
     }
 
+    @RequestMapping("findPalacesAndContestsDates")
+    public List<ContestInPalace> findTheatresAndPerformancesDates(@RequestParam("firstDate") String firstDateStr,
+                                                                     @RequestParam("secondDate") String secondDateStr){
+        LocalDate firstDate = LocalDate.parse(firstDateStr);
+        LocalDate secondDate = LocalDate.parse(secondDateStr);
+
+        return contestInPalaceService.findPalacesAndContestsDates(firstDate, secondDate);
+    }
+
     @RequestMapping("/findAllByDateBetween")
     public List<ContestInPalace> findAllByDateBetween(@RequestParam("firstDate") String firstDateStr,
                                                     @RequestParam("secondDate") String secondDateStr) {

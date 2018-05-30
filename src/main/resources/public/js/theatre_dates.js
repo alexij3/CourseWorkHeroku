@@ -7,15 +7,6 @@ app.controller("TheatreCtrl", function($scope, $http){
 
     $("#selectDates").modal('show');
 
-    var time = performance.now();
-    $scope.theatres = [];
-     $http.get('/api/theatre/showAll').then(function (response){
-         time = performance.now() - time;
-         console.log("Виведення відбулося за " + time + " мс.");
-        $scope.theatres=response.data;
-        console.log(response);
-    });
-
     this.deleteTheatre = function deleteTheatre(id){
         var time = performance.now();
         $http.get('/api/theatre/delete?id=' + id).then(function(){
@@ -149,10 +140,11 @@ app.controller("TheatreCtrl", function($scope, $http){
      *
      *****************************/
 
-    this.showByCapacity = function showByCapacity(){
-        var capacity = document.getElementById('capacity').value;
+    this.selectDates = function selectDates(){
+        var firstDate = document.getElementById('firstDate').value;
+        var secondDate = document.getElementById('secondDate').value;
 
-        $http.get('/api/theatre/findAllByCapacityGreaterThanEqual?capacity=' + capacity).then(function(response){
+        $http.get('/api/theatreperformance/findTheatresAndPerformancesDates?firstDate=' + firstDate + '&secondDate=' + secondDate).then(function(response){
             $scope.theatres = response.data;
         });
     }

@@ -1,36 +1,28 @@
 var app = angular.module("demo", []);
 
-app.controller("TheatreCtrl", function($scope, $http){
+app.controller("CulturePalaceCtrl", function($scope, $http){
     var idToUpdate;
-    var nameRegEx = /^(Театр){1}\s".+"$/;
+    var nameRegEx = /^(Палац|Культурний центр){1}\s".+"$/;
     var addressRegEx = /^(вул.|бульвар|проспект|площа){1}\s./;
 
     $("#selectDates").modal('show');
 
-    var time = performance.now();
-    $scope.theatres = [];
-     $http.get('/api/theatre/showAll').then(function (response){
-         time = performance.now() - time;
-         console.log("Виведення відбулося за " + time + " мс.");
-        $scope.theatres=response.data;
-        console.log(response);
-    });
+    $scope.culturePalaces = [];
 
-    this.deleteTheatre = function deleteTheatre(id){
+    this.deleteCulturePalace = function deleteCulturePalace(id){
         var time = performance.now();
-        $http.get('/api/theatre/delete?id=' + id).then(function(){
-            time = performance.now() - time;
+        $http.get('/api/culturepalace/delete?id=' + id).then(function(){
+            time = performance.now()-time;
             console.log("Видалення відбулося за " + time + " мс.");
-            console.log("deleted theatre with id " + id);
             window.location.reload();
-
+            console.log("deleted culturePalace with id " + id);
         });
     };
 
-    this.createTheatre = function createTheatre(){
-        var name = document.getElementById('TheatreName').value;
-        var address = document.getElementById('TheatreAddress').value;
-        var capacity = document.getElementById('TheatreCapacity').value;
+    this.createCulturePalace = function createCulturePalace(){
+        var name = document.getElementById('CulturePalaceName').value;
+        var address = document.getElementById('CulturePalaceAddress').value;
+        var capacity = document.getElementById('CulturePalaceCapacity').value;
 
         var nameIsValid = true;
         var addressIsValid = true;
@@ -54,7 +46,7 @@ app.controller("TheatreCtrl", function($scope, $http){
         if (nameIsValid && addressIsValid && capacityIsValid) {
             var createRequest = {
                 method: 'PUT',
-                url: '/api/theatre/create',
+                url: '/api/culturepalace/create',
                 data: {
                     name: name,
                     address: address,
@@ -71,18 +63,18 @@ app.controller("TheatreCtrl", function($scope, $http){
         }
     };
 
-    this.startUpdateTheatre = function startUpdateTheatre(id, name, address, capacity){
-        document.getElementById('updateTheatreName').value = name;
-        document.getElementById('updateTheatreAddress').value = address;
-        document.getElementById('updateTheatreCapacity').value = capacity;
+    this.startUpdateCulturePalace = function startUpdateCulturePalace(id, name, address, capacity){
+        document.getElementById('updateCulturePalaceName').value = name;
+        document.getElementById('updateCulturePalaceAddress').value = address;
+        document.getElementById('updateCulturePalaceCapacity').value = capacity;
 
         idToUpdate = id;
     };
 
-    this.updateTheatre = function updateTheatre(){
-        var name = document.getElementById('updateTheatreName').value;
-        var address = document.getElementById('updateTheatreAddress').value;
-        var capacity = document.getElementById('updateTheatreCapacity').value;
+    this.updateCulturePalace = function updateCulturePalace(){
+        var name = document.getElementById('updateCulturePalaceName').value;
+        var address = document.getElementById('updateCulturePalaceAddress').value;
+        var capacity = document.getElementById('updateCulturePalaceCapacity').value;
 
         var nameIsValid = true;
         var addressIsValid = true;
@@ -106,7 +98,7 @@ app.controller("TheatreCtrl", function($scope, $http){
         if (nameIsValid && addressIsValid && capacityIsValid) {
             var request = {
                 method: 'POST',
-                url: '/api/theatre/update?id=' + idToUpdate,
+                url: '/api/culturepalace/update?id=' + idToUpdate,
                 data: {
                     name: name,
                     address: address,
@@ -152,8 +144,17 @@ app.controller("TheatreCtrl", function($scope, $http){
     this.showByCapacity = function showByCapacity(){
         var capacity = document.getElementById('capacity').value;
 
-        $http.get('/api/theatre/findAllByCapacityGreaterThanEqual?capacity=' + capacity).then(function(response){
-            $scope.theatres = response.data;
+        $http.get('/api/culturepalace/findAllByCapacityGreaterThanEqual?capacity=' + capacity).then(function(response){
+            $scope.culturePalaces = response.data;
+        });
+    };
+
+    this.selectDates = function selectDates(){
+        var firstDate = document.getElementById('firstDate').value;
+        var secondDate = document.getElementById('secondDate').value;
+
+        $http.get('/api/contestinpalace/findPalacesAndContestsDates?firstDate=' + firstDate + '&secondDate=' + secondDate).then(function(response){
+            $scope.culturePalaces = response.data;
         });
     }
 });

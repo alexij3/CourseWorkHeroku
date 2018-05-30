@@ -19,7 +19,7 @@ public class TheatrePerformance {
     @Column(unique = true)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_organizer", insertable = false, updatable = false)
     private Organizer organizer;
 

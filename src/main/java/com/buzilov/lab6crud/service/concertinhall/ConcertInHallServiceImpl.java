@@ -54,5 +54,10 @@ public class ConcertInHallServiceImpl implements ConcertInHallService {
     public List<ConcertInHall> findAllByConcertHallId(int id) {
         return concertInHallRepository.findAllByConcertHallId(id);
     }
+
+    @Override
+    public List<ConcertInHall> findHallsAndConcertsDates(LocalDate firstDate, LocalDate secondDate) {
+        return concertInHallRepository.findHallsAndConcertsDates(firstDate, secondDate);
+    }
 }
 

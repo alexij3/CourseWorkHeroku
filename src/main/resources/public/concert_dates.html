@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
-
 </head>
 <body ng-app = "demo">
 
@@ -16,7 +15,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="dropdown">
-                        <button class="dropbtn">Концертні площадки</button>
+                        <button class="dropbtn">Концертні площадки (запит)</button>
                         <div class="dropdown-content">
                             <a href ="index.html">Титульна сторінка</a>
                             <a href="artist.html">Артисти</a>
@@ -24,6 +23,7 @@
                             <a href ="artist_and_impresario.html">Імпресаріо артистів</a>
                             <a href ="cinema.html">Кінотеатри</a>
                             <a href ="cinema_movies.html">Фільми</a>
+                            <a href ="concert_hall.html">Концертні площадки</a>
                             <a href ="concert_in_hall.html">Концерти</a>
                             <a href ="contest_in_palace.html">Конкурси</a>
                             <a href ="contest_results.html">Результати конкурсів</a>
@@ -35,22 +35,15 @@
                             <a href ="theatre_performance.html">Виступи</a>
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <button class="dropbtn" style="margin-left: 0">Запити</button>
-                        <div style="min-width: 400px;" class="dropdown-content">
-                            <a href="" data-toggle="modal" data-target="#selectByCapacity">Список площадок із вказаною місткістю (більше або дорівнює)</a>
-                            <a href="concert_dates.html" >Список концертних площадок та дати проведення заходів протягом вказаного періоду</a>
-                        </div>
-                    </div>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>&#128273ІД</th>
                     <th>Назва</th>
                     <th>Адреса</th>
                     <th>Місткість</th>
+                    <th>Дата проведення концерту</th>
                     <th class="headerWidth"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal">✚</button></th>
                 </tr>
             </thead>
@@ -58,12 +51,12 @@
             <tbody>
 
             <tr ng-repeat = "item in concertHalls">
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.address}}</td>
-                <td>{{item.capacity}}</td>
+                <td>{{item.concertHall.name}}</td>
+                <td>{{item.concertHall.address}}</td>
+                <td>{{item.concertHall.capacity}}</td>
+                <td>{{item.date}}</td>
                 <td>
-                    <button id="update" ng-click="concertHallCtrl.startUpdateConcertHall(item.id, item.name, item.address, item.capacity)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
+                    <button id="update" ng-click="concertHallCtrl.startUpdateConcertHall(item.concertHall.id, item.concertHall.name, item.concertHall.address, item.concertHall.capacity)" class="btn-warning" data-toggle="modal" data-target="#editModal"><span style="font-size: 18px">✏</span></button>
                     <button id="delete" ng-click="concertHallCtrl.deleteConcertHall(item.id)" class="btn-danger">❌</button>
                 </td>
             </tr>
@@ -126,42 +119,23 @@
         </div>
     </div>
 
-    <div id="selectByDateGeneral" class="modal fade" role="dialog">
+    <div id="selectDates" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Вибір дати</h4>
+                    <h4 class="modal-title">Вибір періоду</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="date" name ="Перша дата" id="firstDate"/> <br>
-                    <input type="date" name ="Друга дата" id="secondDate"/> <br>
+                    <label>Від:<br><input type="date" name ="Перша дата" id="firstDate"/> </label><br>
+                    <label>До: <br><input type="date" name ="Друга дата" id="secondDate"/> </label><br>
+
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-default" id="showConcertsByDate" ng-click="concertHallCtrl.showConcertsByDate()" data-dismiss="modal">Вивести</button>
+                    <button class="btn btn-default" id="selectDatesBtn" ng-click="concertHallCtrl.selectDates()" data-dismiss="modal">Вивести</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
                 </div>
             </div>
-
-        </div>
-    </div>
-
-    <div id="selectByCapacity" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Вибір місткості</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="number" id="capacity"/>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" id="showByCapacity" ng-click="concertHallCtrl.showByCapacity()" data-dismiss="modal">Вивести</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -170,7 +144,7 @@
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/concert_hall.js"></script>
+<script type="text/javascript" src="js/concert_dates.js"></script>
 
 </body>
 </html>

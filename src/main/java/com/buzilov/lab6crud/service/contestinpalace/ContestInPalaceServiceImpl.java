@@ -53,4 +53,9 @@ public class ContestInPalaceServiceImpl implements ContestInPalaceService {
     public List<ContestInPalace> findAllByCulturePalaceId(int id) {
         return contestInPalaceRepository.findAllByCulturePalaceId(id);
     }
+
+    @Override
+    public List<ContestInPalace> findPalacesAndContestsDates(LocalDate firstDate, LocalDate secondDate) {
+        return contestInPalaceRepository.findPalacesAndContestsDates(firstDate, secondDate);
+    }
 }
