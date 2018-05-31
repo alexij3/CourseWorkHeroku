@@ -30,7 +30,6 @@ public class CinemaController {
 
     @RequestMapping("/create")
     public Cinema create(@RequestBody Cinema cinema)throws SQLException{
-        System.out.println("create cinema " + cinema);
         return service.insertCinema(cinema);
     }
 
@@ -48,5 +47,10 @@ public class CinemaController {
     @RequestMapping("/findAllByScreenSizeGreaterThanEqual")
     public List<Cinema> findAllByScreenSizeGreaterThanEqual(@RequestParam("size") int size){
         return service.findAllByScreenSizeGreaterThanEqual(size);
+    }
+
+    @RequestMapping("/get")
+    public Cinema get(@RequestParam("id") int id) throws SQLException {
+        return service.getCinema(id);
     }
 }

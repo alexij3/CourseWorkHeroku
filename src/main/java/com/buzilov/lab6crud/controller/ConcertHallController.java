@@ -44,4 +44,8 @@ public class ConcertHallController {
         return service.findAllByCapacityGreaterThanEqual(capacity);
     }
 
+    @RequestMapping("/get")
+    public ConcertHall get(int id) throws SQLException {
+        return service.get(id);
+    }
 }

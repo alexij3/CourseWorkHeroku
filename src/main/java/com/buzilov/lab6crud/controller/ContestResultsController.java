@@ -76,4 +76,9 @@ public class ContestResultsController {
     public List<ContestResults> findAllByContestId(@RequestParam("contestId") int contestId){
         return contestResultsService.findAllByContestId(contestId);
     }
+    
+    @RequestMapping("/get")
+    public ContestResults get(int id) throws SQLException {
+        return contestResultsService.get(id);
+    }
 }

@@ -17,7 +17,7 @@ public class ConcertInHallController {
     ConcertInHallServiceImpl concertInHallService;
 
     @RequestMapping("/showall")
-    public List<ConcertInHall> showContestsInPalaces() throws SQLException {
+    public List<ConcertInHall> showConcerts() throws SQLException {
         return concertInHallService.getAll();
     }
 
@@ -77,6 +77,11 @@ public class ConcertInHallController {
     @RequestMapping("findAllByConcertHallId")
     public List<ConcertInHall> findAllByConcertHallId(@RequestParam("id") int id){
         return concertInHallService.findAllByConcertHallId(id);
+    }
+
+    @RequestMapping("/get")
+    public ConcertInHall get(int id) throws SQLException {
+        return concertInHallService.get(id);
     }
 }
 

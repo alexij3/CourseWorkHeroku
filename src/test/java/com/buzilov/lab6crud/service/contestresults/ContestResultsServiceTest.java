@@ -1,8 +1,6 @@
 package com.buzilov.lab6crud.service.contestresults;
 
-import com.buzilov.lab6crud.model.Artist;
-import com.buzilov.lab6crud.model.ContestInPalace;
-import com.buzilov.lab6crud.model.ContestResults;
+import com.buzilov.lab6crud.model.*;
 import com.buzilov.lab6crud.repository.contestresults.ContestResultsRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,6 +12,7 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -77,6 +76,36 @@ public class ContestResultsServiceTest {
         List<ContestResults> listToCompareWith = service.getAll();
 
         assertEquals(listToCompareWith, contestResultsList);
+    }
+
+    @Test
+    public void findAllByContestId() throws Exception {
+        CulturePalace culturePalace = new CulturePalace("Palace", "Address", 100);
+
+        int palaceId = 2;
+        culturePalace.setId(palaceId);
+
+        LocalDate date = LocalDate.of(2018, 4, 13);
+
+        Organizer organizer = new Organizer("Org 1", 25, 5, 5);
+        int organizerId = 2;
+        organizer.setId(organizerId);
+
+        ContestInPalace contest = new ContestInPalace(culturePalace, palaceId, "Contest", organizer, organizerId, date);
+        int contestId = 1;
+        contest.setId(contestId);
+
+        List<ContestResults> contestResults = Arrays.asList(
+                new ContestResults(new Artist("name 1"), contest, 1, 'y'),
+                new ContestResults(new Artist("name 2"), contest, 2, 'y'),
+                new ContestResults(new Artist("name 3"), contest, 3, 'y')
+        );
+
+        Mockito.when(repository.findAllByContestId(contestId)).thenReturn(contestResults);
+
+        List<ContestResults> actualResults = service.findAllByContestId(contestId);
+
+        assertEquals(contestResults, actualResults);
     }
 
 }

@@ -1,9 +1,9 @@
-package com.buzilov.lab6crud.service.contestinpalace;
+package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ContestInPalace;
 import com.buzilov.lab6crud.model.CulturePalace;
 import com.buzilov.lab6crud.model.Organizer;
-import com.buzilov.lab6crud.repository.contestinpalace.ContestInPalaceRepository;
+import com.buzilov.lab6crud.service.contestinpalace.ContestInPalaceServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,12 +23,12 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-public class ContestInPalaceServiceTest {
+public class ContestInPalaceControllerTest {
     @Mock
-    private ContestInPalaceRepository repository;
+    private ContestInPalaceServiceImpl service;
 
     @InjectMocks
-    private ContestInPalaceServiceImpl service;
+    private ContestInPalaceController controller;
 
     private List<ContestInPalace> contestInPalaceList;
 
@@ -44,13 +44,14 @@ public class ContestInPalaceServiceTest {
 
         contestInPalaceToCompareWith =  new ContestInPalace(null, 0, "Name 4", null, 0, null);
 
-        Mockito.when(repository.findAll()).thenReturn(contestInPalaceList);
-        Mockito.when(repository.save(contestInPalaceToCompareWith)).thenReturn(contestInPalaceToCompareWith);
+        Mockito.when(service.getAll()).thenReturn(contestInPalaceList);
+        Mockito.when(service.insert(contestInPalaceToCompareWith)).thenReturn(contestInPalaceToCompareWith);
+        Mockito.when(service.update(contestInPalaceToCompareWith)).thenReturn(contestInPalaceToCompareWith);
     }
 
     @Test
     public void insert() throws Exception {
-        ContestInPalace contestInPalace = service.insert(contestInPalaceToCompareWith);
+        ContestInPalace contestInPalace = controller.insert(contestInPalaceToCompareWith);
 
         assertEquals(contestInPalace, contestInPalaceToCompareWith);
     }
@@ -60,22 +61,22 @@ public class ContestInPalaceServiceTest {
         int idToFind = 1;
 
         ContestInPalace expectedContestInPalace = new ContestInPalace(null, 0, "Name 5", null, 0, null);
-        Mockito.when(repository.findById(idToFind)).thenReturn(Optional.of(expectedContestInPalace));
+        Mockito.when(service.get(idToFind)).thenReturn(expectedContestInPalace);
 
-        ContestInPalace contestInPalace = service.get(idToFind);
+        ContestInPalace contestInPalace = controller.get(idToFind);
         Assert.assertEquals(expectedContestInPalace, contestInPalace);
     }
 
     @Test
     public void update() throws Exception {
-        ContestInPalace contestInPalace = service.update(contestInPalaceToCompareWith);
+        ContestInPalace contestInPalace = controller.update(contestInPalaceToCompareWith);
 
         assertEquals(contestInPalace, contestInPalaceToCompareWith);
     }
 
     @Test
     public void getAll() throws Exception {
-        List<ContestInPalace> listToCompareWith = service.getAll();
+        List<ContestInPalace> listToCompareWith = controller.showContestsInPalaces();
 
         assertEquals(listToCompareWith, contestInPalaceList);
     }
@@ -103,9 +104,9 @@ public class ContestInPalaceServiceTest {
                 new ContestInPalace(culturePalace, id, "Contest 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByDateBetween(firstDate, secondDate)).thenReturn(contestInPalaces);
+        Mockito.when(service.findAllByDateBetween(firstDate, secondDate)).thenReturn(contestInPalaces);
 
-        List<ContestInPalace> actualContestInPalaces = service.findAllByDateBetween(firstDate, secondDate);
+        List<ContestInPalace> actualContestInPalaces = controller.findAllByDateBetween(firstDate.toString(), secondDate.toString());
 
         assertEquals(contestInPalaces, actualContestInPalaces);
     }
@@ -133,9 +134,9 @@ public class ContestInPalaceServiceTest {
                 new ContestInPalace(culturePalace, id, "Contest 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId)).thenReturn(contestInPalaces);
+        Mockito.when(service.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId)).thenReturn(contestInPalaces);
 
-        List<ContestInPalace> actualContestInPalaces = service.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
+        List<ContestInPalace> actualContestInPalaces = controller.findAllByDateBetweenAndOrganizer(firstDate.toString(), secondDate.toString(), organizerId);
 
         assertEquals(contestInPalaces, actualContestInPalaces);
     }
@@ -160,9 +161,9 @@ public class ContestInPalaceServiceTest {
                 new ContestInPalace(culturePalace, id, "Contest 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByCulturePalaceId(id)).thenReturn(contestInPalaces);
+        Mockito.when(service.findAllByCulturePalaceId(id)).thenReturn(contestInPalaces);
 
-        List<ContestInPalace> actualContestInPalaces = service.findAllByCulturePalaceId(id);
+        List<ContestInPalace> actualContestInPalaces = controller.findAllByCulturePalaceId(id);
 
         assertEquals(contestInPalaces, actualContestInPalaces);
     }

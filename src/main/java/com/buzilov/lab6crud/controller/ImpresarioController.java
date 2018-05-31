@@ -88,4 +88,9 @@ public class ImpresarioController {
     public List<Impresario> findAllByExperienceGreaterThanEqual(int experience) {
         return service.findAllByExperienceGreaterThanEqual(experience);
     }
+
+    @RequestMapping("/get")
+    public Impresario get(@RequestParam("id") int id) throws SQLException{
+        return service.get(id);
+    }
 }

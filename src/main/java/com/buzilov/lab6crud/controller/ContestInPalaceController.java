@@ -79,4 +79,9 @@ public class ContestInPalaceController {
     public List<ContestInPalace> findAllByCulturePalaceId(@RequestParam("id") int id){
         return contestInPalaceService.findAllByCulturePalaceId(id);
     }
+
+    @RequestMapping("/get")
+    public ContestInPalace get(int id) throws SQLException {
+        return contestInPalaceService.get(id);
+    }
 }

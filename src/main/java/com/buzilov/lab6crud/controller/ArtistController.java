@@ -86,8 +86,7 @@ public class ArtistController {
     }
 
     @RequestMapping("findArtistByImpresariosContaining")
-    public List<Artist> findArtistByImpresariosContaining(@RequestParam("id") int id){
-        Impresario impresario = new Impresario();
+    public List<Artist> findArtistByImpresariosContaining(@RequestParam("id") int id, @RequestBody Impresario impresario){
         impresario.setId(id);
 
         return artistService.findArtistByImpresariosContaining(impresario);

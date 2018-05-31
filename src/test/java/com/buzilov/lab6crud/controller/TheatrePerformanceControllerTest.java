@@ -1,9 +1,9 @@
-package com.buzilov.lab6crud.service.theatreperformance;
+package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.Organizer;
 import com.buzilov.lab6crud.model.Theatre;
 import com.buzilov.lab6crud.model.TheatrePerformance;
-import com.buzilov.lab6crud.repository.theatreperformance.TheatrePerformanceRepository;
+import com.buzilov.lab6crud.service.theatreperformance.TheatrePerformanceServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,12 +23,12 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-public class TheatrePerformanceServiceTest {
+public class TheatrePerformanceControllerTest {
     @Mock
-    private TheatrePerformanceRepository repository;
+    private TheatrePerformanceServiceImpl service;
 
     @InjectMocks
-    private TheatrePerformanceServiceImpl service;
+    private TheatrePerformanceController controller;
 
     private List<TheatrePerformance> theatrePerformanceList;
 
@@ -44,13 +44,14 @@ public class TheatrePerformanceServiceTest {
 
         theatrePerformanceToCompareWith =  new TheatrePerformance(null, 0, "Name 4", null, 0, null);
 
-        Mockito.when(repository.findAll()).thenReturn(theatrePerformanceList);
-        Mockito.when(repository.save(theatrePerformanceToCompareWith)).thenReturn(theatrePerformanceToCompareWith);
+        Mockito.when(service.getAll()).thenReturn(theatrePerformanceList);
+        Mockito.when(service.insert(theatrePerformanceToCompareWith)).thenReturn(theatrePerformanceToCompareWith);
+        Mockito.when(service.update(theatrePerformanceToCompareWith)).thenReturn(theatrePerformanceToCompareWith);
     }
 
     @Test
     public void insert() throws Exception {
-        TheatrePerformance theatrePerformance = service.insert(theatrePerformanceToCompareWith);
+        TheatrePerformance theatrePerformance = controller.insert(theatrePerformanceToCompareWith);
 
         assertEquals(theatrePerformance, theatrePerformanceToCompareWith);
     }
@@ -60,22 +61,22 @@ public class TheatrePerformanceServiceTest {
         int idToFind = 1;
 
         TheatrePerformance expectedTheatrePerformance = new TheatrePerformance(null, 0, "Name 5", null, 0, null);
-        Mockito.when(repository.findById(idToFind)).thenReturn(Optional.of(expectedTheatrePerformance));
+        Mockito.when(service.get(idToFind)).thenReturn(expectedTheatrePerformance);
 
-        TheatrePerformance theatrePerformance = service.get(idToFind);
+        TheatrePerformance theatrePerformance = controller.get(idToFind);
         Assert.assertEquals(expectedTheatrePerformance, theatrePerformance);
     }
 
     @Test
     public void update() throws Exception {
-        TheatrePerformance theatrePerformance = service.update(theatrePerformanceToCompareWith);
+        TheatrePerformance theatrePerformance = controller.update(theatrePerformanceToCompareWith);
 
         assertEquals(theatrePerformance, theatrePerformanceToCompareWith);
     }
 
     @Test
     public void getAll() throws Exception {
-        List<TheatrePerformance> listToCompareWith = service.getAll();
+        List<TheatrePerformance> listToCompareWith = controller.show();
 
         assertEquals(listToCompareWith, theatrePerformanceList);
     }
@@ -103,9 +104,9 @@ public class TheatrePerformanceServiceTest {
                 new TheatrePerformance(theatre, id, "Performance 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByDateBetween(firstDate, secondDate)).thenReturn(theatrePerformances);
+        Mockito.when(service.findAllByDateBetween(firstDate, secondDate)).thenReturn(theatrePerformances);
 
-        List<TheatrePerformance> actualTheatrePerformances = service.findAllByDateBetween(firstDate, secondDate);
+        List<TheatrePerformance> actualTheatrePerformances = controller.findAllByDateBetween(firstDate.toString(), secondDate.toString());
 
         assertEquals(theatrePerformances, actualTheatrePerformances);
     }
@@ -133,9 +134,9 @@ public class TheatrePerformanceServiceTest {
                 new TheatrePerformance(theatre, id, "Performance 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId)).thenReturn(theatrePerformances);
+        Mockito.when(service.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId)).thenReturn(theatrePerformances);
 
-        List<TheatrePerformance> actualTheatrePerformances = service.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
+        List<TheatrePerformance> actualTheatrePerformances = controller.findAllByDateBetweenAndOrganizer(firstDate.toString(), secondDate.toString(), organizerId);
 
         assertEquals(theatrePerformances, actualTheatrePerformances);
     }
@@ -163,9 +164,9 @@ public class TheatrePerformanceServiceTest {
                 new TheatrePerformance(theatre, id, "Performance 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByTheatreId(id)).thenReturn(theatrePerformances);
+        Mockito.when(service.findAllByTheatreId(id)).thenReturn(theatrePerformances);
 
-        List<TheatrePerformance> actualTheatrePerformances = service.findAllByTheatreId(id);
+        List<TheatrePerformance> actualTheatrePerformances = controller.findAllByTheatreId(id);
 
         assertEquals(theatrePerformances, actualTheatrePerformances);
     }
@@ -195,11 +196,10 @@ public class TheatrePerformanceServiceTest {
                 new TheatrePerformance(theatre, id, "Performance 3",  organizer, organizerId, date2)
         );
 
-        Mockito.when(repository.findTheatresAndPerformancesDates(firstDate, secondDate)).thenReturn(theatrePerformances);
+        Mockito.when(service.findTheatresAndPerformancesDates(firstDate, secondDate)).thenReturn(theatrePerformances);
 
-        List<TheatrePerformance> actualTheatrePerformances = service.findTheatresAndPerformancesDates(firstDate, secondDate);
+        List<TheatrePerformance> actualTheatrePerformances = controller.findTheatresAndPerformancesDates(firstDate.toString(), secondDate.toString());
 
         assertEquals(theatrePerformances, actualTheatrePerformances);
     }
-
 }

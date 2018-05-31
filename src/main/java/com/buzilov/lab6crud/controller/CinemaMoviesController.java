@@ -67,4 +67,9 @@ public class CinemaMoviesController {
         return service.findAllByGenre(genre);
     }
 
+    @RequestMapping("/get")
+    public CinemaMovie get(int id) throws SQLException {
+        return service.get(id);
+    }
+
 }

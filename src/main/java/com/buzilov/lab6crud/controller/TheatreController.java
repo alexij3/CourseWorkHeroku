@@ -45,4 +45,9 @@ public class TheatreController {
     public List<Theatre> findAllByCapacityGreaterThanEqual(@RequestParam("capacity") int capacity){
         return service.findAllByCapacityGreaterThanEqual(capacity);
     }
+
+    @RequestMapping("/get")
+    public Theatre get(int id) throws SQLException {
+        return service.get(id);
+    }
 }

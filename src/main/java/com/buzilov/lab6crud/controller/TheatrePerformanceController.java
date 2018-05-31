@@ -80,4 +80,9 @@ public class TheatrePerformanceController {
         return theatrePerformanceService.findAllByTheatreId(id);
     }
 
+    @RequestMapping("/get")
+    public TheatrePerformance get(int id) throws SQLException {
+        return theatrePerformanceService.get(id);
+    }
+
 }

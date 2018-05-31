@@ -1,9 +1,9 @@
-package com.buzilov.lab6crud.service.concertinhall;
+package com.buzilov.lab6crud.controller;
 
 import com.buzilov.lab6crud.model.ConcertHall;
 import com.buzilov.lab6crud.model.ConcertInHall;
 import com.buzilov.lab6crud.model.Organizer;
-import com.buzilov.lab6crud.repository.concertinhall.ConcertInHallRepository;
+import com.buzilov.lab6crud.service.concertinhall.ConcertInHallServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,12 +23,12 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-public class ConcertInHallServiceTest {
+public class ConcertInHallControllerTest {
     @Mock
-    private ConcertInHallRepository repository;
+    private ConcertInHallServiceImpl service;
 
     @InjectMocks
-    private ConcertInHallServiceImpl service;
+    private ConcertInHallController controller;
 
     private List<ConcertInHall> concertInHallList;
 
@@ -44,13 +44,14 @@ public class ConcertInHallServiceTest {
 
         concertInHallToCompareWith =  new ConcertInHall(null, 0, "Name 4", null, 0, null);
 
-        Mockito.when(repository.findAll()).thenReturn(concertInHallList);
-        Mockito.when(repository.save(concertInHallToCompareWith)).thenReturn(concertInHallToCompareWith);
+        Mockito.when(service.getAll()).thenReturn(concertInHallList);
+        Mockito.when(service.insert(concertInHallToCompareWith)).thenReturn(concertInHallToCompareWith);
+        Mockito.when(service.update(concertInHallToCompareWith)).thenReturn(concertInHallToCompareWith);
     }
 
     @Test
     public void insert() throws Exception {
-        ConcertInHall concertInHall = service.insert(concertInHallToCompareWith);
+        ConcertInHall concertInHall = controller.insert(concertInHallToCompareWith);
 
         assertEquals(concertInHall, concertInHallToCompareWith);
     }
@@ -60,22 +61,22 @@ public class ConcertInHallServiceTest {
         int idToFind = 1;
 
         ConcertInHall expectedConcertInHall = new ConcertInHall(null, 0, "Name 5", null, 0, null);
-        Mockito.when(repository.findById(idToFind)).thenReturn(Optional.of(expectedConcertInHall));
+        Mockito.when(service.get(idToFind)).thenReturn(expectedConcertInHall);
 
-        ConcertInHall concertInHall = service.get(idToFind);
+        ConcertInHall concertInHall = controller.get(idToFind);
         Assert.assertEquals(expectedConcertInHall, concertInHall);
     }
 
     @Test
     public void update() throws Exception {
-        ConcertInHall concertInHall = service.update(concertInHallToCompareWith);
+        ConcertInHall concertInHall = controller.update(concertInHallToCompareWith);
 
         assertEquals(concertInHall, concertInHallToCompareWith);
     }
 
     @Test
     public void getAll() throws Exception {
-        List<ConcertInHall> listToCompareWith = service.getAll();
+        List<ConcertInHall> listToCompareWith = controller.showConcerts();
 
         assertEquals(listToCompareWith, concertInHallList);
     }
@@ -103,9 +104,9 @@ public class ConcertInHallServiceTest {
                 new ConcertInHall(concertHall, id, "Concert 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByDateBetween(firstDate, secondDate)).thenReturn(concertsInHall);
+        Mockito.when(service.findAllByDateBetween(firstDate, secondDate)).thenReturn(concertsInHall);
 
-        List<ConcertInHall> actualConcertInHalls = service.findAllByDateBetween(firstDate, secondDate);
+        List<ConcertInHall> actualConcertInHalls = controller.findAllByDateBetween(firstDate.toString(), secondDate.toString());
 
         assertEquals(concertsInHall, actualConcertInHalls);
     }
@@ -133,9 +134,9 @@ public class ConcertInHallServiceTest {
                 new ConcertInHall(concertHall, id, "Concert 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId)).thenReturn(concertsInHall);
+        Mockito.when(service.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId)).thenReturn(concertsInHall);
 
-        List<ConcertInHall> actualConcertInHalls = service.findAllByDateBetweenAndOrganizerId(firstDate, secondDate, organizerId);
+        List<ConcertInHall> actualConcertInHalls = controller.findAllByDateBetweenAndOrganizer(firstDate.toString(), secondDate.toString(), organizerId);
 
         assertEquals(concertsInHall, actualConcertInHalls);
     }
@@ -160,11 +161,10 @@ public class ConcertInHallServiceTest {
                 new ConcertInHall(concertHall, id, "Concert 3",  organizer, organizerId, date)
         );
 
-        Mockito.when(repository.findAllByConcertHallId(id)).thenReturn(concertsInHall);
+        Mockito.when(service.findAllByConcertHallId(id)).thenReturn(concertsInHall);
 
-        List<ConcertInHall> actualConcertInHalls = service.findAllByConcertHallId(id);
+        List<ConcertInHall> actualConcertInHalls = controller.findAllByConcertHallId(id);
 
         assertEquals(concertsInHall, actualConcertInHalls);
     }
-
 }
