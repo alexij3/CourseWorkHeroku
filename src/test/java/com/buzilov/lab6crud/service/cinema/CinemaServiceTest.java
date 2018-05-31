@@ -67,14 +67,31 @@ public class CinemaServiceTest {
     public void updateCinema() throws Exception {
         Cinema cinema = service.updateCinema(cinemaToCompareWith);
 
-        assertEquals(cinema, cinemaToCompareWith);
+        assertEquals(cinemaToCompareWith, cinema);
     }
 
     @Test
     public void getAll() throws Exception {
         List<Cinema> listToCompareWith = service.getAll();
 
-        assertEquals(listToCompareWith, cinemaList);
+        assertEquals(cinemaList, listToCompareWith);
+    }
+
+    @Test
+    public void findAllByScreenSizeGreaterThanEqual() throws Exception {
+        List<Cinema> cinemas = Arrays.asList(
+                new Cinema("Cinema 1", "Add 1", 100),
+                new Cinema("Cinema 2", "Add 1", 120),
+                new Cinema("Cinema 3", "Add 1", 130)
+        );
+
+        int size = 100;
+
+        Mockito.when(repository.findAllByScreenSizeGreaterThanEqual(size)).thenReturn(cinemas);
+
+        List<Cinema> actualCinemas = service.findAllByScreenSizeGreaterThanEqual(size);
+
+        assertEquals(cinemas, actualCinemas);
     }
 
 }

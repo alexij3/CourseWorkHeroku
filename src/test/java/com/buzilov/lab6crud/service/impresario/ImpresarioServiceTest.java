@@ -1,5 +1,6 @@
 package com.buzilov.lab6crud.service.impresario;
 
+import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.model.Impresario;
 import com.buzilov.lab6crud.repository.impresario.ImpresarioRepository;
 import org.junit.Assert;
@@ -78,6 +79,116 @@ public class ImpresarioServiceTest {
         Impresario impresario = service.update(impresarioToCompareWith);
 
         assertEquals(impresario, impresarioToCompareWith);
+    }
+
+    @Test
+    public void findAllByGenreSetContaining() throws Exception {
+        List<Impresario> impresariosWithGenres = Arrays.asList(
+                new Impresario("Impresario 1"),
+                new Impresario("Impresario 2"),
+                new Impresario("Impresario 3")
+        );
+
+        Genre genre = Genre.Комедія;
+
+        impresariosWithGenres.get(0).getGenreSet().add(genre);
+        impresariosWithGenres.get(1).getGenreSet().add(genre);
+        impresariosWithGenres.get(2).getGenreSet().add(genre);
+
+        Mockito.when(repository.findAllByGenreSetContaining(genre)).thenReturn(impresariosWithGenres);
+
+        List<Impresario> serviceTestImpresarios = service.findAllByGenreSetContaining(genre);
+
+        assertEquals(serviceTestImpresarios, impresariosWithGenres);
+    }
+
+    @Test
+    public void findAllByGenreSetIsNull() throws Exception {
+        Mockito.when(repository.findAllByGenreSetIsNull()).thenReturn(impresarioList);
+
+        List<Impresario> impresariosToCheck = service.findAllByGenreSetIsNull();
+
+        assertEquals(impresarioList, impresariosToCheck);
+    }
+
+    @Test
+    public void findAllByAgeLessThan() throws Exception {
+        int age = 23;
+
+        List<Impresario> impresarios = Arrays.asList(
+                new Impresario("Impresario 1"),
+                new Impresario("Impresario 2"),
+                new Impresario("Impresario 3")
+        );
+
+        for (Impresario a : impresarios)
+            a.setAge(22);
+
+        Mockito.when(repository.findAllByAgeLessThan(age)).thenReturn(impresarios);
+
+        List<Impresario> actualImpresarios = service.findAllByAgeLessThan(age);
+
+        assertEquals(impresarios, actualImpresarios);
+    }
+
+    @Test
+    public void findAllByAgeGreaterThanEqual() throws Exception {
+        int age = 23;
+
+        List<Impresario> impresarios = Arrays.asList(
+                new Impresario("Impresario 1"),
+                new Impresario("Impresario 2"),
+                new Impresario("Impresario 3")
+        );
+
+        for (Impresario a : impresarios)
+            a.setAge(24);
+
+        Mockito.when(repository.findAllByAgeGreaterThanEqual(age)).thenReturn(impresarios);
+
+        List<Impresario> actualImpresarios = service.findAllByAgeGreaterThanEqual(age);
+
+        assertEquals(impresarios, actualImpresarios);
+    }
+
+    @Test
+    public void findAllByExperienceLessThan() throws Exception {
+        int experience = 3;
+
+        List<Impresario> impresarios = Arrays.asList(
+                new Impresario("Impresario 1"),
+                new Impresario("Impresario 2"),
+                new Impresario("Impresario 3")
+        );
+
+        for (Impresario a : impresarios)
+            a.setExperience(2);
+
+        Mockito.when(repository.findAllByExperienceLessThan(experience)).thenReturn(impresarios);
+
+        List<Impresario> actualImpresarios = service.findAllByExperienceLessThan(experience);
+
+        assertEquals(impresarios, actualImpresarios);
+    }
+
+    @Test
+    public void findAllByExperienceGreaterThanEqual() throws Exception {
+        int experience = 3;
+
+        List<Impresario> impresarios = Arrays.asList(
+                new Impresario("Impresario 1"),
+                new Impresario("Impresario 2"),
+                new Impresario("Impresario 3")
+        );
+
+        for (Impresario a : impresarios)
+            a.setExperience(4);
+
+        Mockito.when(repository.findAllByExperienceGreaterThanEqual(experience)).thenReturn(impresarios);
+
+        List<Impresario> actualImpresarios = service.findAllByExperienceGreaterThanEqual(experience);
+
+        assertEquals(impresarios, actualImpresarios);
     }
 
 }

@@ -77,4 +77,23 @@ public class ConcertHallServiceTest {
         assertEquals(listToCompareWith, concertHallList);
     }
 
+    @Test
+    public void findAllByCapacityGreaterThanEqual() throws Exception {
+        List<ConcertHall> concertHalls = Arrays.asList(
+                new ConcertHall("ConcertHall 1", "Add 1", 60),
+                new ConcertHall("ConcertHall 2", "Add 2", 70),
+                new ConcertHall("ConcertHall 3", "Add 3", 80)
+        );
+
+        int capacity = 50;
+
+        Mockito.when(repository.findAllByCapacityGreaterThanEqual(capacity)).thenReturn(concertHalls);
+
+        List<ConcertHall> actualConcertHalls = service.findAllByCapacityGreaterThanEqual(capacity);
+
+        assertEquals(concertHalls, actualConcertHalls);
+
+    }
+
+
 }

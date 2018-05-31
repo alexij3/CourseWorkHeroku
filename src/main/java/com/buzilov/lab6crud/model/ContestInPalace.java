@@ -43,6 +43,8 @@ public class ContestInPalace {
     public ContestInPalace() {
     }
 
+
+
     public ContestInPalace(Integer id, int culturePalaceId, String name, int organizerId, LocalDate date) {
         this.id = id;
         this.culturePalaceId = culturePalaceId;

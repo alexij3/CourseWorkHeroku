@@ -42,6 +42,11 @@ public class Organizer {
     public Organizer() {
     }
 
+    public Organizer(@NotNull String name, long concertCount) {
+        this.name = name;
+        this.concertCount = concertCount;
+    }
+
     public Organizer(@NotNull Integer id, @NotNull String name, @NotNull Integer age, Integer experience, long concertCount) {
         this.id = id;
         this.name = name;

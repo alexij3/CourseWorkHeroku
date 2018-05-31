@@ -78,4 +78,16 @@ public class TheatrePerformanceServiceTest {
         assertEquals(listToCompareWith, theatrePerformanceList);
     }
 
+    @Test
+    public void findAllByDateBetween() throws Exception {
+    }
+
+    @Test
+    public void findAllByDateBetweenAndOrganizerId() throws Exception {
+    }
+
+    @Test
+    public void findAllByTheatreId() throws Exception {
+    }
+
 }

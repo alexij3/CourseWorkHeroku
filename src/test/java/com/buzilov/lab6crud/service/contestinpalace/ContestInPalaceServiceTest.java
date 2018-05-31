@@ -76,5 +76,4 @@ public class ContestInPalaceServiceTest {
 
         assertEquals(listToCompareWith, contestInPalaceList);
     }
-
 }
