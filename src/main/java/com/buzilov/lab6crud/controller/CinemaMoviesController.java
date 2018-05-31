@@ -1,5 +1,6 @@
 package com.buzilov.lab6crud.controller;
 
+import com.buzilov.lab6crud.model.Cinema;
 import com.buzilov.lab6crud.model.CinemaMovie;
 import com.buzilov.lab6crud.model.Genre;
 import com.buzilov.lab6crud.service.cinema.CinemaServiceImpl;
@@ -35,14 +36,22 @@ public class CinemaMoviesController {
 
     @RequestMapping("/create")
     public CinemaMovie create(@RequestBody CinemaMovie CinemaMovie) throws SQLException{
-        CinemaMovie.setCinema(cinemaService.getCinema(CinemaMovie.getCinemaId()));
+        Cinema cinema = new Cinema();
+        cinema.setId(CinemaMovie.getCinemaId());
+        CinemaMovie.setCinema(cinema);
+
         return service.insert(CinemaMovie);
     }
 
     @RequestMapping("/update")
     public CinemaMovie update(@RequestParam("id") Integer id, @RequestBody CinemaMovie CinemaMovie) throws SQLException{
         CinemaMovie.setId(id);
-        CinemaMovie.setCinema(cinemaService.getCinema(CinemaMovie.getCinemaId()));
+
+        Cinema cinema = new Cinema();
+        cinema.setId(CinemaMovie.getCinemaId());
+        CinemaMovie.setCinema(cinema);
+
+        CinemaMovie.setCinema(cinema);
 
         return service.update(CinemaMovie);
     }
